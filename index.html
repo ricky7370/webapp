@@ -187,6 +187,23 @@ label{font-weight:700;font-size:14px;color:var(--soft);display:block;margin-top:
   padding:5px 11px;border-radius:20px;font-size:13px;
   background:#f5efff;color:var(--primary);font-weight:700;
 }
+.level-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:8px}
+.lv-grid{display:flex;flex-wrap:wrap;gap:4px}
+.lv-btn{
+  padding:5px 0;font-size:13px;min-width:32px;
+  border-radius:9px;background:#f5efff;color:var(--dark);
+  border:1.5px solid var(--border);font-weight:700;
+  cursor:pointer;font-family:inherit;transition:all .15s;
+}
+.lv-btn:hover{background:#ebe0ff;transform:translateY(-1px)}
+.lv-btn[data-lv="1"],.lv-btn[data-lv="2"],.lv-btn[data-lv="3"]{border-color:#a8dcb8}
+.lv-btn[data-lv="4"],.lv-btn[data-lv="5"],.lv-btn[data-lv="6"],.lv-btn[data-lv="7"]{border-color:#f0c876}
+.lv-btn[data-lv="8"],.lv-btn[data-lv="9"],.lv-btn[data-lv="10"]{border-color:#f09aa6}
+.lv-btn.active{
+  background:linear-gradient(120deg,var(--primary),var(--primary2));
+  color:#fff;border-color:var(--primary)!important;
+  box-shadow:0 3px 8px #9a66e344;
+}
 .gamecard{
   background:linear-gradient(135deg,#fff,#faf5ff);
   border-radius:16px;padding:16px;cursor:pointer;
@@ -304,10 +321,20 @@ footer{text-align:center;color:var(--soft);padding:20px;font-size:12px}
       <button class="ghost" id="exitGame">← Esci</button>
     </div>
 
-    <div class="row" style="gap:6px;margin-bottom:6px">
-      <button class="ghost" data-lv="1" style="padding:6px 10px;font-size:13px">Facile</button>
-      <button class="ghost" data-lv="2" style="padding:6px 10px;font-size:13px">Medio</button>
-      <button class="ghost" data-lv="3" style="padding:6px 10px;font-size:13px">Difficile</button>
+    <div class="level-row">
+      <span class="chip" id="lvTierLabel">😊 Facile</span>
+      <div class="lv-grid">
+        <button class="lv-btn" data-lv="1">1</button>
+        <button class="lv-btn" data-lv="2">2</button>
+        <button class="lv-btn" data-lv="3">3</button>
+        <button class="lv-btn" data-lv="4">4</button>
+        <button class="lv-btn" data-lv="5">5</button>
+        <button class="lv-btn" data-lv="6">6</button>
+        <button class="lv-btn" data-lv="7">7</button>
+        <button class="lv-btn" data-lv="8">8</button>
+        <button class="lv-btn" data-lv="9">9</button>
+        <button class="lv-btn" data-lv="10">10</button>
+      </div>
     </div>
 
     <div class="facilitations">
@@ -515,10 +542,11 @@ footer{text-align:center;color:var(--soft);padding:20px;font-size:12px}
 <script>
 // ============ STATO ============
 const KEY = "unicornReader_v2";
-const DEF = {sessions:[],errors:[],readings:[],settings:{tts:true,name:"",fontSize:"normal",letterSpacing:"normal",lineHeight:"normal"},unicorns:[1]};
+const DEF = {sessions:[],errors:[],readings:[],settings:{tts:true,name:"",fontSize:"normal",letterSpacing:"normal",lineHeight:"normal"},unicorns:[1],played:{}};
 let data = Object.assign({}, DEF, JSON.parse(localStorage.getItem(KEY) || "{}"));
 ["sessions","errors","readings","unicorns"].forEach(k=>{ if(!Array.isArray(data[k])) data[k]=DEF[k].slice(); });
 data.settings = Object.assign({}, DEF.settings, data.settings||{});
+if(!data.played || typeof data.played !== "object" || Array.isArray(data.played)) data.played = {};
 
 let state = {
   game:null, level:1, questions:[], idx:0,
@@ -922,25 +950,143 @@ const PASSAGES = [
 
 const GAMES_DATA = {doppie:DOPPIE,digrammi:DIGRAMMI,discrim:DISCRIM,errors:ERRORS,build:BUILD,magic:MAGIC,stories:STORIES};
 // ============ CICLO DI GIOCO ============
+// ============ GESTIONE LIVELLI 1-10 ============
+// Mappa 10 livelli numerici ai 3 banchi di contenuti + scala opzioni e domande
+function levelConfig(level, gameName){
+  const L = Math.max(1, Math.min(10, (level|0) || 1));
+  const bank = L <= 3 ? 1 : L <= 7 ? 2 : 3;
+  let options = L <= 2 ? 2 : L <= 5 ? 3 : L <= 7 ? 4 : L <= 9 ? 5 : 6;
+  if(gameName === "stories") options = Math.min(options, 4);
+  const questions = Math.min(10, 5 + Math.floor(L / 1.5));
+  return {bank, options, questions, level:L};
+}
+
+function levelTier(level){
+  const L = Math.max(1, Math.min(10, (level|0) || 1));
+  return L <= 3 ? "😊 Facile" : L <= 7 ? "🤔 Medio" : "🔥 Difficile";
+}
+
+// ID univoco di un elemento del banco (per tracking anti-ripetizione)
+function itemId(item){
+  if(Array.isArray(item)) return item[0];
+  if(item.word) return item.word + "|" + (item.group||"") + (item.pair||"");
+  if(item.correct) return "C:" + item.correct;
+  if(item.syl) return "S:" + item.syl.join("-");
+  if(item.q) return "Q:" + item.q;
+  return JSON.stringify(item);
+}
+
+// Seleziona N domande evitando ripetizioni rispetto alle precedenti sessioni
+function selectQuestions(gameName, bankIdx, levelNum, n){
+  const pool = GAMES_DATA[gameName][bankIdx] || [];
+  if(!pool.length) return [];
+  const key = gameName + "_L" + levelNum;
+  const seen = Array.isArray(data.played[key]) ? data.played[key] : [];
+  const unseen = pool.filter(item => !seen.includes(itemId(item)));
+  let chosen;
+  if(unseen.length >= n){
+    chosen = shuffle(unseen).slice(0, n);
+  } else {
+    // Poche non viste: riparti da capo con un pool fresco
+    const fresh = shuffle(pool).slice(0, Math.min(n, pool.length));
+    data.played[key] = []; // reset tracker
+    chosen = fresh;
+  }
+  const chosenIds = chosen.map(itemId);
+  data.played[key] = [...(data.played[key]||[]), ...chosenIds];
+  // Cap del tracker per non crescere oltre il doppio del banco
+  if(data.played[key].length > pool.length * 2){
+    data.played[key] = chosenIds;
+  }
+  save();
+  return chosen;
+}
+
+// ============ GENERATORI DI DISTRAENTI ============
+// Doppie: restituisce ESATTAMENTE totalWrongs varianti sbagliate (incluso baseWrong)
+function genDoppieDistractors(correct, baseWrong, totalWrongs){
+  if(totalWrongs <= 0) return [];
+  const result = [baseWrong];
+  if(totalWrongs === 1) return result;
+  const seen = new Set([correct, baseWrong]);
+  // Raddoppia ogni lettera di baseWrong (versione senza doppia) in posizioni diverse
+  for(let i = 0; i < baseWrong.length && result.length < totalWrongs; i++){
+    const v = baseWrong.slice(0, i+1) + baseWrong[i] + baseWrong.slice(i+1);
+    if(!seen.has(v) && v.length <= correct.length + 2){
+      seen.add(v); result.push(v);
+    }
+  }
+  // Triplica la doppia nel correct (se presente)
+  for(let i = 1; i < correct.length && result.length < totalWrongs; i++){
+    if(correct[i] === correct[i-1]){
+      const v = correct.slice(0, i) + correct[i] + correct.slice(i);
+      if(!seen.has(v)){ seen.add(v); result.push(v); }
+      break;
+    }
+  }
+  return result.slice(0, totalWrongs);
+}
+
+// Errori: restituisce ESATTAMENTE totalWrongs spelling sbagliati (incluso baseWrong)
+function genErrorDistractors(correct, baseWrong, totalWrongs){
+  if(totalWrongs <= 0) return [];
+  const result = [baseWrong];
+  if(totalWrongs === 1) return result;
+  const seen = new Set([correct, baseWrong]);
+  // Variante 1: raddoppia una lettera a caso
+  for(let i = 0; i < correct.length && result.length < totalWrongs; i++){
+    const v = correct.slice(0, i+1) + correct[i] + correct.slice(i+1);
+    if(!seen.has(v)){ seen.add(v); result.push(v); }
+  }
+  // Variante 2: togli una lettera
+  for(let i = 1; i < correct.length - 1 && result.length < totalWrongs; i++){
+    const v = correct.slice(0, i) + correct.slice(i+1);
+    if(!seen.has(v) && v.length > 1){ seen.add(v); result.push(v); }
+  }
+  // Variante 3: sostituisci C con K
+  if(correct.includes("C") && result.length < totalWrongs){
+    const v = correct.replace(/C/, "K");
+    if(!seen.has(v)){ seen.add(v); result.push(v); }
+  }
+  // Variante 4: sostituisci QU con CU
+  if(correct.includes("QU") && result.length < totalWrongs){
+    const v = correct.replace("QU", "CU");
+    if(!seen.has(v)){ seen.add(v); result.push(v); }
+  }
+  return result.slice(0, totalWrongs);
+}
+
+// Discriminazione: aggiunge lettere distraenti oltre la coppia confusa base
+function genDiscrimDistractors(baseOptions, correct, totalCount){
+  if(baseOptions.length >= totalCount) return baseOptions.slice(0, totalCount);
+  const extras = ["C","D","F","G","L","M","N","P","R","S","T","V","Z","B"]
+    .filter(l => !baseOptions.includes(l));
+  const picked = shuffle(extras).slice(0, totalCount - baseOptions.length);
+  return [...baseOptions, ...picked];
+}
+
+// ============ CICLO DI GIOCO ============
 function startGame(gameName, level){
   state.game = gameName;
-  state.level = level || 1;
-  const bank = GAMES_DATA[gameName][state.level];
-  if(!bank){ alert("Livello non disponibile"); return; }
-  const n = gameName==="stories" ? 3 : (gameName==="magic" ? 6 : 8);
-  state.questions = shuffle(bank.slice()).slice(0, Math.min(n, bank.length));
+  const cfg = levelConfig(level || 1, gameName);
+  state.level = cfg.level;
+  state.optionsCount = cfg.options;
+  const bank = GAMES_DATA[gameName][cfg.bank];
+  if(!bank){ alert("Contenuto non disponibile"); return; }
+  state.questions = selectQuestions(gameName, cfg.bank, cfg.level, cfg.questions);
+  if(!state.questions.length){ alert("Nessun contenuto per questo gioco"); return; }
   state.idx = 0; state.correct = 0; state.errors = 0;
   state.startTime = Date.now();
   qs("#games > .card").classList.add("hidden");
   $("gameArea").classList.remove("hidden");
   $("gameResult").classList.add("hidden");
   $("gameTitle").textContent = GAMES_META[gameName].icon + " " + GAMES_META[gameName].name;
-  $("gameLevel").textContent = "Livello " + state.level;
-  qsa("#gameArea [data-lv]").forEach(b=>{
-    const act = +b.dataset.lv === state.level;
-    b.classList.toggle("primary", act);
-    b.classList.toggle("ghost", !act);
+  $("gameLevel").textContent = "Livello " + cfg.level + " · " + levelTier(cfg.level);
+  qsa("#gameArea .lv-btn").forEach(b=>{
+    b.classList.toggle("active", +b.dataset.lv === state.level);
   });
+  const tierLbl = $("lvTierLabel");
+  if(tierLbl) tierLbl.textContent = levelTier(state.level);
   qsa(".facilitations .toggle").forEach(t=>{
     t.classList.toggle("on", !!state.facilitations[t.dataset.fac]);
   });
@@ -1027,7 +1173,8 @@ const RUNNERS = {};
 
 RUNNERS.doppie = function(q, el){
   const correct = q[0], wrong = q[1], mean = q[2];
-  const opts = shuffle([correct, wrong]);
+  const wrongs = genDoppieDistractors(correct, wrong, state.optionsCount - 1);
+  const opts = shuffle([correct, ...wrongs]);
   el.innerHTML = '<p style="text-align:center;font-size:17px">Quale è scritto <strong>giusto</strong>?</p>' +
     '<p class="small" style="text-align:center">'+(mean||"")+'</p>' +
     '<div class="choices" id="chx"></div>';
@@ -1103,7 +1250,7 @@ RUNNERS.discrim = function(q, el){
     $("gameHint").innerHTML = "💡 Suona come il primo suono di <b>"+q.word+"</b>";
   }
   const box = qs("#chx", el);
-  const opts = shuffle(q.options.slice());
+  const opts = shuffle(genDiscrimDistractors(q.options, q.correct, state.optionsCount));
   opts.forEach(o=>{
     const b = document.createElement("button");
     b.textContent = o;
@@ -1129,7 +1276,8 @@ RUNNERS.discrim = function(q, el){
 };
 
 RUNNERS.errors = function(q, el){
-  const opts = shuffle([q.correct, q.wrong]);
+  const wrongs = genErrorDistractors(q.correct, q.wrong, state.optionsCount - 1);
+  const opts = shuffle([q.correct, ...wrongs]);
   el.innerHTML = '<p style="text-align:center;font-size:17px">Quale parola è scritta <strong>bene</strong>?</p>' +
     '<div class="choices" id="chx"></div>';
   if(state.facilitations.hint){
@@ -1538,9 +1686,10 @@ function resetSessions(){
   if(!data.sessions.length && !data.readings.length){
     alert("Non ci sono ancora contatori da azzerare 🦄"); return;
   }
-  if(!confirm("Azzerare tutti i contatori e i progressi?\n\n• Si cancellano: sessioni, punti, minuti, accuratezza, storico, letture.\n• Si mantengono: diario errori, unicorni sbloccati, impostazioni.\n\nI dati non si possono recuperare!")) return;
+  if(!confirm("Azzerare tutti i contatori e i progressi?\n\n• Si cancellano: sessioni, punti, minuti, accuratezza, storico, letture.\n• Si cancella anche la memoria delle parole già viste nei giochi (tornano tutte disponibili).\n• Si mantengono: diario errori, unicorni sbloccati, impostazioni.\n\nI dati non si possono recuperare!")) return;
   data.sessions = [];
   data.readings = [];
+  data.played = {};
   save(); updateDashboard(); renderProgress();
   alert("Contatori e progressi azzerati ✓");
 }
