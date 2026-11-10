@@ -836,16 +836,23 @@ const DIGRAMMI = {
     {word:"STRADA", group:"STR", mean:"🛣 Dove passano le auto"},
     {word:"STRUMENTO", group:"STR", mean:"🎺 Serve per fare musica"},
     {word:"STRUZZO", group:"STR", mean:"🦤 Grande uccello"},
+    {word:"STRISCIA", group:"STR", mean:"➖ Linea sottile"},
     {word:"SCRIVERE", group:"SCR", mean:"✏️ Con penna e quaderno"},
     {word:"SCRIGNO", group:"SCR", mean:"💎 Baule del tesoro"},
     {word:"SCRITTURA", group:"SCR", mean:"✍️ L'arte di scrivere"},
+    {word:"SCRITTORE", group:"SCR", mean:"📝 Chi scrive libri"},
     {word:"SPLENDERE", group:"SPL", mean:"🌟 Brillare molto"},
     {word:"SPLENDIDO", group:"SPL", mean:"😍 Bellissimo"},
     {word:"SPRUZZO", group:"SPR", mean:"💦 Piccolo getto d'acqua"},
     {word:"SPREMERE", group:"SPR", mean:"🍊 Schiacciare un'arancia"},
+    {word:"SPRINT", group:"SPR", mean:"🏃 Corsa veloce"},
     {word:"MAGNOLIA", group:"GN", mean:"🌼 Fiore bianco grande"},
     {word:"CAMPAGNA", group:"GN", mean:"🌾 Fuori città"},
-    {word:"MONTAGNA", group:"GN", mean:"⛰ Molto alta"}
+    {word:"MONTAGNA", group:"GN", mean:"⛰ Molto alta"},
+    {word:"CASTAGNA", group:"GN", mean:"🌰 Frutto autunnale"},
+    {word:"LAVAGNA", group:"GN", mean:"✍️ A scuola, si scrive sopra"},
+    {word:"GUADAGNO", group:"GN", mean:"💰 Quello che si riceve lavorando"},
+    {word:"BISOGNO", group:"GN", mean:"🙏 Quando ti serve qualcosa"}
   ]
 };
 const DISCRIM = {
@@ -908,13 +915,20 @@ const DISCRIM = {
     {sent:"Il ∎RUCIVERBA è divertente", options:["C","G"], correct:"C", word:"CRUCIVERBA", pair:"c/g", mean:"🧩 Gioco di parole"},
     {sent:"La ∎UPA abita nella tana", options:["L","R"], correct:"L", word:"LUPA", pair:"l/r", mean:"🐺 Femmina del lupo"},
     {sent:"La ∎ARMACIA vende medicine", options:["F","V"], correct:"F", word:"FARMACIA", pair:"f/v", mean:"💊 Negozio di medicine"},
-    {sent:"Il ∎RIMAVERA fiorisce", options:["P","B"], correct:"P", word:"PRIMAVERA", pair:"p/b", mean:"🌸 Stagione dei fiori"},
+    {sent:"La ∎RIMAVERA fiorisce", options:["P","B"], correct:"P", word:"PRIMAVERA", pair:"p/b", mean:"🌸 Stagione dei fiori"},
     {sent:"∎EVO il latte al mattino", options:["B","D"], correct:"B", word:"BEVO", pair:"d/b", mean:"🥛 Con la bocca"},
     {sent:"La ∎OMENICA si riposa", options:["D","T"], correct:"D", word:"DOMENICA", pair:"t/d", mean:"📅 Giorno della settimana"},
     {sent:"∎ENTILE con gli amici", options:["G","C"], correct:"G", word:"GENTILE", pair:"c/g", mean:"😊 Educato e buono"},
     {sent:"La ∎INIATURA è piccolina", options:["M","N"], correct:"M", word:"MINIATURA", pair:"m/n", mean:"🔍 Molto piccola"},
     {sent:"Il ∎ULCANO erutta lava", options:["V","F"], correct:"V", word:"VULCANO", pair:"f/v", mean:"🌋 Montagna di fuoco"},
-    {sent:"La ∎AGIONE stagione passa", options:["S","Z"], correct:"S", word:"STAGIONE", pair:"s/z", mean:"🍂 Autunno, inverno..."}
+    {sent:"La ∎TAGIONE autunno passa", options:["S","Z"], correct:"S", word:"STAGIONE", pair:"s/z", mean:"🍂 Autunno, inverno..."},
+    {sent:"Il ∎OTTORE cura i malati", options:["D","B"], correct:"D", word:"DOTTORE", pair:"d/b", mean:"🩺 Medico"},
+    {sent:"La ∎AGIONE sa pensare", options:["R","L"], correct:"R", word:"RAGIONE", pair:"l/r", mean:"🧠 Pensiero logico"},
+    {sent:"Il ∎EOPARDO è un felino", options:["L","R"], correct:"L", word:"LEOPARDO", pair:"l/r", mean:"🐆 Maculato"},
+    {sent:"∎EBRUARIO è corto", options:["F","V"], correct:"F", word:"FEBBRAIO", pair:"f/v", mean:"📅 Secondo mese"},
+    {sent:"Il ∎USSARO è un soldato", options:["U","F"], correct:"U", word:"USSARO", pair:"f/v", mean:"⚔️ Soldato a cavallo"},
+    {sent:"La ∎INEMATOGRAFIA è arte", options:["C","G"], correct:"C", word:"CINEMATOGRAFIA", pair:"c/g", mean:"🎬 Fare film"},
+    {sent:"Il ∎AGGIO di sole", options:["R","L"], correct:"R", word:"RAGGIO", pair:"l/r", mean:"☀️ Linea di luce"}
   ]
 };
 
@@ -975,7 +989,17 @@ const ERRORS = {
     {correct:"SPAGHETTI",wrong:"SPAGETTI",hint:"🍝 GH + doppia TT"},
     {correct:"FRAGOLE",wrong:"FRAGGOLE",hint:"🍓 Senza doppia GG"},
     {correct:"INTERESSANTE",wrong:"INTERESANTE",hint:"🤩 Doppia SS"},
-    {correct:"SPAZZOLINO",wrong:"SPAZOLINO",hint:"🪥 Doppia ZZ"}
+    {correct:"SPAZZOLINO",wrong:"SPAZOLINO",hint:"🪥 Doppia ZZ"},
+    {correct:"ARCHEOLOGO",wrong:"ARKEOLOGO",hint:"🏺 CHE con la C"},
+    {correct:"PSICOLOGO",wrong:"SICOLOGO",hint:"🧠 Comincia con PS"},
+    {correct:"GHIACCIAIO",wrong:"GIACCIAIO",hint:"🧊 GHI con H"},
+    {correct:"MAGGIORANZA",wrong:"MAGIORANZA",hint:"📊 Doppia GG"},
+    {correct:"UGUAGLIANZA",wrong:"UGUALIANZA",hint:"⚖️ GLI non LI"},
+    {correct:"MINORANZA",wrong:"MINNORANZA",hint:"🔢 Niente doppia NN"},
+    {correct:"RESPONSABILITÀ",wrong:"RESPONSABILITA",hint:"💪 Con l'accento finale"},
+    {correct:"COMPLEANNO",wrong:"COMPLEANO",hint:"🎂 Doppia NN"},
+    {correct:"RINOCERONTE",wrong:"RINOCCERONTE",hint:"🦏 Niente doppia CC"},
+    {correct:"RAFFREDDORE",wrong:"RAFREDORE",hint:"🤧 Doppia FF e DD"}
   ]
 };
 
@@ -1036,7 +1060,15 @@ const BUILD = {
     {syl:["EL","E","FAN","TE"],mean:"🐘 Grande con la proboscide"},
     {syl:["IN","CAN","TE","SI","MO"],mean:"🪄 Magia potente"},
     {syl:["BI","BLI","O","TE","CA"],mean:"📚 Posto pieno di libri"},
-    {syl:["CA","LA","MI","TA"],mean:"🧲 Attira il ferro"}
+    {syl:["CA","LA","MI","TA"],mean:"🧲 Attira il ferro"},
+    {syl:["FAR","MA","CI","STA"],mean:"💊 Chi vende le medicine"},
+    {syl:["STRE","GO","NE","RI","A"],mean:"🔮 L'arte della strega"},
+    {syl:["CO","STEL","LA","ZIO","NE"],mean:"🌠 Gruppo di stelle"},
+    {syl:["AP","PAR","TA","MEN","TO"],mean:"🏢 Casa in un palazzo"},
+    {syl:["IN","VEN","ZIO","NE"],mean:"💡 Idea nuova"},
+    {syl:["IP","PO","PO","TA","MO"],mean:"🦛 Grosso animale africano"},
+    {syl:["SPET","TA","CO","LO"],mean:"🎭 Show al teatro"},
+    {syl:["CA","LEN","DA","RIO"],mean:"📅 Segna i giorni"}
   ]
 };
 
@@ -1097,7 +1129,15 @@ const MAGIC = {
     {word:"SCIVOLOSO",syl:["SCI","VO","LO","SO"],mean:"⛸ Che fa scivolare"},
     {word:"GENTILEZZA",syl:["GEN","TI","LEZ","ZA"],mean:"💝 Essere gentili"},
     {word:"MELODIA",syl:["ME","LO","DI","A"],mean:"🎵 Musica dolce"},
-    {word:"SIMPATIA",syl:["SIM","PA","TI","A"],mean:"😊 Quando qualcuno ti piace"}
+    {word:"SIMPATIA",syl:["SIM","PA","TI","A"],mean:"😊 Quando qualcuno ti piace"},
+    {word:"CALEIDOSCOPIO",syl:["CA","LEI","DO","SCO","PIO"],mean:"🔭 Gioco con cristalli colorati"},
+    {word:"PASSEROTTO",syl:["PAS","SE","ROT","TO"],mean:"🐦 Piccolo uccellino"},
+    {word:"CAMPANELLA",syl:["CAM","PA","NEL","LA"],mean:"🔔 Fa din don a scuola"},
+    {word:"FOTOGRAFIA",syl:["FO","TO","GRA","FI","A"],mean:"📸 Foto ricordo"},
+    {word:"MAGNIFICO",syl:["MA","GNI","FI","CO"],mean:"🤩 Davvero bello"},
+    {word:"COMPAGNIA",syl:["COM","PA","GNI","A"],mean:"👫 Stare insieme"},
+    {word:"PENNARELLO",syl:["PEN","NA","REL","LO"],mean:"🖊 Per colorare"},
+    {word:"FIAMMIFERO",syl:["FIAM","MI","FE","RO"],mean:"🔥 Piccolo bastoncino per accendere"}
   ]
 };
 
@@ -1146,7 +1186,19 @@ const STORIES = {
      opts:["Le pozioni","Le stelle","I libri","I fiori"],correct:0},
     {text:"Nel bosco incantato vive un gufo saggio che risponde a tutte le domande. Gli unicorni vanno spesso a trovarlo portando mele profumate in regalo.",
      q:"Cosa portano gli unicorni al gufo?",
-     opts:["Mele profumate","Fiori","Caramelle","Latte"],correct:0}
+     opts:["Mele profumate","Fiori","Caramelle","Latte"],correct:0},
+    {text:"Il piccolo unicorno Perla scoprì che le lucciole del bosco cantavano canzoni dolcissime. Decise di ascoltarle ogni notte prima di dormire. Da allora si addormentava sempre con un sorriso sulle labbra.",
+     q:"Chi cantava le canzoni?",
+     opts:["Le lucciole","I grilli","Le fate","Gli uccellini"],correct:0},
+    {text:"Due unicorni, Sole e Luna, abitavano in due valli vicine. Sole amava il giorno, Luna amava la notte. Un giorno decisero di scambiarsi le valli per imparare cose nuove, e tornarono a casa più ricchi di amicizia.",
+     q:"Perché Sole e Luna si scambiarono le valli?",
+     opts:["Per imparare cose nuove","Per riposarsi","Per nascondersi","Per vincere una gara"],correct:0},
+    {text:"Nella scuola degli unicorni, il maestro Crinalto insegnava a volare. Un piccolo unicorno di nome Zafferano aveva paura. Il maestro gli disse di guardare le stelle e credere. Zafferano chiuse gli occhi, pensò alle stelle, e all'improvviso stava volando!",
+     q:"Cosa doveva fare Zafferano per volare?",
+     opts:["Guardare le stelle e credere","Correre veloce","Mangiare un fiore","Chiedere aiuto al maestro"],correct:0},
+    {text:"La sorgente magica del regno degli unicorni era protetta da tre domande. Chi rispondeva giusto poteva bere l'acqua che rende saggi. Un unicorno curioso provò, rispose bene a tutte e tre, bevve, e capì la lingua di tutti gli animali.",
+     q:"Cosa succede a chi risponde giusto?",
+     opts:["Capisce la lingua degli animali","Diventa invisibile","Vola più alto","Diventa gigante"],correct:0}
   ],
   3:[
     {text:"Un giorno l'unicorno Nuvola scoprì una grotta nascosta dietro la cascata. Dentro brillava un cristallo rosa che aveva il potere di esaudire tre desideri. Nuvola decise di usare il primo per aiutare la foresta malata, il secondo per guarire un uccellino ferito e il terzo lo conservò per qualcuno che ne avesse più bisogno.",
@@ -1160,7 +1212,19 @@ const STORIES = {
      opts:["Nessuno li annaffiava","Erano malati","Faceva troppo freddo","Erano appassiti"],correct:0},
     {text:"In un regno lontanissimo dove le case erano fatte di zucchero filato e le strade di cioccolato, viveva la principessa Caramella con il suo unicorno rosa Marshmallow. Un giorno un terribile gigante goloso arrivò nel regno e cominciò a mangiare tutto. La principessa non si perse d'animo: con l'aiuto di Marshmallow preparò una torta grande come una collina e la offrì al gigante. Il gigante fu così felice da promettere di non mangiare mai più il regno, ma solo la torta che Caramella gli avrebbe preparato ogni sabato.",
      q:"Cosa promise il gigante?",
-     opts:["Di mangiare solo la torta del sabato","Di andare via per sempre","Di diventare piccolo","Di aiutare la principessa"],correct:0}
+     opts:["Di mangiare solo la torta del sabato","Di andare via per sempre","Di diventare piccolo","Di aiutare la principessa"],correct:0},
+    {text:"Nel regno incantato dei Sette Colori, ogni unicorno custodiva una sfumatura dell'arcobaleno. L'unicorno viola, Lilla, era il più timido di tutti. Un giorno scomparve la sua sfumatura e l'arcobaleno rimase incompleto. I suoi amici cercarono ovunque, ma solo Lilla capì: il viola era nascosto dentro di lei, dovevano solo aiutarla a credere in sé stessa. Quando Lilla sorrise con fiducia, il viola tornò a splendere nell'arcobaleno.",
+     q:"Dove era nascosto il colore viola?",
+     opts:["Dentro Lilla stessa","Nel bosco","Nel ruscello","Sotto una pietra"],correct:0},
+    {text:"Il grande albero del tempo era al centro della foresta magica. I suoi rami portavano frutti che permettevano di vedere il passato, il presente o il futuro. Gli unicorni potevano mangiarne solo uno all'anno. L'unicorno Vento scelse il frutto del presente, perché disse: il passato è passato, il futuro non è ancora qui, ma oggi posso fare la differenza.",
+     q:"Quale frutto scelse Vento?",
+     opts:["Il frutto del presente","Il frutto del passato","Il frutto del futuro","Nessun frutto"],correct:0},
+    {text:"In una notte di tempesta, l'unicorno Fulmine salvò un piccolo gufo che stava annegando nel fiume. Lo portò al sicuro nella sua tana, lo scaldò con la sua criniera e lo nutrì con bacche dolci. Quando arrivò l'alba, il gufo si trasformò in un grande saggio: era stato stregato da una strega cattiva anni prima, e la bontà di Fulmine lo aveva liberato dall'incantesimo.",
+     q:"Chi era in realtà il gufo?",
+     opts:["Un saggio stregato","Un unicorno magico","Un bambino","Un re"],correct:0},
+    {text:"La principessa delle nuvole organizzava ogni primavera il Grande Ballo del Cielo. Tutti gli unicorni volanti erano invitati, tranne quelli con le ali grigie. Un giorno un unicorno grigio di nome Cenere si presentò ugualmente al ballo. Al vederlo, la principessa si vergognò della sua regola crudele e abbracciò Cenere davanti a tutti. Da allora il ballo accolse qualsiasi unicorno con le ali, indipendentemente dal colore.",
+     q:"Cosa fece la principessa quando vide Cenere?",
+     opts:["Lo abbracciò davanti a tutti","Lo mandò via","Lo ignorò","Lo trasformò"],correct:0}
   ]
 };
 
@@ -1219,6 +1283,9 @@ function findGroup(word, group){
 function selectQuestions(gameName, bankIdx, levelNum, n){
   const pool = GAMES_DATA[gameName][bankIdx] || [];
   if(!pool.length) return [];
+  // CAP della sessione a metà del banco: garantisce che la sessione successiva
+  // possa pescare tutte parole diverse dalla precedente (nessuna ripetizione).
+  n = Math.min(n, Math.max(1, Math.floor(pool.length / 2)));
   const key = gameName + "_B" + bankIdx;
   let tracker = data.played[key];
   if(!tracker || typeof tracker !== "object" || Array.isArray(tracker)){
