@@ -542,11 +542,16 @@ footer{text-align:center;color:var(--soft);padding:20px;font-size:12px}
 <script>
 // ============ STATO ============
 const KEY = "unicornReader_v2";
-const DEF = {sessions:[],errors:[],readings:[],settings:{tts:true,name:"",fontSize:"normal",letterSpacing:"normal",lineHeight:"normal"},unicorns:[1],played:{}};
+const DEF = {sessions:[],errors:[],readings:[],settings:{tts:true,name:"",fontSize:"normal",letterSpacing:"normal",lineHeight:"normal"},unicorns:[1],played:{},playedVersion:2};
 let data = Object.assign({}, DEF, JSON.parse(localStorage.getItem(KEY) || "{}"));
 ["sessions","errors","readings","unicorns"].forEach(k=>{ if(!Array.isArray(data[k])) data[k]=DEF[k].slice(); });
 data.settings = Object.assign({}, DEF.settings, data.settings||{});
 if(!data.played || typeof data.played !== "object" || Array.isArray(data.played)) data.played = {};
+// Migrazione: se la forma di data.played è vecchia (array piatti), la resetto
+if(data.playedVersion !== 2){
+  data.played = {};
+  data.playedVersion = 2;
+}
 
 let state = {
   game:null, level:1, questions:[], idx:0,
@@ -1205,28 +1210,44 @@ function findGroup(word, group){
   return arr;
 }
 
-// Seleziona N domande evitando ripetizioni rispetto alle precedenti sessioni
+// Seleziona N domande GARANTENDO che nessuna coincida con la sessione precedente
+// (compatibile fin che il banco ha almeno session*2 item; con banchi più piccoli,
+// il surplus viene preso dai PIÙ VECCHI già visti, mai dall'ultima sessione).
+// Il tracker è legato al BANCO (non al livello numerico): così livelli diversi
+// che condividono lo stesso banco (es. L1/L2/L3 → facile) non riproporranno
+// parole appena viste cambiando difficoltà.
 function selectQuestions(gameName, bankIdx, levelNum, n){
   const pool = GAMES_DATA[gameName][bankIdx] || [];
   if(!pool.length) return [];
-  const key = gameName + "_L" + levelNum;
-  const seen = Array.isArray(data.played[key]) ? data.played[key] : [];
-  const unseen = pool.filter(item => !seen.includes(itemId(item)));
+  const key = gameName + "_B" + bankIdx;
+  let tracker = data.played[key];
+  if(!tracker || typeof tracker !== "object" || Array.isArray(tracker)){
+    tracker = {last:[], history:[]};
+  }
+  const forbidden = new Set(tracker.last);
+  const historySet = new Set(tracker.history);
+  // Pool disponibile: tutto tranne l'ultima sessione
+  const available = pool.filter(it => !forbidden.has(itemId(it)));
   let chosen;
-  if(unseen.length >= n){
-    chosen = shuffle(unseen).slice(0, n);
+  if(available.length >= n){
+    // Caso ideale: ho abbastanza item fuori dall'ultima sessione
+    // Preferisco item mai visti; se non bastano, prendo dai più vecchi (ma mai dall'ultima)
+    const neverSeen = available.filter(it => !historySet.has(itemId(it)));
+    const olderSeen = shuffle(available.filter(it => historySet.has(itemId(it))));
+    chosen = [...shuffle(neverSeen), ...olderSeen].slice(0, n);
   } else {
-    // Poche non viste: riparti da capo con un pool fresco
-    const fresh = shuffle(pool).slice(0, Math.min(n, pool.length));
-    data.played[key] = []; // reset tracker
-    chosen = fresh;
+    // Banco troppo piccolo per evitare completamente l'ultima sessione
+    // Prendo tutto il disponibile + il resto dall'ultima (riempimento minimo)
+    const fillFromLast = shuffle(pool.filter(it => forbidden.has(itemId(it)))).slice(0, n - available.length);
+    chosen = [...shuffle(available), ...fillFromLast];
   }
-  const chosenIds = chosen.map(itemId);
-  data.played[key] = [...(data.played[key]||[]), ...chosenIds];
-  // Cap del tracker per non crescere oltre il doppio del banco
-  if(data.played[key].length > pool.length * 2){
-    data.played[key] = chosenIds;
-  }
+  const ids = chosen.map(itemId);
+  const newHistory = [...new Set([...tracker.history, ...ids])];
+  const cap = Math.max(pool.length * 2, 30);
+  data.played[key] = {
+    last: ids,
+    history: newHistory.length > cap ? newHistory.slice(-cap) : newHistory
+  };
   save();
   return chosen;
 }
