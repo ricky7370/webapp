@@ -1,0 +1,1632 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>濾 Leggo con gli Unicorni</title>
+<style>
+:root{
+  --bg1:#fef0ff;--bg2:#e8f0ff;--bg3:#fff8e0;
+  --primary:#9a66e3;--primary2:#ff7ab0;
+  --dark:#3a2a52;--soft:#705a8c;
+  --green:#2fb17a;--red:#e8647a;--gold:#ffb524;
+  --card:#fff;--border:#eadcf5;
+  --fs:18px;--ls:0.03em;--lh:1.6;--fs-word:38px;
+}
+body.fs-large{--fs:21px;--fs-word:48px}
+body.fs-xlarge{--fs:25px;--fs-word:60px}
+body.ls-wide{--ls:0.09em}
+body.ls-xwide{--ls:0.15em}
+body.lh-high{--lh:2.0}
+*,*::before,*::after{box-sizing:border-box}
+body{
+  margin:0;font-size:var(--fs);letter-spacing:var(--ls);line-height:var(--lh);
+  font-family:"Atkinson Hyperlegible","Verdana","Trebuchet MS",sans-serif;
+  color:var(--dark);min-height:100vh;
+  background:
+    radial-gradient(ellipse at top left,var(--bg1),transparent 50%),
+    radial-gradient(ellipse at top right,var(--bg2),transparent 50%),
+    radial-gradient(ellipse at bottom,var(--bg3),transparent 50%),
+    #fdfbff;
+}
+header{
+  background:linear-gradient(130deg,#b790ea,#ff9ec7,#ffb6e0);
+  color:#fff;padding:26px 18px 22px;text-align:center;
+  box-shadow:0 4px 20px #b790ea55;
+}
+header h1{margin:0 0 6px;font-size:30px;font-weight:800}
+header p{margin:0;opacity:.95;font-size:15px}
+nav{
+  display:flex;justify-content:center;gap:8px;flex-wrap:wrap;padding:12px;
+  background:rgba(255,255,255,.92);backdrop-filter:blur(8px);
+  position:sticky;top:0;z-index:5;box-shadow:0 2px 10px #aa88cc22;
+}
+nav button{
+  border:0;border-radius:14px;padding:10px 14px;
+  font-size:14px;cursor:pointer;font-weight:700;
+  background:#f5efff;color:var(--dark);transition:all .2s;
+  font-family:inherit;
+}
+nav button:hover{background:#ebe0ff;transform:translateY(-1px)}
+nav button.active{
+  background:linear-gradient(120deg,var(--primary),var(--primary2));
+  color:#fff;box-shadow:0 4px 12px #9a66e355;
+}
+main{max-width:1000px;margin:20px auto;padding:0 16px}
+.card{
+  background:var(--card);border-radius:22px;padding:22px;margin-bottom:18px;
+  box-shadow:0 4px 20px #9a66e311;border:1px solid var(--border);
+}
+h2{margin:0 0 14px;font-size:21px;color:var(--primary)}
+h3{margin:14px 0 8px;font-size:17px;color:var(--dark)}
+button{
+  border:0;border-radius:14px;padding:12px 18px;
+  font-size:16px;cursor:pointer;font-weight:700;
+  transition:all .2s;font-family:inherit;
+}
+.primary{
+  background:linear-gradient(120deg,var(--primary),var(--primary2));
+  color:#fff;box-shadow:0 4px 12px #9a66e344;
+}
+.primary:hover{transform:translateY(-2px);box-shadow:0 6px 16px #9a66e355}
+.ghost{background:#f5efff;color:var(--primary)}
+.ghost:hover{background:#ebe0ff}
+.danger{background:#fde9ec;color:#a44}
+button:disabled{opacity:.5;cursor:not-allowed;transform:none!important}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.hidden{display:none!important}
+.stat{
+  background:linear-gradient(135deg,#fff,#faf5ff);
+  border-radius:16px;padding:18px 10px;text-align:center;
+  border:1px solid var(--border);
+}
+.stat strong{display:block;font-size:30px;color:var(--primary);font-weight:800}
+.stat span{color:var(--soft);font-size:13px}
+input,select,textarea{
+  width:100%;padding:11px 13px;margin:6px 0 10px;
+  border:2px solid var(--border);border-radius:12px;font-size:16px;
+  font-family:inherit;background:#fff;color:var(--dark);
+}
+input:focus,select:focus,textarea:focus{outline:0;border-color:var(--primary)}
+label{font-weight:700;font-size:14px;color:var(--soft);display:block;margin-top:6px}
+.progress{
+  height:14px;background:#eee4f5;border-radius:20px;
+  overflow:hidden;margin:12px 0;
+}
+.progress div{
+  height:100%;background:linear-gradient(90deg,var(--primary),var(--primary2));
+  transition:width .3s;border-radius:20px;
+}
+.word-display{
+  font-size:var(--fs-word);font-weight:800;text-align:center;
+  padding:16px 10px;letter-spacing:.08em;line-height:1.3;word-break:break-word;
+}
+.word-display .syl-0{color:#5a3fbf}
+.word-display .syl-1{color:#d84a8a}
+.word-display .syl-2{color:#2f8a62}
+.word-display .syl-3{color:#c57a24}
+.word-display .syl-4{color:#2a6fb0}
+.word-display .dbl{background:#fff3f5;padding:0 2px;border-radius:4px;color:var(--red)}
+.word-display .dig{background:#f3edff;padding:0 2px;border-radius:4px;color:var(--primary)}
+.choices{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+  gap:12px;margin-top:14px;
+}
+.choices button{
+  background:#faf5ff;color:var(--dark);
+  font-size:20px;padding:16px 10px;min-height:60px;
+  border:2px solid var(--border);letter-spacing:.06em;
+}
+.choices button:hover{
+  background:#f0e5ff;border-color:var(--primary);transform:translateY(-2px);
+}
+.choices button.correct{background:#e3f7ec;color:var(--green);border-color:var(--green)}
+.choices button.wrong{background:#fde9ec;color:var(--red);border-color:var(--red)}
+.feedback{
+  text-align:center;font-size:17px;min-height:30px;font-weight:800;
+  padding:6px;border-radius:12px;transition:all .2s;margin-top:10px;
+}
+.feedback.good{background:#e3f7ec;color:var(--green)}
+.feedback.bad{background:#fde9ec;color:var(--red)}
+.letter-grid{display:flex;justify-content:center;flex-wrap:wrap;gap:6px;padding:16px}
+.letter-grid .letter{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:50px;height:60px;font-size:30px;font-weight:800;
+  background:#faf5ff;border:2px solid var(--border);
+  border-radius:12px;cursor:pointer;transition:all .15s;user-select:none;
+}
+.letter-grid .letter:hover{background:#ebe0ff;transform:scale(1.06)}
+.letter-grid .letter.selected{background:#ffe8b8;border-color:var(--gold);color:#a06c00}
+.letter-grid .letter.wrong{background:#fde9ec;border-color:var(--red);color:var(--red)}
+.letter-grid .letter.correct{background:#e3f7ec;border-color:var(--green);color:var(--green)}
+.syllable-slots{
+  display:flex;flex-wrap:wrap;justify-content:center;gap:8px;padding:16px;
+  min-height:76px;background:#faf5ff;
+  border-radius:16px;border:2px dashed var(--border);margin:12px 0;
+}
+.syllable-slots .syl{
+  padding:10px 14px;font-size:22px;font-weight:800;
+  background:#fff;border:2px solid var(--primary);
+  border-radius:12px;color:var(--primary);min-width:52px;text-align:center;cursor:pointer;
+}
+.syllable-pool{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;padding:12px}
+.syllable-pool button{
+  padding:12px 16px;font-size:22px;font-weight:800;
+  background:linear-gradient(135deg,#fff,#faf5ff);
+  color:var(--primary);border:2px solid var(--border);
+  border-radius:12px;min-width:60px;letter-spacing:.04em;
+}
+.syllable-pool button:hover{background:#ebe0ff;border-color:var(--primary)}
+.syllable-pool button.used{opacity:.3;cursor:not-allowed;transform:none}
+.sentence{
+  font-size:calc(var(--fs) * 1.2);line-height:1.8;letter-spacing:.06em;
+  padding:16px 20px;background:#faf5ff;border-radius:14px;text-align:center;
+  border:2px solid var(--border);margin:12px 0;
+}
+.sentence .blank{
+  display:inline-block;min-width:50px;padding:0 6px;margin:0 2px;
+  border-bottom:3px solid var(--primary);color:var(--primary);font-weight:800;
+}
+.hint-box{
+  background:#fff8e0;border:2px dashed var(--gold);
+  border-radius:14px;padding:12px 18px;margin:12px 0;
+  font-size:15px;color:#8a6a00;
+}
+.facilitations{display:flex;flex-wrap:wrap;gap:8px;padding:6px 0 14px}
+.facilitations .toggle{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:7px 13px;border-radius:20px;
+  border:2px solid var(--border);background:#fff;
+  cursor:pointer;font-size:13px;font-weight:600;
+  color:var(--soft);user-select:none;
+}
+.facilitations .toggle.on{background:#e3f7ec;border-color:var(--green);color:var(--green)}
+.chip{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:5px 11px;border-radius:20px;font-size:13px;
+  background:#f5efff;color:var(--primary);font-weight:700;
+}
+.gamecard{
+  background:linear-gradient(135deg,#fff,#faf5ff);
+  border-radius:16px;padding:16px;cursor:pointer;
+  border:2px solid var(--border);transition:all .2s;
+}
+.gamecard:hover{transform:translateY(-3px);border-color:var(--primary);box-shadow:0 8px 20px #9a66e322}
+.gamecard .ico{font-size:34px;line-height:1}
+.gamecard h3{margin:8px 0 4px;color:var(--primary)}
+.gamecard p{margin:0;font-size:13px;color:var(--soft)}
+.unicorn-collection{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(88px,1fr));
+  gap:10px;margin-top:10px;
+}
+.unicorn-collection .uni{
+  aspect-ratio:1;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;font-size:36px;
+  background:#faf5ff;border-radius:16px;border:2px solid var(--border);
+  position:relative;opacity:.3;filter:grayscale(1);transition:all .3s;
+  padding:4px;
+}
+.unicorn-collection .uni.owned{
+  opacity:1;filter:none;
+  background:linear-gradient(135deg,#fff8e0,#ffe8f0);
+  border-color:var(--gold);box-shadow:0 4px 12px #ffb52433;
+}
+.unicorn-collection .uni small{
+  font-size:10px;color:var(--soft);margin-top:2px;text-align:center;line-height:1.1;
+}
+.badge{
+  display:inline-block;padding:3px 10px;border-radius:12px;
+  background:var(--gold);color:#fff;font-size:12px;font-weight:800;margin-left:6px;
+}
+.rain{position:fixed;pointer-events:none;inset:0;overflow:hidden;z-index:100}
+.rain .drop{position:absolute;font-size:36px;top:-60px;animation:fall 2.5s linear forwards}
+@keyframes fall{
+  0%{transform:translateY(0) rotate(0);opacity:1}
+  100%{transform:translateY(110vh) rotate(360deg);opacity:.3}
+}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{text-align:left;padding:10px;border-bottom:1px solid #eee4f5}
+th{background:#faf5ff;color:var(--primary);font-weight:800}
+.barrow{margin:10px 0}
+.barlabel{display:flex;justify-content:space-between;font-size:13px}
+.bar{background:#eee4f5;height:12px;border-radius:10px;overflow:hidden}
+.bar div{height:100%;background:linear-gradient(90deg,var(--primary),var(--primary2))}
+.small{color:var(--soft);font-size:13px}
+footer{text-align:center;color:var(--soft);padding:20px;font-size:12px}
+@media(max-width:600px){
+  header h1{font-size:24px}
+  .choices{grid-template-columns:1fr 1fr}
+  .letter-grid .letter{width:42px;height:52px;font-size:24px}
+  nav button{padding:8px 10px;font-size:13px}
+  main{padding:0 10px}
+  .card{padding:16px}
+}
+</style>
+</head>
+<body>
+<div id="rainbox" class="rain"></div>
+<header>
+  <h1>濾✨ Leggo con gli Unicorni </h1>
+  <p id="headerSub">Allenati con gli unicorni e diventa una lettrice magica!</p>
+</header>
+
+<nav>
+  <button class="active" data-tab="home"> Casa</button>
+  <button data-tab="games"> Giochi</button>
+  <button data-tab="reading">⏱ Lettura</button>
+  <button data-tab="errors">✏️ Errori</button>
+  <button data-tab="progress"> Progressi</button>
+  <button data-tab="settings">⚙️ Opzioni</button>
+</nav>
+
+<main>
+
+<section id="home">
+  <div class="card">
+    <h2 id="homeGreeting">Ciao avventuriera! 濾</h2>
+    <p>Benvenuta nel regno degli unicorni! Ogni gioco ti aiuta a diventare più brava a leggere e scrivere. Ogni errore è un piccolo passo in avanti </p>
+    <div class="row">
+      <button class="primary" data-go="games"> Scegli un gioco</button>
+      <button class="ghost" data-go="progress"> Vedi i progressi</button>
+    </div>
+  </div>
+  <div class="grid">
+    <div class="stat"><strong id="hSessions">0</strong><span>Sessioni completate</span></div>
+    <div class="stat"><strong id="hAccuracy">0%</strong><span>Accuratezza media</span></div>
+    <div class="stat"><strong id="hMinutes">0</strong><span>Minuti di allenamento</span></div>
+    <div class="stat"><strong id="hPoints">0</strong><span>⭐ Punti magici</span></div>
+  </div>
+  <div class="card">
+    <h2>濾 La tua collezione di unicorni</h2>
+    <p class="small">Guadagna punti per sbloccare nuovi unicorni magici!</p>
+    <div id="homeUnicorns" class="unicorn-collection"></div>
+  </div>
+  <div class="card">
+    <h2> Pensiero del giorno</h2>
+    <p id="dailyMsg" style="font-size:16px">Pronta per una nuova avventura?</p>
+  </div>
+</section>
+
+<section id="games" class="hidden">
+  <div class="card">
+    <h2> Scegli il tuo gioco magico</h2>
+    <p class="small">Ogni gioco si allena su un pezzetto diverso della lettura. Puoi provarli tutti!</p>
+    <div id="gameMenu" class="grid"></div>
+  </div>
+
+  <div id="gameArea" class="card hidden">
+    <div class="row" style="justify-content:space-between;margin-bottom:8px">
+      <div class="row" style="gap:6px">
+        <span class="chip" id="gameTitle"></span>
+        <span class="chip" id="gameLevel"></span>
+      </div>
+      <button class="ghost" id="exitGame">← Esci</button>
+    </div>
+
+    <div class="row" style="gap:6px;margin-bottom:6px">
+      <button class="ghost" data-lv="1" style="padding:6px 10px;font-size:13px">Facile</button>
+      <button class="ghost" data-lv="2" style="padding:6px 10px;font-size:13px">Medio</button>
+      <button class="ghost" data-lv="3" style="padding:6px 10px;font-size:13px">Difficile</button>
+    </div>
+
+    <div class="facilitations">
+      <span class="toggle" data-fac="syllables"> Sillabe colorate</span>
+      <span class="toggle" data-fac="tts"> Leggi</span>
+      <span class="toggle" data-fac="hint"> Suggerimento</span>
+      <span class="toggle" data-fac="highlight">✨ Evidenzia difficoltà</span>
+    </div>
+
+    <div class="small" id="gameInfo"></div>
+    <div class="progress"><div id="gameProgress"></div></div>
+
+    <div id="gameContent"></div>
+
+    <div class="hint-box hidden" id="gameHint"></div>
+    <div class="feedback" id="gameFeedback"></div>
+
+    <div class="row" style="justify-content:space-between;margin-top:12px">
+      <button class="ghost" id="speakBtn"> Ripeti</button>
+      <button class="primary hidden" id="nextBtn">Continua →</button>
+    </div>
+  </div>
+
+  <div id="gameResult" class="card hidden">
+    <h2 id="resultTitle"> Hai finito!</h2>
+    <div class="grid">
+      <div class="stat"><strong id="rScore">0</strong><span>Punti ⭐</span></div>
+      <div class="stat"><strong id="rAccuracy">0%</strong><span>Accuratezza</span></div>
+      <div class="stat"><strong id="rErrors">0</strong><span>Errori</span></div>
+    </div>
+    <p id="rMessage" style="text-align:center;font-size:17px"></p>
+    <div id="newUnicorn" class="hint-box hidden"></div>
+    <div class="row">
+      <button class="primary" id="playAgain"> Rigioca</button>
+      <button class="ghost" id="backToGames"> Altri giochi</button>
+    </div>
+  </div>
+</section>
+
+<section id="reading" class="hidden">
+  <div class="card">
+    <h2>⏱ Lettura ad alta voce</h2>
+    <p>La bambina legge un brano. L'adulto osserva e registra i risultati qui sotto.</p>
+    <label>Nome del brano</label>
+    <input id="readingTitle" value="Brano di lettura">
+    <label>Numero totale di parole del brano</label>
+    <input type="number" id="totalWords" min="1" value="100">
+    <label>Parole lette correttamente</label>
+    <input type="number" id="correctWords" min="0" value="90">
+    <label>Errori di lettura</label>
+    <input type="number" id="readingErrors" min="0" value="10">
+    <label>Tempo impiegato (secondi)</label>
+    <input type="number" id="readingTime" min="1" value="120">
+    <button class="primary" id="saveReadingBtn"> Registra lettura</button>
+    <p class="small">La velocità (parole/minuto) è calcolata sulle parole corrette.</p>
+  </div>
+  <div class="card">
+    <h2> Ultima lettura</h2>
+    <div id="readingResult">Nessuna lettura registrata.</div>
+  </div>
+  <div class="card">
+    <h2> Brani da leggere (brevi storie di unicorni)</h2>
+    <div id="passages"></div>
+  </div>
+</section>
+
+<section id="errors" class="hidden">
+  <div class="card">
+    <h2>✏️ Diario degli errori</h2>
+    <p>Annota gli errori per capire dove serve più allenamento. L'app li classifica automaticamente anche durante i giochi.</p>
+    <label>Parola o frase</label>
+    <input id="errorWord" placeholder="Es. acqua">
+    <label>Tipologia di errore</label>
+    <select id="errorType">
+      <option>Sostituzione p/b, d/b, m/n, f/v, t/d, l/r</option>
+      <option>Doppia (mancante o in più)</option>
+      <option>Digramma / trigramma (gn, gl, sc, ch, gh)</option>
+      <option>Omissione di lettera</option>
+      <option>Inversione di lettere</option>
+      <option>Errore di decodifica</option>
+      <option>Esitazione / lentezza</option>
+      <option>Altro</option>
+    </select>
+    <label>Annotazioni</label>
+    <textarea id="errorNote" rows="3" placeholder="Descrivi l'errore osservato..."></textarea>
+    <button class="primary" id="saveErrorBtn"> Registra errore</button>
+  </div>
+  <div class="card">
+    <h2>Errori registrati</h2>
+    <div id="errorList"></div>
+  </div>
+</section>
+
+<section id="progress" class="hidden">
+  <div class="card">
+    <h2> I tuoi progressi</h2>
+    <div class="grid">
+      <div class="stat"><strong id="pSessions">0</strong><span>Sessioni</span></div>
+      <div class="stat"><strong id="pAccuracy">0%</strong><span>Accuratezza</span></div>
+      <div class="stat"><strong id="pWpm">0</strong><span>Parole/min lettura</span></div>
+      <div class="stat"><strong id="pUnicorns">0</strong><span>Unicorni 濾</span></div>
+    </div>
+  </div>
+  <div class="card">
+    <h2> Come stai andando per gioco</h2>
+    <p class="small">Vedi dove sei più forte e dove serve ancora allenamento.</p>
+    <div id="perGame"></div>
+  </div>
+  <div class="card">
+    <h2> Andamento delle ultime sessioni</h2>
+    <div id="chart"></div>
+  </div>
+  <div class="card">
+    <h2> Storico allenamenti</h2>
+    <div style="overflow-x:auto">
+      <table>
+        <thead><tr><th>Data</th><th>Gioco</th><th>Livello</th><th>Punti</th><th>Accuratezza</th><th>Tempo</th></tr></thead>
+        <tbody id="history"></tbody>
+      </table>
+    </div>
+  </div>
+  <div class="card">
+    <h2> I tuoi dati</h2>
+    <div class="row">
+      <button class="primary" id="exportCSV"> Scarica CSV</button>
+      <button class="ghost" id="exportJSON"> Backup JSON</button>
+      <button class="ghost" id="importJSON"> Ripristina</button>
+      <input id="jsonFile" type="file" accept=".json,application/json" class="hidden">
+      <button class="danger" id="clearData"> Cancella tutto</button>
+    </div>
+    <p class="small">I dati rimangono sul dispositivo. Fai periodicamente un backup.</p>
+  </div>
+</section>
+
+<section id="settings" class="hidden">
+  <div class="card">
+    <h2>⚙️ Impostazioni di lettura</h2>
+    <p>Scegli le opzioni che rendono la lettura più comoda. Si salvano automaticamente.</p>
+
+    <label>Dimensione del testo</label>
+    <select id="setFontSize">
+      <option value="normal">Normale</option>
+      <option value="large">Grande</option>
+      <option value="xlarge">Enorme</option>
+    </select>
+
+    <label>Spaziatura tra le lettere</label>
+    <select id="setLetterSpacing">
+      <option value="normal">Normale</option>
+      <option value="wide">Larga</option>
+      <option value="xwide">Extra larga</option>
+    </select>
+
+    <label>Interlinea (spazio tra le righe)</label>
+    <select id="setLineHeight">
+      <option value="normal">Normale</option>
+      <option value="high">Alta</option>
+    </select>
+
+    <h3> Voce dell'unicorno</h3>
+    <span class="toggle" id="setTTS" style="display:inline-flex;align-items:center;gap:6px;padding:7px 13px;border-radius:20px;border:2px solid var(--border);background:#fff;cursor:pointer;font-size:13px;font-weight:600;color:var(--soft);user-select:none"> Attiva lettura ad alta voce automatica</span>
+    <p class="small">Richiede un dispositivo con sintesi vocale (la trovi quasi ovunque).</p>
+
+    <h3>濾 Ciao, come ti chiami?</h3>
+    <input id="setName" placeholder="Il tuo nome (opzionale)">
+
+    <div class="row" style="margin-top:14px">
+      <button class="primary" id="saveSettings">✨ Salva impostazioni</button>
+      <button class="ghost" id="testVoice"> Prova la voce</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>粒 Azzera contatori e progressi</h2>
+    <p class="small">Scegli cosa azzerare. Tutte le azioni chiedono una conferma. I dati non si possono recuperare — se vuoi, fai prima un <b>Backup JSON</b> dalla pagina Progressi!</p>
+
+    <div style="display:flex; flex-direction:column; gap:14px; margin-top:12px">
+      <div>
+        <button class="ghost" id="resetSessions" style="width:100%; text-align:left"> Azzera contatori e progressi</button>
+        <p class="small" style="margin:6px 4px 0">Cancella sessioni, punti, minuti, accuratezza, storico delle partite e letture.<br>Mantiene: diario errori, unicorni sbloccati, impostazioni.</p>
+      </div>
+      <div>
+        <button class="ghost" id="resetErrors" style="width:100%; text-align:left">✏️ Azzera solo il diario degli errori</button>
+        <p class="small" style="margin:6px 4px 0">Cancella solo le voci del diario degli errori. Tutto il resto resta.</p>
+      </div>
+      <div>
+        <button class="ghost" id="resetUnicorns" style="width:100%; text-align:left">濾 Azzera la collezione di unicorni</button>
+        <p class="small" style="margin:6px 4px 0">Lascia solo Stellina 濾. Gli altri si sbloccheranno di nuovo accumulando punti.</p>
+      </div>
+      <div>
+        <button class="danger" id="resetAll" style="width:100%; text-align:left"> Azzera TUTTO (anche le impostazioni)</button>
+        <p class="small" style="margin:6px 4px 0">Cancella tutti i dati e ripristina lo stato iniziale dell'app.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>‍ Nota per l'adulto</h2>
+    <p class="small">Questa app è pensata per una bambina con DSA F81.0 (Disturbo specifico della lettura). Lavora su: memorizzazione e rappresentazione di digrammi/trigrammi, percezione delle doppie, discriminazione di coppie di lettere che si confondono (p/b, d/b, m/n, f/v, t/d, l/r), ricerca dell'errore. Le facilitazioni (sillabe colorate, TTS, suggerimenti) si attivano per singola sessione senza pressione. La modalità calma toglie il senso di fretta. I 3 livelli e la collezione di unicorni mantengono alta la motivazione.</p>
+  </div>
+</section>
+
+</main>
+<footer>濾 Leggo con gli Unicorni · Strumento di allenamento per la letto-scrittura (DSA F81.0) · Dati salvati solo sul dispositivo</footer>
+<script>
+// ============ STATO ============
+const KEY = "unicornReader_v2";
+const DEF = {sessions:[],errors:[],readings:[],settings:{tts:true,name:"",fontSize:"normal",letterSpacing:"normal",lineHeight:"normal"},unicorns:[1]};
+let data = Object.assign({}, DEF, JSON.parse(localStorage.getItem(KEY) || "{}"));
+["sessions","errors","readings","unicorns"].forEach(k=>{ if(!Array.isArray(data[k])) data[k]=DEF[k].slice(); });
+data.settings = Object.assign({}, DEF.settings, data.settings||{});
+
+let state = {
+  game:null, level:1, questions:[], idx:0,
+  correct:0, errors:0, startTime:0,
+  facilitations:{syllables:false, tts:false, hint:false, highlight:false}
+};
+
+// ============ UNICORNI, LODI ============
+const UNICORNS = [
+  {id:1,name:"Stellina",icon:"濾",threshold:0},
+  {id:2,name:"Scintilla",icon:"✨",threshold:50},
+  {id:3,name:"Arcobaleno",icon:"",threshold:150},
+  {id:4,name:"Cuoricino",icon:"",threshold:300},
+  {id:5,name:"Lunetta",icon:"",threshold:500},
+  {id:6,name:"Zucchero",icon:"",threshold:750},
+  {id:7,name:"Fiorella",icon:"",threshold:1000},
+  {id:8,name:"Magia",icon:"彩",threshold:1500},
+  {id:9,name:"Nuvola",icon:"☁️",threshold:2000},
+  {id:10,name:"Sole",icon:"☀️",threshold:2800},
+  {id:11,name:"Fatina",icon:"栗",threshold:3600},
+  {id:12,name:"Regina",icon:"",threshold:5000}
+];
+
+const PRAISE = ["濾 Fantastico!"," Bravissima!","✨ Super!"," Perfetto!"," Che forza!"," Sei magica!"," Benissimo!","曆 Che occhio!","⭐ Precisissimo!","栗 Sei una star!","彩 Magia pura!"];
+const ENCOURAGE = [" Non importa, riproviamo!"," Ogni errore è un passo avanti!","濾 Dai che la prossima la prendi!","✨ Guarda bene, sei vicinissima!"," Respira e riprova!"," Non arrenderti, ce la fai!"];
+const DAILY = ["Oggi leggere sarà una magia 濾","Un unicorno ti aspetta ","Ogni parola è una conquista ✨","Anche le streghe sbagliano. Tu no, sei un'unicorna! 栗","Sillaba dopo sillaba, voli! 諾","Il tuo cervello oggi è un fuoco d'artificio ","Leggi con calma, nessuna fretta ","Sei coraggiosa come un drago, ma più carina "];
+
+// ============ META DEI GIOCHI ============
+const GAMES_META = {
+  doppie:  {icon:"",name:"Trova la Doppia",desc:"Scegli la scrittura corretta: con la doppia o senza?"},
+  digrammi:{icon:"",name:"Caccia al Digramma",desc:"Clicca le lettere del gruppo magico (GN, GL, SC, CH, GH...)"},
+  discrim: {icon:"",name:"Occhio alla Lettera",desc:"Scegli la lettera giusta: p/b, d/b, m/n, f/v, t/d, l/r"},
+  errors:  {icon:"️",name:"Caccia all'Errore",desc:"Quale delle due parole è scritta bene?"},
+  build:   {icon:"里",name:"Costruisci la Parola",desc:"Rimetti in ordine le sillabe mescolate"},
+  magic:   {icon:"",name:"Parole Magiche",desc:"Leggi parole speciali con le sillabe colorate"},
+  stories: {icon:"易",name:"Storie di Unicorni",desc:"Leggi una storia e rispondi"}
+};
+
+// ============ HELPERS ============
+function save(){ localStorage.setItem(KEY,JSON.stringify(data)); }
+function $(id){ return document.getElementById(id); }
+function qs(s,r){ return (r||document).querySelector(s); }
+function qsa(s,r){ return [...(r||document).querySelectorAll(s)]; }
+function shuffle(a){ return a.slice().sort(()=>Math.random()-.5); }
+function pick(a){ return a[Math.floor(Math.random()*a.length)]; }
+function pickPraise(){ return pick(PRAISE); }
+function pickEncourage(){ return pick(ENCOURAGE); }
+function pickDaily(){
+  const d = new Date();
+  return DAILY[(d.getFullYear()*372+d.getMonth()*31+d.getDate()) % DAILY.length];
+}
+
+function speak(text){
+  if(!data.settings.tts || !('speechSynthesis' in window)) return;
+  window.speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = "it-IT"; u.rate = 0.82; u.pitch = 1.08;
+  window.speechSynthesis.speak(u);
+}
+function autoSpeak(t){ if(state.facilitations.tts) speak(t); }
+
+function rainUnicorns(count){
+  const box = $("rainbox"); if(!box) return;
+  const icons = ["濾","","✨","","","彩","","⭐","","栗",""];
+  for(let i=0;i<(count||10);i++){
+    const d = document.createElement("div");
+    d.className = "drop";
+    d.textContent = pick(icons);
+    d.style.left = Math.random()*95+"%";
+    d.style.fontSize = (22+Math.random()*26)+"px";
+    d.style.animationDuration = (2+Math.random()*1.5)+"s";
+    d.style.animationDelay = (Math.random()*0.5)+"s";
+    box.appendChild(d);
+    setTimeout(()=>d.remove(),3800);
+  }
+}
+
+function markTricky(word){
+  const W = word.toUpperCase(), n = W.length;
+  const marks = new Array(n).fill(null);
+  const trigs = ["SCI","SCE","GLI","CHI","CHE","GHI","GHE","CQU"];
+  for(let i=0;i<n;i++){
+    if(marks[i]) continue;
+    let m=false;
+    for(const t of trigs){
+      if(W.substr(i,t.length)===t){
+        for(let j=0;j<t.length;j++) marks[i+j]="dig";
+        m=true; break;
+      }
+    }
+    if(m) continue;
+    if(W.substr(i,2)==="GN"){ marks[i]="dig"; marks[i+1]="dig"; }
+    else if(W.substr(i,2)==="GL" && W[i+2]==="I"){ marks[i]="dig"; marks[i+1]="dig"; }
+  }
+  for(let i=0;i<n-1;i++){
+    if(W[i]===W[i+1] && /[BCDFGLMNPRSTVZ]/.test(W[i])){
+      marks[i]="dbl"; marks[i+1]="dbl";
+    }
+  }
+  let html="", cur=null;
+  for(let i=0;i<n;i++){
+    if(marks[i]!==cur){
+      if(cur) html+="</span>";
+      cur=marks[i];
+      if(cur) html+='<span class="'+cur+'">';
+    }
+    html+=W[i];
+  }
+  if(cur) html+="</span>";
+  return html;
+}
+
+function renderSyllabled(el,syl){
+  el.innerHTML = "";
+  syl.forEach((s,i)=>{
+    const sp=document.createElement("span");
+    sp.className = "syl-"+(i%5);
+    sp.textContent = s;
+    el.appendChild(sp);
+  });
+}
+
+function recordError(info){
+  data.errors.push({
+    date:new Date().toISOString(),
+    game:state.game, level:state.level,
+    word:info.word||"", type:info.type||"Errore", note:info.note||"",
+    source:"gioco"
+  });
+  save();
+}
+
+function checkUnicornUnlocks(){
+  const pts = data.sessions.reduce((a,b)=>a+(b.points||0),0);
+  const newly = [];
+  UNICORNS.forEach(u=>{
+    if(pts>=u.threshold && !data.unicorns.includes(u.id)){
+      data.unicorns.push(u.id); newly.push(u);
+    }
+  });
+  if(newly.length) save();
+  return newly;
+}
+// ============ DATI DEI GIOCHI ============
+
+const DOPPIE = {
+  1:[
+    ["PALLA","PALA"," Rotola nei prati"],
+    ["NONNA","NONA"," La mamma della mamma"],
+    ["GATTO","GATO"," Fa le fusa"],
+    ["PENNA","PENA","✒️ Serve per scrivere"],
+    ["CANNA","CANA"," Si usa per pescare"],
+    ["MAMMA","MAMA"," Ci vuole tanto bene"],
+    ["TAZZA","TAZA","☕ Ci bevi il latte"],
+    ["LETTO","LETO"," Ci dormi la notte"],
+    ["TORRE","TORE"," Alta e sottile"],
+    ["TORTA","TORRTA"," Si mangia alle feste"],
+    ["MELA","MELLA"," Frutto rosso"],
+    ["SOLE","SOLLE","☀️ Scalda di giorno"]
+  ],
+  2:[
+    ["FARFALLA","FARFALA","曆 Insetto colorato"],
+    ["BISCOTTO","BISCOTO"," Si inzuppa nel latte"],
+    ["CAPPELLO","CAPELLO"," Si mette in testa"],
+    ["CAVALLO","CAVALO"," Corre nel prato"],
+    ["COLLINA","COLINA"," Piccola montagna"],
+    ["PETTINE","PETINE"," Per i capelli"],
+    ["MARTELLO","MARTELO"," Per piantare i chiodi"],
+    ["PIATTO","PIATO"," Ci mangi dentro"],
+    ["QUADERNO","QUADDERNO"," Per scrivere a scuola"],
+    ["MATITA","MATTITA","✏️ Per disegnare"],
+    ["STELLA","STELA","⭐ Brilla nel cielo"],
+    ["CAROTA","CARROTA","凌 Verdura arancione"]
+  ],
+  3:[
+    ["PASSEGGIATA","PASEGIATA"," Si fa a piedi"],
+    ["OMBRELLO","OMBRELO","☂ Ripara dalla pioggia"],
+    ["COCCODRILLO","COCODRILO"," Rettile con denti aguzzi"],
+    ["INTELLIGENTE","INTELIGENTE","易 Che pensa in fretta"],
+    ["ALLEGREZZA","ALEGREZA"," Grande felicità"],
+    ["OROLOGIO","OROLOGGIO","⌚ Segna le ore (attenzione!)"],
+    ["PRINCIPESSA","PRINCIPESA"," Figlia del re"],
+    ["RAGAZZO","RAGAZO","戮 Giovanotto"],
+    ["BICICLETTA","BICICLETA"," Si pedala"],
+    ["SCRITTURA","SCRITURA","✍️ L'arte di scrivere"]
+  ]
+};
+
+const DIGRAMMI = {
+  1:[
+    {word:"GNOMO",group:"GN",positions:[0,1],mean:"慄 Piccolo essere del bosco"},
+    {word:"RAGNO",group:"GN",positions:[2,3],mean:" Ha otto zampe"},
+    {word:"BAGNO",group:"GN",positions:[2,3],mean:" Dove ti lavi"},
+    {word:"SOGNO",group:"GN",positions:[2,3],mean:" Lo fai dormendo"},
+    {word:"CHIESA",group:"CHI",positions:[0,1,2],mean:"⛪ Luogo sacro"},
+    {word:"OCCHI",group:"CHI",positions:[2,3,4],mean:" Per vedere"},
+    {word:"LAGHI",group:"GHI",positions:[2,3,4],mean:" Più di un lago"},
+    {word:"GHIACCIO",group:"GHI",positions:[0,1,2],mean:"流 Acqua congelata"},
+    {word:"GHEPARDO",group:"GHE",positions:[0,1,2],mean:" Felino veloce"},
+    {word:"BOSCHETTO",group:"CHE",positions:[3,4,5],mean:" Un piccolo bosco"}
+  ],
+  2:[
+    {word:"FAMIGLIA",group:"GLI",positions:[4,5,6],mean:" Mamma, papà e figli"},
+    {word:"CONIGLIO",group:"GLI",positions:[4,5,6],mean:" Orecchie lunghe"},
+    {word:"FOGLIA",group:"GLI",positions:[2,3,4],mean:" Sta sugli alberi"},
+    {word:"SCIARPA",group:"SCI",positions:[0,1,2],mean:"泥 Al collo d'inverno"},
+    {word:"USCIRE",group:"SCI",positions:[1,2,3],mean:" Andare fuori"},
+    {word:"PESCI",group:"SCI",positions:[2,3,4],mean:" Vivono nell'acqua"},
+    {word:"ACQUA",group:"CQU",positions:[1,2,3],mean:" Si beve"},
+    {word:"ACQUARIO",group:"CQU",positions:[1,2,3],mean:" Casa dei pesci"},
+    {word:"CHIODO",group:"CHI",positions:[0,1,2],mean:" Si pianta col martello"},
+    {word:"CHITARRA",group:"CHI",positions:[0,1,2],mean:" Strumento musicale"}
+  ],
+  3:[
+    {word:"STREGA",group:"STR",positions:[0,1,2],mean:"慄‍♀️ Fa magie"},
+    {word:"STRANO",group:"STR",positions:[0,1,2],mean:"樂 Non comune"},
+    {word:"SCRIVERE",group:"SCR",positions:[0,1,2],mean:"✏️ Con penna e quaderno"},
+    {word:"SCRIGNO",group:"SCR",positions:[0,1,2],mean:" Baule del tesoro"},
+    {word:"SPLENDERE",group:"SPL",positions:[0,1,2],mean:" Brillare molto"},
+    {word:"SPRUZZO",group:"SPR",positions:[0,1,2],mean:" Piccolo getto d'acqua"},
+    {word:"MAGNOLIA",group:"GN",positions:[2,3],mean:" Fiore bianco grande"},
+    {word:"CAMPAGNA",group:"GN",positions:[5,6],mean:" Fuori città"}
+  ]
+};
+const DISCRIM = {
+  1:[
+    {sent:"La ∎ALLA rotola nel prato", options:["P","B"], correct:"P", word:"PALLA", pair:"p/b", mean:" Rotonda, si lancia"},
+    {sent:"Il ∎ANE è caldo dal forno", options:["P","B"], correct:"P", word:"PANE", pair:"p/b", mean:"稜 Si mangia"},
+    {sent:"Sto ∎ENE grazie!", options:["B","P"], correct:"B", word:"BENE", pair:"p/b", mean:" Contrario di male"},
+    {sent:"Il ∎ADO rotola sul tavolo", options:["D","B"], correct:"D", word:"DADO", pair:"d/b", mean:" Per giocare"},
+    {sent:"∎EVO acqua fresca", options:["B","D"], correct:"B", word:"BEVO", pair:"d/b", mean:" Con la bocca"},
+    {sent:"Il ∎ETTO della casa è rosso", options:["T","D"], correct:"T", word:"TETTO", pair:"t/d", mean:" Sopra la casa"},
+    {sent:"Il ∎ENTE mi fa male", options:["D","T"], correct:"D", word:"DENTE", pair:"t/d", mean:"醴 Per masticare"},
+    {sent:"La ∎ELA è rossa e dolce", options:["M","N"], correct:"M", word:"MELA", pair:"m/n", mean:" Frutto"},
+    {sent:"Il ∎ASO sente i profumi", options:["N","M"], correct:"N", word:"NASO", pair:"m/n", mean:" Per annusare"},
+    {sent:"La ∎AME ti fa mangiare", options:["F","V"], correct:"F", word:"FAME", pair:"f/v", mean:" Vuoi cibo"},
+    {sent:"Il ∎INO è bevanda d'uva", options:["V","F"], correct:"V", word:"VINO", pair:"f/v", mean:""},
+    {sent:"La ∎ANA salta nello stagno", options:["R","L"], correct:"R", word:"RANA", pair:"l/r", mean:""},
+    {sent:"La ∎UNA brilla di notte", options:["L","R"], correct:"L", word:"LUNA", pair:"l/r", mean:""},
+    {sent:"Il ∎ANE abbaia felice", options:["C","G"], correct:"C", word:"CANE", pair:"c/g", mean:" Bau bau"},
+    {sent:"Il ∎ATTO ha i baffi", options:["G","C"], correct:"G", word:"GATTO", pair:"c/g", mean:" Miao"}
+  ],
+  2:[
+    {sent:"La ∎OSA profuma di buono", options:["R","L"], correct:"R", word:"ROSA", pair:"l/r", mean:""},
+    {sent:"∎OMA è la capitale d'Italia", options:["R","L"], correct:"R", word:"ROMA", pair:"l/r", mean:""},
+    {sent:"La ∎OLPE è furba", options:["V","F"], correct:"V", word:"VOLPE", pair:"f/v", mean:"力"},
+    {sent:"Il ∎UOCO scalda d'inverno", options:["F","V"], correct:"F", word:"FUOCO", pair:"f/v", mean:""},
+    {sent:"Mangio una ∎IZZA stasera", options:["P","B"], correct:"P", word:"PIZZA", pair:"p/b", mean:""},
+    {sent:"Il ∎RAGO sputa fuoco", options:["D","B"], correct:"D", word:"DRAGO", pair:"d/b", mean:""},
+    {sent:"La ∎OTTE è scura", options:["N","M"], correct:"N", word:"NOTTE", pair:"m/n", mean:""},
+    {sent:"Il ∎ARE è grande e blu", options:["M","N"], correct:"M", word:"MARE", pair:"m/n", mean:""},
+    {sent:"La ∎INESTRA si apre al mattino", options:["F","V"], correct:"F", word:"FINESTRA", pair:"f/v", mean:"犯"},
+    {sent:"La ∎EBRA ha le strisce", options:["Z","S"], correct:"Z", word:"ZEBRA", pair:"s/z", mean:"煉"},
+    {sent:"Il ∎OLE è caldo d'estate", options:["S","Z"], correct:"S", word:"SOLE", pair:"s/z", mean:"☀️"}
+  ],
+  3:[
+    {sent:"La ∎RINCIPESSA viveva nel castello", options:["P","B"], correct:"P", word:"PRINCIPESSA", pair:"p/b", mean:""},
+    {sent:"∎EDO le stelle brillare", options:["V","F"], correct:"V", word:"VEDO", pair:"f/v", mean:""},
+    {sent:"Il ∎RATELLO è figlio di mamma", options:["F","V"], correct:"F", word:"FRATELLO", pair:"f/v", mean:""},
+    {sent:"La ∎ERAVIGLIA degli unicorni", options:["M","N"], correct:"M", word:"MERAVIGLIA", pair:"m/n", mean:"✨"},
+    {sent:"La ∎AGIA cambia tutto", options:["M","N"], correct:"M", word:"MAGIA", pair:"m/n", mean:"彩"},
+    {sent:"Il ∎RUCIVERBA è divertente", options:["C","G"], correct:"C", word:"CRUCIVERBA", pair:"c/g", mean:"里"},
+    {sent:"La ∎UPA abita nella tana", options:["L","R"], correct:"L", word:"LUPA", pair:"l/r", mean:""}
+  ]
+};
+
+const ERRORS = {
+  1:[
+    {correct:"ACQUA",wrong:"AQUA",hint:" Si scrive con la C prima della Q: AC-QUA"},
+    {correct:"SCUOLA",wrong:"SKUOLA",hint:" In italiano non si usa la K"},
+    {correct:"CASA",wrong:"KASA",hint:" In italiano non c'è la K"},
+    {correct:"GNOMO",wrong:"NOMO",hint:"慄 Comincia con GN, non N"},
+    {correct:"FAMIGLIA",wrong:"FAMILIA",hint:" Con GLI, non LI"},
+    {correct:"PIOGGIA",wrong:"PIOGIA",hint:" Con GG doppia"},
+    {correct:"SOGNO",wrong:"SONGO",hint:" GN, non NG"},
+    {correct:"UOVO",wrong:"OVO",hint:"讀 Comincia con UO"},
+    {correct:"BICICLETTA",wrong:"BICICLETA",hint:" Doppia TT"},
+    {correct:"GIOCO",wrong:"GOCO",hint:" GI, non G"}
+  ],
+  2:[
+    {correct:"RAGAZZO",wrong:"RAGAZO",hint:"戮 Doppia ZZ"},
+    {correct:"CIAO",wrong:"CAO",hint:" CI con la I"},
+    {correct:"CHIESA",wrong:"CESA",hint:"⛪ CHI duro, con H"},
+    {correct:"GIORNO",wrong:"GORNO",hint:"☀️ GIO con la I"},
+    {correct:"UNGHIA",wrong:"UNGIA",hint:" GHI con H"},
+    {correct:"GHIACCIO",wrong:"GIACCIO",hint:"流 GHI con H"},
+    {correct:"ACCANTO",wrong:"AKANTO",hint:" Doppia CC, mai K"},
+    {correct:"QUADERNO",wrong:"CUADERNO",hint:" QU, non CU"}
+  ],
+  3:[
+    {correct:"COSCIENZA",wrong:"COSENZA",hint:" Con SC: CO-SCIEN-ZA"},
+    {correct:"SCIENZIATO",wrong:"SIENZIATO",hint:" SCI con la C"},
+    {correct:"EFFICIENZA",wrong:"EFICIENZA",hint:"⚡ Doppia FF"},
+    {correct:"ACCOGLIENTE",wrong:"ACOGLIENTE",hint:"珞 Doppia CC"},
+    {correct:"PAESAGGIO",wrong:"PAESAGIO",hint:" Doppia GG"},
+    {correct:"GHIRLANDA",wrong:"GIRLANDA",hint:" GHI con H"}
+  ]
+};
+
+const BUILD = {
+  1:[
+    {syl:["CA","SA"],mean:" Dove abiti"},
+    {syl:["LU","NA"],mean:" Brilla di notte"},
+    {syl:["SO","LE"],mean:"☀️ Scalda il giorno"},
+    {syl:["MA","NO"],mean:"✋ Ha cinque dita"},
+    {syl:["PA","NE"],mean:"稜 Si mangia a pranzo"},
+    {syl:["GAT","TO"],mean:" Fa miao"},
+    {syl:["PE","SCE"],mean:" Nuota nell'acqua"},
+    {syl:["FO","GLIA"],mean:" Sta sull'albero"}
+  ],
+  2:[
+    {syl:["MA","TI","TA"],mean:"✏️ Per disegnare"},
+    {syl:["FA","RI","NA"],mean:" Per fare il pane"},
+    {syl:["FI","NE","STRA"],mean:"犯 Si apre al mattino"},
+    {syl:["CA","VAL","LO"],mean:" Corre nei prati"},
+    {syl:["FAR","FAL","LA"],mean:"曆 Insetto colorato"},
+    {syl:["GIAR","DI","NO"],mean:" Pieno di piante"},
+    {syl:["BI","SCOT","TO"],mean:" Si inzuppa"},
+    {syl:["GHIAC","CIO"],mean:"流 Acqua congelata"}
+  ],
+  3:[
+    {syl:["STRA","OR","DI","NA","RIO"],mean:" Molto speciale"},
+    {syl:["IM","POS","SI","BI","LE"],mean:" Che non si può fare"},
+    {syl:["FA","MI","GLIA"],mean:" Mamma, papà e figli"},
+    {syl:["GIO","CAT","TO","LO"],mean:"笠 Si usa per giocare"},
+    {syl:["AC","QUA","RIO"],mean:" Casa dei pesci"},
+    {syl:["AR","CO","BA","LE","NO"],mean:" Dopo la pioggia"},
+    {syl:["U","NI","COR","NO"],mean:"濾 Cavallo magico"},
+    {syl:["PRIN","CI","PES","SA"],mean:" Figlia del re"}
+  ]
+};
+
+const MAGIC = {
+  1:[
+    {word:"UNICORNO",syl:["U","NI","COR","NO"],mean:"濾 Cavallo magico"},
+    {word:"ARCOBALENO",syl:["AR","CO","BA","LE","NO"],mean:" Dopo la pioggia"},
+    {word:"STELLE",syl:["STEL","LE"],mean:"⭐ Brillano di notte"},
+    {word:"FATA",syl:["FA","TA"],mean:"栗 Essere magico"},
+    {word:"MAGIA",syl:["MA","GI","A"],mean:"✨ Qualcosa di speciale"},
+    {word:"SOGNO",syl:["SO","GNO"],mean:" Nel sonno"}
+  ],
+  2:[
+    {word:"ACQUARELLO",syl:["AC","QUA","REL","LO"],mean:" Pittura con l'acqua"},
+    {word:"LIBELLULA",syl:["LI","BEL","LU","LA"],mean:"練 Insetto con ali trasparenti"},
+    {word:"PRINCIPESSA",syl:["PRIN","CI","PES","SA"],mean:" Figlia del re"},
+    {word:"PIANOFORTE",syl:["PIA","NO","FOR","TE"],mean:" Strumento con tasti"},
+    {word:"BIBLIOTECA",syl:["BI","BLI","O","TE","CA"],mean:" Posto pieno di libri"},
+    {word:"CIOCCOLATO",syl:["CIOC","CO","LA","TO"],mean:" Dolce marrone"}
+  ],
+  3:[
+    {word:"STRAORDINARIO",syl:["STRA","OR","DI","NA","RIO"],mean:" Molto speciale"},
+    {word:"INCANTESIMO",syl:["IN","CAN","TE","SI","MO"],mean:"彩 Magia potente"},
+    {word:"CARATTERISTICA",syl:["CA","RAT","TE","RI","STI","CA"],mean:" Che distingue"},
+    {word:"TRASFORMAZIONE",syl:["TRA","SFOR","MA","ZIO","NE"],mean:" Cambio magico"},
+    {word:"MERAVIGLIOSO",syl:["ME","RA","VI","GLIO","SO"],mean:"✨ Bellissimo"},
+    {word:"FANTASTICHERIA",syl:["FAN","TA","STI","CHE","RI","A"],mean:" Sogno ad occhi aperti"}
+  ]
+};
+
+const STORIES = {
+  1:[
+    {text:"L'unicorno Stellina vive in un prato di fiori rosa. Ogni mattina beve l'acqua fresca del ruscello.",
+     q:"Dove vive Stellina?",
+     opts:["In un prato di fiori rosa","In una grotta","Sul mare","In città"],correct:0},
+    {text:"Il piccolo unicorno Luna ha un corno d'oro e una criniera arcobaleno. Ama correre sulle nuvole.",
+     q:"Com'è il corno di Luna?",
+     opts:["D'oro","D'argento","Di cristallo","Blu"],correct:0},
+    {text:"Scintilla è un unicorno piccolo piccolo. Ogni sera si nasconde tra i petali di una rosa per dormire.",
+     q:"Dove dorme Scintilla?",
+     opts:["Tra i petali di una rosa","Su una nuvola","In una grotta","Sull'erba"],correct:0}
+  ],
+  2:[
+    {text:"Nella foresta incantata gli unicorni giocano con le fate. Oggi è il compleanno di Stellina e tutti preparano una grande festa con torte di fragole e succo di mirtilli.",
+     q:"Che cosa festeggiano gli unicorni?",
+     opts:["Il compleanno di Stellina","Il Natale","Capodanno","Pasqua"],correct:0},
+    {text:"L'unicorno Arcobaleno ha perso il suo corno magico. Lo cerca sopra la collina, nel ruscello e dentro il bosco. Alla fine lo trova proprio sotto il suo cuscino di stelle!",
+     q:"Dove trova il corno Arcobaleno?",
+     opts:["Sotto il suo cuscino","Nel bosco","Sulla collina","Nel ruscello"],correct:0},
+    {text:"Le fate e gli unicorni si incontrano ogni venerdì nel giardino delle margherite. Giocano a nascondino tra le foglie e cantano canzoni dolcissime fino al tramonto.",
+     q:"Quando si incontrano fate e unicorni?",
+     opts:["Ogni venerdì","Ogni lunedì","Tutti i giorni","Una volta all'anno"],correct:0}
+  ],
+  3:[
+    {text:"Un giorno l'unicorno Nuvola scoprì una grotta nascosta dietro la cascata. Dentro brillava un cristallo rosa che aveva il potere di esaudire tre desideri. Nuvola decise di usare il primo per aiutare la foresta malata, il secondo per guarire un uccellino ferito e il terzo lo conservò per qualcuno che ne avesse più bisogno.",
+     q:"Quanti desideri Nuvola usò subito?",
+     opts:["Due","Uno","Tre","Nessuno"],correct:0},
+    {text:"Le sette unicorne della costellazione volano ogni notte per illuminare il cielo. Quando una bambina della Terra guarda le stelle e sorride, loro ricevono un pezzettino di luce. Più la bambina è felice, più forte brillano.",
+     q:"Che cosa dà luce alle unicorne della costellazione?",
+     opts:["Il sorriso di una bambina","Il sole","La luna","Le candele"],correct:0}
+  ]
+};
+
+const PASSAGES = [
+  {title:"Stellina e il ruscello (facile)",
+   text:"Stellina è un piccolo unicorno. Vive in un bel prato pieno di fiori rosa. Ogni mattina scende al ruscello per bere. L'acqua è fresca e dolce. Dopo gioca con le farfalle fino a sera."},
+  {title:"Il corno d'oro di Luna (medio)",
+   text:"L'unicorno Luna ha un corno d'oro splendente. Quando corre sulle nuvole lascia una scia luminosa. Un giorno incontrò una fatina triste che aveva perso le ali. Luna le regalò un po' della sua luce magica e le ali tornarono a volare."},
+  {title:"La grotta di Nuvola (difficile)",
+   text:"Dietro la grande cascata della foresta incantata c'era una grotta segreta. Solo l'unicorno Nuvola conosceva l'ingresso. Dentro brillava un cristallo rosa che esaudiva tre desideri. Nuvola non era egoista: usò il primo per far rifiorire gli alberi malati, il secondo per guarire un uccellino con l'ala rotta e il terzo lo conservò gelosamente, perché prima o poi qualcuno ne avrebbe avuto bisogno."}
+];
+
+const GAMES_DATA = {doppie:DOPPIE,digrammi:DIGRAMMI,discrim:DISCRIM,errors:ERRORS,build:BUILD,magic:MAGIC,stories:STORIES};
+// ============ CICLO DI GIOCO ============
+function startGame(gameName, level){
+  state.game = gameName;
+  state.level = level || 1;
+  const bank = GAMES_DATA[gameName][state.level];
+  if(!bank){ alert("Livello non disponibile"); return; }
+  const n = gameName==="stories" ? 3 : (gameName==="magic" ? 6 : 8);
+  state.questions = shuffle(bank.slice()).slice(0, Math.min(n, bank.length));
+  state.idx = 0; state.correct = 0; state.errors = 0;
+  state.startTime = Date.now();
+  qs("#games > .card").classList.add("hidden");
+  $("gameArea").classList.remove("hidden");
+  $("gameResult").classList.add("hidden");
+  $("gameTitle").textContent = GAMES_META[gameName].icon + " " + GAMES_META[gameName].name;
+  $("gameLevel").textContent = "Livello " + state.level;
+  qsa("#gameArea [data-lv]").forEach(b=>{
+    const act = +b.dataset.lv === state.level;
+    b.classList.toggle("primary", act);
+    b.classList.toggle("ghost", !act);
+  });
+  qsa(".facilitations .toggle").forEach(t=>{
+    t.classList.toggle("on", !!state.facilitations[t.dataset.fac]);
+  });
+  showQuestion();
+}
+
+function showQuestion(){
+  const q = state.questions[state.idx];
+  $("gameInfo").textContent = "Domanda " + (state.idx+1) + " di " + state.questions.length;
+  $("gameProgress").style.width = (state.idx/state.questions.length*100) + "%";
+  $("gameFeedback").textContent = "";
+  $("gameFeedback").className = "feedback";
+  $("gameHint").classList.add("hidden");
+  $("nextBtn").classList.add("hidden");
+  const el = $("gameContent");
+  el.innerHTML = "";
+  RUNNERS[state.game](q, el);
+}
+
+function onAnswer(ok, info){
+  if(ok){
+    state.correct++;
+    $("gameFeedback").textContent = pickPraise();
+    $("gameFeedback").className = "feedback good";
+    rainUnicorns(8);
+  } else {
+    state.errors++;
+    $("gameFeedback").textContent = pickEncourage();
+    $("gameFeedback").className = "feedback bad";
+    if(info) recordError(info);
+  }
+  $("nextBtn").classList.remove("hidden");
+}
+
+function nextQuestion(){
+  state.idx++;
+  if(state.idx < state.questions.length) showQuestion();
+  else finishGame();
+}
+
+function finishGame(){
+  const seconds = Math.round((Date.now()-state.startTime)/1000);
+  const total = state.questions.length;
+  const accuracy = total ? Math.round(state.correct/total*100) : 0;
+  const points = state.correct*10 + (accuracy===100?15:0) + state.level*2;
+  const session = {
+    date:new Date().toISOString(),
+    game:state.game, level:state.level,
+    correct:state.correct, errors:state.errors,
+    total, accuracy, points, seconds,
+    facilitations:Object.assign({}, state.facilitations)
+  };
+  data.sessions.push(session);
+  $("gameProgress").style.width = "100%";
+  save();
+  const newly = checkUnicornUnlocks();
+  $("gameArea").classList.add("hidden");
+  $("gameResult").classList.remove("hidden");
+  $("rScore").textContent = points;
+  $("rAccuracy").textContent = accuracy + "%";
+  $("rErrors").textContent = state.errors;
+  $("resultTitle").textContent = accuracy===100 ? " PERFETTO! Tutte giuste! 濾" : (accuracy>=70 ? " Bravissima!" : " Hai finito, continua così!");
+  $("rMessage").textContent = "Hai dato " + state.correct + " risposte giuste su " + total + ", in " + seconds + " secondi.";
+  if(newly.length){
+    const nb = $("newUnicorn");
+    nb.classList.remove("hidden");
+    nb.innerHTML = "<strong> Nuovi unicorni sbloccati!</strong><br>" +
+      newly.map(u=>u.icon + " <b>" + u.name + "</b>").join(" · ");
+    rainUnicorns(30);
+  } else {
+    $("newUnicorn").classList.add("hidden");
+  }
+  updateDashboard();
+}
+
+function exitGame(){
+  $("gameArea").classList.add("hidden");
+  $("gameResult").classList.add("hidden");
+  qs("#games > .card").classList.remove("hidden");
+}
+
+// ============ RUNNERS PER GIOCO ============
+const RUNNERS = {};
+
+RUNNERS.doppie = function(q, el){
+  const correct = q[0], wrong = q[1], mean = q[2];
+  const opts = shuffle([correct, wrong]);
+  el.innerHTML = '<p style="text-align:center;font-size:17px">Quale è scritto <strong>giusto</strong>?</p>' +
+    '<p class="small" style="text-align:center">'+(mean||"")+'</p>' +
+    '<div class="choices" id="chx"></div>';
+  if(state.facilitations.hint){
+    $("gameHint").classList.remove("hidden");
+    $("gameHint").innerHTML = " Ascolta: la parola giusta ha una lettera doppia. Sentile tutte e due!";
+  }
+  const box = qs("#chx", el);
+  opts.forEach(o=>{
+    const b = document.createElement("button");
+    b.innerHTML = state.facilitations.highlight ? markTricky(o) : o;
+    b.dataset.val = o;
+    b.onclick = ()=>{
+      const ok = o===correct;
+      qsa("button", box).forEach(bb=>{
+        bb.disabled = true;
+        const v = bb.dataset.val;
+        if(v===correct) bb.classList.add("correct");
+        else if(v===o) bb.classList.add("wrong");
+      });
+      onAnswer(ok, {word:correct, type:"Doppia (gioco)"});
+      speak(correct);
+    };
+    box.appendChild(b);
+  });
+  autoSpeak(correct);
+};
+
+RUNNERS.digrammi = function(q, el){
+  el.innerHTML = '<p style="text-align:center;font-size:17px">Clicca le lettere che formano <strong style="color:var(--primary);font-size:22px">'+q.group+'</strong></p>' +
+    '<p class="small" style="text-align:center">'+(q.mean||"")+'</p>' +
+    '<div class="letter-grid" id="lg"></div>' +
+    '<div style="text-align:center;margin-top:10px"><button class="primary" id="confirmGroup">✓ Confermo</button></div>';
+  if(state.facilitations.hint){
+    $("gameHint").classList.remove("hidden");
+    $("gameHint").innerHTML = " Il gruppo <b>"+q.group+"</b> comincia alla lettera numero "+(q.positions[0]+1);
+  }
+  const grid = qs("#lg", el);
+  const selected = new Set();
+  [...q.word].forEach((ch, i)=>{
+    const l = document.createElement("div");
+    l.className = "letter"; l.textContent = ch;
+    l.onclick = ()=>{
+      if(selected.has(i)){ selected.delete(i); l.classList.remove("selected"); }
+      else { selected.add(i); l.classList.add("selected"); }
+    };
+    grid.appendChild(l);
+  });
+  qs("#confirmGroup", el).onclick = ()=>{
+    const picked = [...selected].sort((a,b)=>a-b);
+    const target = q.positions;
+    const ok = picked.length===target.length && picked.every((p,i)=>p===target[i]);
+    [...grid.children].forEach((l,i)=>{
+      l.onclick = null;
+      if(target.includes(i)) l.classList.add("correct");
+      else if(selected.has(i)) { l.classList.remove("selected"); l.classList.add("wrong"); }
+    });
+    qs("#confirmGroup", el).disabled = true;
+    onAnswer(ok, {word:q.word, type:"Digramma/trigramma "+q.group});
+    speak(q.word);
+  };
+  autoSpeak(q.word);
+};
+
+RUNNERS.discrim = function(q, el){
+  const sentHtml = q.sent.replace("∎", '<span class="blank">?</span>');
+  el.innerHTML = '<div class="sentence">'+sentHtml+'</div>' +
+    (q.mean ? '<p class="small" style="text-align:center">'+q.mean+'</p>' : '') +
+    '<p style="text-align:center;font-size:17px">Quale <strong>lettera</strong> manca?</p>' +
+    '<div class="choices" id="chx"></div>';
+  if(state.facilitations.hint){
+    $("gameHint").classList.remove("hidden");
+    $("gameHint").innerHTML = " Suona come il primo suono di <b>"+q.word+"</b>";
+  }
+  const box = qs("#chx", el);
+  const opts = shuffle(q.options.slice());
+  opts.forEach(o=>{
+    const b = document.createElement("button");
+    b.textContent = o;
+    b.style.fontSize = "28px";
+    b.dataset.val = o;
+    b.onclick = ()=>{
+      const ok = o===q.correct;
+      qsa("button", box).forEach(bb=>{
+        bb.disabled = true;
+        const v = bb.dataset.val;
+        if(v===q.correct) bb.classList.add("correct");
+        else if(v===o) bb.classList.add("wrong");
+      });
+      const blank = qs(".blank", el);
+      blank.textContent = q.correct;
+      blank.style.color = ok ? "var(--green)" : "var(--red)";
+      onAnswer(ok, {word:q.word, type:"Discriminazione "+q.pair});
+      speak(q.word);
+    };
+    box.appendChild(b);
+  });
+  autoSpeak(q.sent.replace("∎", q.correct.toLowerCase()));
+};
+
+RUNNERS.errors = function(q, el){
+  const opts = shuffle([q.correct, q.wrong]);
+  el.innerHTML = '<p style="text-align:center;font-size:17px">Quale parola è scritta <strong>bene</strong>?</p>' +
+    '<div class="choices" id="chx"></div>';
+  if(state.facilitations.hint){
+    $("gameHint").classList.remove("hidden");
+    $("gameHint").innerHTML = " " + q.hint;
+  }
+  const box = qs("#chx", el);
+  opts.forEach(o=>{
+    const b = document.createElement("button");
+    b.innerHTML = state.facilitations.highlight ? markTricky(o) : o;
+    b.dataset.val = o;
+    b.onclick = ()=>{
+      const ok = o===q.correct;
+      qsa("button", box).forEach(bb=>{
+        bb.disabled = true;
+        const v = bb.dataset.val;
+        if(v===q.correct) bb.classList.add("correct");
+        else if(v===o) bb.classList.add("wrong");
+      });
+      if(!ok){
+        $("gameHint").classList.remove("hidden");
+        $("gameHint").innerHTML = "✨ " + q.hint;
+      }
+      onAnswer(ok, {word:q.correct, type:"Caccia all'errore", note:q.hint});
+      speak(q.correct);
+    };
+    box.appendChild(b);
+  });
+  autoSpeak(q.correct);
+};
+
+RUNNERS.build = function(q, el){
+  el.innerHTML = '<p style="text-align:center;font-size:17px">Rimetti in ordine le sillabe!</p>' +
+    '<p class="small" style="text-align:center">'+(q.mean||"")+'</p>' +
+    '<div class="syllable-slots" id="slots"></div>' +
+    '<div class="syllable-pool" id="pool"></div>' +
+    '<div style="text-align:center;margin-top:10px">' +
+    '<button class="ghost" id="resetBuild">↺ Ricomincia</button> ' +
+    '<button class="primary" id="confirmBuild">✓ Confermo</button></div>';
+  if(state.facilitations.hint){
+    $("gameHint").classList.remove("hidden");
+    $("gameHint").innerHTML = " La prima sillaba è <b>"+q.syl[0]+"</b>";
+  }
+  const slots = qs("#slots", el);
+  const pool = qs("#pool", el);
+  const picked = [];
+  const shuffled = shuffle(q.syl.slice());
+  function renderPool(){
+    pool.innerHTML = "";
+    shuffled.forEach((s, i)=>{
+      const b = document.createElement("button");
+      b.textContent = s;
+      if(picked.find(p=>p.idx===i)) b.classList.add("used");
+      b.onclick = ()=>{
+        if(picked.find(p=>p.idx===i)) return;
+        picked.push({idx:i, text:s});
+        renderPool(); renderSlots();
+      };
+      pool.appendChild(b);
+    });
+  }
+  function renderSlots(){
+    slots.innerHTML = "";
+    if(!picked.length){
+      slots.innerHTML = '<span class="small">Clicca le sillabe nell\'ordine giusto</span>';
+      return;
+    }
+    picked.forEach((p, pi)=>{
+      const s = document.createElement("div");
+      s.className = "syl"; s.textContent = p.text;
+      s.title = "Clicca per rimuovere";
+      s.onclick = ()=>{ picked.splice(pi, 1); renderPool(); renderSlots(); };
+      slots.appendChild(s);
+    });
+  }
+  renderPool(); renderSlots();
+  qs("#resetBuild", el).onclick = ()=>{ picked.length = 0; renderPool(); renderSlots(); };
+  qs("#confirmBuild", el).onclick = ()=>{
+    const user = picked.map(p=>p.text);
+    const ok = user.length===q.syl.length && user.every((s, i)=>s===q.syl[i]);
+    qs("#confirmBuild", el).disabled = true;
+    qs("#resetBuild", el).disabled = true;
+    if(ok){
+      slots.style.borderColor = "var(--green)";
+      slots.style.background = "#e3f7ec";
+    } else {
+      slots.style.borderColor = "var(--red)";
+      slots.style.background = "#fde9ec";
+      $("gameHint").classList.remove("hidden");
+      $("gameHint").innerHTML = "✨ La parola giusta era: <b>" + q.syl.join("-") + "</b>";
+    }
+    onAnswer(ok, {word:q.syl.join(""), type:"Ricostruzione parola"});
+    speak(q.syl.join(""));
+  };
+  autoSpeak(q.syl.join(""));
+};
+
+RUNNERS.magic = function(q, el){
+  el.innerHTML = '<div class="word-display" id="magicWord"></div>' +
+    '<p style="text-align:center;font-size:16px">'+q.mean+'</p>' +
+    '<div style="text-align:center;margin-top:10px">' +
+    '<button class="ghost" id="magicSpeak"> Ascolta</button> ' +
+    '<button class="primary" id="magicRead">✓ L\'ho letta!</button></div>';
+  renderSyllabled(qs("#magicWord", el), q.syl);
+  qs("#magicSpeak", el).onclick = ()=>speak(q.word);
+  qs("#magicRead", el).onclick = ()=>{
+    qs("#magicRead", el).disabled = true;
+    onAnswer(true, null);
+    speak(q.word);
+  };
+  autoSpeak(q.word);
+};
+
+RUNNERS.stories = function(q, el){
+  el.innerHTML = '<div class="sentence" style="text-align:left;line-height:1.9;font-size:calc(var(--fs) * 1.1)">'+q.text+'</div>' +
+    '<p style="font-size:17px"><strong>'+q.q+'</strong></p>' +
+    '<div class="choices" id="chx"></div>';
+  if(state.facilitations.hint){
+    $("gameHint").classList.remove("hidden");
+    $("gameHint").innerHTML = " Rileggi la storia con calma: la risposta è lì dentro!";
+  }
+  const box = qs("#chx", el);
+  const correctText = q.opts[q.correct];
+  shuffle(q.opts.slice()).forEach(o=>{
+    const b = document.createElement("button");
+    b.textContent = o;
+    b.dataset.val = o;
+    b.onclick = ()=>{
+      const ok = o===correctText;
+      qsa("button", box).forEach(bb=>{
+        bb.disabled = true;
+        const v = bb.dataset.val;
+        if(v===correctText) bb.classList.add("correct");
+        else if(v===o) bb.classList.add("wrong");
+      });
+      onAnswer(ok, {word:q.q, type:"Comprensione"});
+    };
+    box.appendChild(b);
+  });
+  autoSpeak(q.text);
+};
+// ============ DASHBOARD E PROGRESSI ============
+function updateDashboard(){
+  const s = data.sessions;
+  const r = data.readings;
+  const pts = s.reduce((a,b)=>a+(b.points||0),0);
+  const avg = s.length ? Math.round(s.reduce((a,b)=>a+b.accuracy,0)/s.length) : 0;
+  const mins = Math.round(s.reduce((a,b)=>a+(b.seconds||0),0)/60 + r.reduce((a,b)=>a+(b.seconds||0),0)/60);
+  $("hSessions").textContent = s.length;
+  $("hAccuracy").textContent = avg + "%";
+  $("hMinutes").textContent = mins;
+  $("hPoints").textContent = pts;
+  const name = (data.settings.name||"").trim();
+  $("homeGreeting").textContent = name ? ("Ciao " + name + "! 濾") : "Ciao avventuriera! 濾";
+  $("headerSub").textContent = name ? ("Buon allenamento, " + name + "!") : "Allenati con gli unicorni e diventa una lettrice magica!";
+  $("dailyMsg").textContent = pickDaily();
+  renderHomeUnicorns();
+}
+
+function renderHomeUnicorns(){
+  const box = $("homeUnicorns");
+  box.innerHTML = "";
+  UNICORNS.forEach(u=>{
+    const d = document.createElement("div");
+    const owned = data.unicorns.includes(u.id);
+    d.className = "uni" + (owned ? " owned" : "");
+    d.innerHTML = '<div>' + (owned ? u.icon : "") + '</div>' +
+      '<small>' + (owned ? u.name : (u.threshold + " pt")) + '</small>';
+    box.appendChild(d);
+  });
+}
+
+function renderProgress(){
+  const s = data.sessions;
+  const r = data.readings;
+  const avg = s.length ? Math.round(s.reduce((a,b)=>a+b.accuracy,0)/s.length) : 0;
+  const wpm = r.length ? Math.round(r.reduce((a,b)=>a+b.wpm,0)/r.length) : 0;
+  $("pSessions").textContent = s.length;
+  $("pAccuracy").textContent = avg + "%";
+  $("pWpm").textContent = wpm;
+  $("pUnicorns").textContent = data.unicorns.length;
+  const perGameEl = $("perGame");
+  perGameEl.innerHTML = "";
+  Object.keys(GAMES_META).forEach(g=>{
+    const games = s.filter(x=>x.game===g);
+    if(!games.length) return;
+    const gavg = Math.round(games.reduce((a,b)=>a+b.accuracy,0)/games.length);
+    const row = document.createElement("div");
+    row.className = "barrow";
+    row.innerHTML = '<div class="barlabel">' +
+      '<span>'+GAMES_META[g].icon+' '+GAMES_META[g].name+' <span class="small">('+games.length+' sessioni)</span></span>' +
+      '<span>'+gavg+'%</span></div>' +
+      '<div class="bar"><div style="width:'+gavg+'%"></div></div>';
+    perGameEl.appendChild(row);
+  });
+  if(!perGameEl.children.length){
+    perGameEl.innerHTML = '<p class="small">Gioca a qualche gioco per vedere qui le tue statistiche!</p>';
+  }
+  const history = $("history");
+  history.innerHTML = "";
+  [...s].reverse().slice(0,50).forEach(x=>{
+    const tr = document.createElement("tr");
+    const meta = GAMES_META[x.game] || {icon:"", name:(x.game||"Gioco")};
+    [new Date(x.date).toLocaleDateString("it-IT"),
+     meta.icon + " " + meta.name,
+     "Lv " + (x.level||1),
+     (x.points||0) + " ⭐",
+     (x.accuracy||0) + "%",
+     Math.max(1, Math.round((x.seconds||0)/60)) + " min"
+    ].forEach(v=>{
+      const td = document.createElement("td");
+      td.textContent = v; tr.appendChild(td);
+    });
+    history.appendChild(tr);
+  });
+  if(!history.children.length){
+    history.innerHTML = '<tr><td colspan="6" class="small" style="text-align:center">Nessun allenamento registrato.</td></tr>';
+  }
+  const chart = $("chart");
+  chart.innerHTML = "";
+  const total = s.length;
+  s.slice(-15).forEach((x, i)=>{
+    const idx = Math.max(1, total - Math.min(15, total) + i + 1);
+    const row = document.createElement("div");
+    row.className = "barrow";
+    const meta = GAMES_META[x.game] || {icon:""};
+    row.innerHTML = '<div class="barlabel">' +
+      '<span>'+meta.icon+' #'+idx+'</span>' +
+      '<span>'+x.accuracy+'%</span></div>' +
+      '<div class="bar"><div style="width:'+x.accuracy+'%"></div></div>';
+    chart.appendChild(row);
+  });
+  if(!chart.children.length){
+    chart.innerHTML = '<p class="small">Qui vedrai l\'andamento dei tuoi punteggi.</p>';
+  }
+}
+
+function renderErrorList(){
+  const box = $("errorList");
+  box.innerHTML = "";
+  if(!data.errors.length){
+    box.innerHTML = '<p class="small">Nessun errore registrato.</p>';
+    return;
+  }
+  [...data.errors].reverse().slice(0,40).forEach(e=>{
+    const d = document.createElement("div");
+    d.style.cssText = "border:1px solid var(--border);border-radius:12px;padding:10px 14px;margin-bottom:8px;background:#faf5ff";
+    const date = new Date(e.date).toLocaleDateString("it-IT");
+    const gameLabel = e.game && GAMES_META[e.game] ? (" · " + GAMES_META[e.game].name) : "";
+    d.innerHTML = '<strong>' + (e.word||"(senza parola)") + '</strong> · <span class="small">' + (e.type||"") + '</span>' +
+      (e.note ? '<p style="margin:4px 0">' + e.note + '</p>' : '') +
+      '<small class="small">' + date + gameLabel + '</small>';
+    box.appendChild(d);
+  });
+}
+
+function renderPassages(){
+  const box = $("passages");
+  if(!box) return;
+  box.innerHTML = "";
+  PASSAGES.forEach(p=>{
+    const d = document.createElement("div");
+    d.style.cssText = "border:1px solid var(--border);border-radius:14px;padding:14px;margin-bottom:10px;background:#faf5ff";
+    d.innerHTML = '<h3>'+p.title+'</h3>' +
+      '<div style="font-size:calc(var(--fs) * 1.05);line-height:1.8;letter-spacing:.04em">'+p.text+'</div>' +
+      '<button class="ghost" style="margin-top:8px"> Ascolta</button>';
+    d.querySelector("button").onclick = ()=>speak(p.text);
+    box.appendChild(d);
+  });
+}
+
+// ============ LETTURA E DIARIO ============
+function saveReading(){
+  const words = +$("totalWords").value;
+  const correctW = +$("correctWords").value;
+  const errs = +$("readingErrors").value;
+  const seconds = +$("readingTime").value;
+  if(!words||!seconds||correctW<0||errs<0||correctW>words||errs>words){
+    alert("Controlla i valori inseriti."); return;
+  }
+  const wpm = Math.round(correctW/seconds*60);
+  const accuracy = Math.round(correctW/words*100);
+  const item = {
+    date:new Date().toISOString(),
+    title:$("readingTitle").value,
+    words, correct:correctW, errors:errs, seconds, wpm, accuracy
+  };
+  data.readings.push(item);
+  save(); updateDashboard();
+  $("readingResult").innerHTML = '<strong>'+wpm+'</strong> parole/min · Accuratezza <strong>'+accuracy+'%</strong> · '+errs+' errori';
+}
+
+function saveErrorDiary(){
+  const w = $("errorWord").value.trim();
+  if(!w){ alert("Inserisci la parola o la frase."); return; }
+  data.errors.push({
+    date:new Date().toISOString(),
+    word:w, type:$("errorType").value, note:$("errorNote").value,
+    source:"manuale"
+  });
+  $("errorWord").value = ""; $("errorNote").value = "";
+  save(); renderErrorList();
+}
+
+// ============ IMPOSTAZIONI ============
+function applySettings(){
+  const s = data.settings;
+  document.body.classList.remove("fs-large","fs-xlarge","ls-wide","ls-xwide","lh-high");
+  if(s.fontSize==="large") document.body.classList.add("fs-large");
+  if(s.fontSize==="xlarge") document.body.classList.add("fs-xlarge");
+  if(s.letterSpacing==="wide") document.body.classList.add("ls-wide");
+  if(s.letterSpacing==="xwide") document.body.classList.add("ls-xwide");
+  if(s.lineHeight==="high") document.body.classList.add("lh-high");
+  $("setFontSize").value = s.fontSize;
+  $("setLetterSpacing").value = s.letterSpacing;
+  $("setLineHeight").value = s.lineHeight;
+  $("setName").value = s.name||"";
+  $("setTTS").classList.toggle("on", !!s.tts);
+  $("setTTS").style.background = s.tts ? "#e3f7ec" : "#fff";
+  $("setTTS").style.borderColor = s.tts ? "var(--green)" : "var(--border)";
+  $("setTTS").style.color = s.tts ? "var(--green)" : "var(--soft)";
+}
+
+function saveSettings(){
+  data.settings.fontSize = $("setFontSize").value;
+  data.settings.letterSpacing = $("setLetterSpacing").value;
+  data.settings.lineHeight = $("setLineHeight").value;
+  data.settings.name = $("setName").value.trim();
+  save(); applySettings(); updateDashboard();
+  rainUnicorns(6);
+}
+
+// ============ TABS ============
+function showTab(id){
+  qsa("main > section").forEach(s=>s.classList.add("hidden"));
+  const sec = $(id); if(sec) sec.classList.remove("hidden");
+  qsa("nav button").forEach(b=>b.classList.toggle("active", b.dataset.tab===id));
+  if(id==="games") renderGameMenu();
+  if(id==="progress") renderProgress();
+  if(id==="errors") renderErrorList();
+  if(id==="reading") renderPassages();
+}
+
+function renderGameMenu(){
+  const box = $("gameMenu");
+  box.innerHTML = "";
+  Object.keys(GAMES_META).forEach(g=>{
+    const m = GAMES_META[g];
+    const d = document.createElement("div");
+    d.className = "gamecard";
+    d.innerHTML = '<div class="ico">'+m.icon+'</div><h3>'+m.name+'</h3><p>'+m.desc+'</p>';
+    d.onclick = ()=>startGame(g, 1);
+    box.appendChild(d);
+  });
+  $("gameArea").classList.add("hidden");
+  $("gameResult").classList.add("hidden");
+  qs("#games > .card").classList.remove("hidden");
+}
+
+// ============ EXPORT / IMPORT ============
+function downloadFile(name, content, type){
+  const blob = new Blob([content], {type});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = name; a.click();
+  URL.revokeObjectURL(url);
+}
+function exportJSON(){
+  downloadFile("unicorn-reader-backup.json", JSON.stringify(data,null,2), "application/json");
+}
+function exportCSV(){
+  const rows = [["Data","Gioco","Livello","Corrette","Errori","Totale","Accuratezza","Punti","Secondi"]];
+  data.sessions.forEach(s=>{
+    rows.push([s.date,s.game,s.level,s.correct,s.errors,s.total,s.accuracy,s.points,s.seconds]);
+  });
+  const csv = rows.map(row=>row.map(v=>'"'+String(v==null?"":v).replaceAll('"','""')+'"').join(";")).join("\n");
+  downloadFile("progressi-unicorni.csv", "\uFEFF"+csv, "text/csv;charset=utf-8");
+}
+function importJSONTrigger(){ $("jsonFile").click(); }
+function loadJSONFile(e){
+  const f = e.target.files[0]; if(!f) return;
+  const r = new FileReader();
+  r.onload = ()=>{
+    try{
+      const i = JSON.parse(r.result);
+      if(!Array.isArray(i.sessions) || !Array.isArray(i.errors) || !Array.isArray(i.readings)) throw Error();
+      if(!confirm("Sostituire i dati attuali con il backup?")) return;
+      data = Object.assign({}, DEF, i);
+      if(!Array.isArray(data.unicorns) || !data.unicorns.length) data.unicorns = [1];
+      data.settings = Object.assign({}, DEF.settings, data.settings||{});
+      save(); applySettings(); updateDashboard(); renderErrorList(); renderProgress();
+      alert("Backup ripristinato ✓");
+    } catch(err){ alert("File JSON non valido."); }
+  };
+  r.readAsText(f);
+  e.target.value = "";
+}
+function clearAllData(){
+  if(!confirm("Cancellare DEFINITIVAMENTE tutti i dati?")) return;
+  if(!confirm("Sei proprio sicura? Gli unicorni sbloccati andranno persi!")) return;
+  data = JSON.parse(JSON.stringify(DEF));
+  save(); applySettings(); updateDashboard(); renderErrorList(); renderProgress();
+}
+
+function resetSessions(){
+  if(!data.sessions.length && !data.readings.length){
+    alert("Non ci sono ancora contatori da azzerare 濾"); return;
+  }
+  if(!confirm("Azzerare tutti i contatori e i progressi?\n\n• Si cancellano: sessioni, punti, minuti, accuratezza, storico, letture.\n• Si mantengono: diario errori, unicorni sbloccati, impostazioni.\n\nI dati non si possono recuperare!")) return;
+  data.sessions = [];
+  data.readings = [];
+  save(); updateDashboard(); renderProgress();
+  alert("Contatori e progressi azzerati ✓");
+}
+
+function resetErrorsLog(){
+  if(!data.errors.length){ alert("Il diario errori è già vuoto 濾"); return; }
+  if(!confirm("Azzerare SOLO il diario degli errori ("+data.errors.length+" voci)?\nQuesta azione non si può annullare.")) return;
+  data.errors = [];
+  save(); renderErrorList();
+  alert("Diario errori azzerato ✓");
+}
+
+function resetUnicornsCollection(){
+  const owned = data.unicorns.length;
+  if(owned <= 1){ alert("Hai già solo Stellina 濾"); return; }
+  if(!confirm("Azzerare la collezione di unicorni ("+owned+" unicorni)?\nRimarrà solo Stellina. Gli altri si sbloccheranno di nuovo accumulando punti.")) return;
+  data.unicorns = [1];
+  save(); updateDashboard(); renderProgress();
+  alert("Collezione unicorni azzerata ✓");
+}
+
+// ============ WIRING ============
+function toggleFac(name){
+  state.facilitations[name] = !state.facilitations[name];
+  qsa(".facilitations .toggle").forEach(t=>{
+    if(t.dataset.fac===name) t.classList.toggle("on", state.facilitations[name]);
+  });
+  if(state.game && state.idx < state.questions.length){
+    showQuestion();
+  }
+}
+
+document.addEventListener("click", e=>{
+  const t = e.target.closest("[data-tab],[data-go],[data-fac],[data-lv]");
+  if(!t) return;
+  if(t.dataset.tab) showTab(t.dataset.tab);
+  else if(t.dataset.go) showTab(t.dataset.go);
+  else if(t.dataset.fac) toggleFac(t.dataset.fac);
+  else if(t.dataset.lv){
+    if(state.game) startGame(state.game, +t.dataset.lv);
+  }
+});
+
+$("exitGame").onclick = ()=>{ exitGame(); renderGameMenu(); };
+$("speakBtn").onclick = ()=>{
+  const q = state.questions[state.idx]; if(!q) return;
+  if(state.game==="magic") speak(q.word);
+  else if(state.game==="doppie") speak(q[0]);
+  else if(state.game==="discrim") speak(q.sent.replace("∎", q.correct.toLowerCase()));
+  else if(state.game==="digrammi") speak(q.word);
+  else if(state.game==="errors") speak(q.correct);
+  else if(state.game==="build") speak(q.syl.join(""));
+  else if(state.game==="stories") speak(q.text);
+};
+$("nextBtn").onclick = nextQuestion;
+$("playAgain").onclick = ()=>startGame(state.game, state.level);
+$("backToGames").onclick = ()=>{ exitGame(); renderGameMenu(); };
+
+$("saveReadingBtn").onclick = saveReading;
+$("saveErrorBtn").onclick = saveErrorDiary;
+$("exportCSV").onclick = exportCSV;
+$("exportJSON").onclick = exportJSON;
+$("importJSON").onclick = importJSONTrigger;
+$("jsonFile").onchange = loadJSONFile;
+$("clearData").onclick = clearAllData;
+$("saveSettings").onclick = saveSettings;
+$("setTTS").onclick = ()=>{
+  data.settings.tts = !data.settings.tts;
+  applySettings(); save();
+};
+$("testVoice").onclick = ()=>{
+  const n = (data.settings.name||"avventuriera").trim() || "avventuriera";
+  speak("Ciao " + n + "! Benvenuta nel regno degli unicorni.");
+};
+
+$("resetSessions").onclick = resetSessions;
+$("resetErrors").onclick = resetErrorsLog;
+$("resetUnicorns").onclick = resetUnicornsCollection;
+$("resetAll").onclick = clearAllData;
+
+// ============ START ============
+applySettings();
+updateDashboard();
+renderGameMenu();
+renderPassages();
+renderErrorList();
+</script>
+</body>
+</html>
