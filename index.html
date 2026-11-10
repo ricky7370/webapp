@@ -703,9 +703,27 @@ const DOPPIE = {
     ["TAZZA","TAZA","☕ Ci bevi il latte"],
     ["LETTO","LETO","🛏 Ci dormi la notte"],
     ["TORRE","TORE","🏰 Alta e sottile"],
-    ["TORTA","TORRTA","🍰 Si mangia alle feste"],
-    ["MELA","MELLA","🍎 Frutto rosso"],
-    ["SOLE","SOLLE","☀️ Scalda di giorno"]
+    ["PIZZA","PIZA","🍕 Piatto italiano"],
+    ["ROSSO","ROSO","🔴 Colore del fuoco"],
+    ["STELLA","STELA","⭐ Brilla nel cielo"],
+    ["GONNA","GONA","👗 Vestito femminile"],
+    ["BOCCA","BOCA","👄 Per mangiare"],
+    ["FACCIA","FACIA","😀 Si lava al mattino"],
+    ["GOCCIA","GOCIA","💧 Piccola d'acqua"],
+    ["BABBO","BABO","👨 Il papà"],
+    ["NANNA","NANA","😴 Dormire"],
+    ["GALLO","GALO","🐓 Canta all'alba"],
+    ["FOLLE","FOLE","🤪 Un po' matto"],
+    ["PALLONE","PALONE","⚽ Si tira col piede"],
+    ["COLLE","COLE","⛰ Piccola collina"],
+    ["POLLO","POLO","🍗 Si mangia a pranzo"],
+    ["ANNO","ANO","📅 Dodici mesi"],
+    ["GIALLO","GIALO","💛 Colore del sole"],
+    ["BOTTONE","BOTONE","🔘 Attacca i vestiti"],
+    ["CAPPA","CAPA","🧥 Mantello"],
+    ["RANNO","RANO","🧼 Vecchio detersivo"],
+    ["NUVOLA","NUVVOLA","☁️ Fluttua nel cielo"],
+    ["MELA","MELLA","🍎 Frutto rosso"]
   ],
   2:[
     ["FARFALLA","FARFALA","🦋 Insetto colorato"],
@@ -716,10 +734,23 @@ const DOPPIE = {
     ["PETTINE","PETINE","💈 Per i capelli"],
     ["MARTELLO","MARTELO","🔨 Per piantare i chiodi"],
     ["PIATTO","PIATO","🍽 Ci mangi dentro"],
+    ["STELLA","STELA","⭐ Brilla nel cielo (grande)"],
+    ["VIAGGIO","VIAGIO","🧳 Si parte con la valigia"],
+    ["MAGGIO","MAGIO","🌸 Mese dei fiori"],
+    ["FORMAGGIO","FORMAGIO","🧀 Si fa col latte"],
+    ["GRUPPO","GRUPO","👥 Più persone insieme"],
+    ["OPPURE","OPURE","↔️ Significa o anche"],
+    ["FREDDO","FREDO","❄️ Contrario di caldo"],
+    ["RUGGITO","RUGITO","🦁 Verso del leone"],
+    ["TAPPETO","TAPETO","🪆 Copre il pavimento"],
+    ["AUTUNNO","AUTUNO","🍂 Stagione delle foglie"],
+    ["GALLERIA","GALERIA","🖼 Posto d'arte"],
+    ["BURATTINO","BURATINO","🎭 Pinocchio!"],
     ["QUADERNO","QUADDERNO","📓 Per scrivere a scuola"],
     ["MATITA","MATTITA","✏️ Per disegnare"],
-    ["STELLA","STELA","⭐ Brilla nel cielo"],
-    ["CAROTA","CARROTA","🥕 Verdura arancione"]
+    ["CAROTA","CARROTA","🥕 Verdura arancione"],
+    ["BAULE","BAULLE","🧳 Grande valigia"],
+    ["ARMADIO","ARMADDIO","🚪 Per i vestiti"]
   ],
   3:[
     ["PASSEGGIATA","PASEGIATA","🚶 Si fa a piedi"],
@@ -727,48 +758,89 @@ const DOPPIE = {
     ["COCCODRILLO","COCODRILO","🐊 Rettile con denti aguzzi"],
     ["INTELLIGENTE","INTELIGENTE","🧠 Che pensa in fretta"],
     ["ALLEGREZZA","ALEGREZA","😄 Grande felicità"],
-    ["OROLOGIO","OROLOGGIO","⌚ Segna le ore (attenzione!)"],
     ["PRINCIPESSA","PRINCIPESA","👑 Figlia del re"],
     ["RAGAZZO","RAGAZO","🧒 Giovanotto"],
     ["BICICLETTA","BICICLETA","🚲 Si pedala"],
-    ["SCRITTURA","SCRITURA","✍️ L'arte di scrivere"]
+    ["SCRITTURA","SCRITURA","✍️ L'arte di scrivere"],
+    ["AVVENTURA","AVENTURA","🗺 Viaggio emozionante"],
+    ["AFFETTUOSO","AFETTUOSO","💝 Che dà affetto"],
+    ["ACCOGLIENZA","ACOGLIENZA","🤗 Il modo di ricevere"],
+    ["SORRISO","SORISO","😊 Faccia felice"],
+    ["COLLABORARE","COLABORARE","🤝 Lavorare insieme"],
+    ["ORRIBILE","ORIBILE","😨 Molto brutto"],
+    ["APPARENZA","APARENZA","👀 Quello che si vede"],
+    ["OROLOGIO","OROLOGGIO","⌚ Segna le ore (attenzione!)"],
+    ["BATTERIA","BATTERRIA","🔋 Dà energia"],
+    ["GIOSTRA","GIOSTTRA","🎠 Gira nel luna park"],
+    ["ARCOBALENO","ARCOBALLENO","🌈 Dopo la pioggia"]
   ]
 };
 
 const DIGRAMMI = {
   1:[
-    {word:"GNOMO",group:"GN",positions:[0,1],mean:"🧙 Piccolo essere del bosco"},
-    {word:"RAGNO",group:"GN",positions:[2,3],mean:"🕷 Ha otto zampe"},
-    {word:"BAGNO",group:"GN",positions:[2,3],mean:"🛁 Dove ti lavi"},
-    {word:"SOGNO",group:"GN",positions:[2,3],mean:"💭 Lo fai dormendo"},
-    {word:"CHIESA",group:"CHI",positions:[0,1,2],mean:"⛪ Luogo sacro"},
-    {word:"OCCHI",group:"CHI",positions:[2,3,4],mean:"👀 Per vedere"},
-    {word:"LAGHI",group:"GHI",positions:[2,3,4],mean:"🏞 Più di un lago"},
-    {word:"GHIACCIO",group:"GHI",positions:[0,1,2],mean:"🧊 Acqua congelata"},
-    {word:"GHEPARDO",group:"GHE",positions:[0,1,2],mean:"🐆 Felino veloce"},
-    {word:"BOSCHETTO",group:"CHE",positions:[3,4,5],mean:"🌲 Un piccolo bosco"}
+    {word:"GNOMO", group:"GN", mean:"🧙 Piccolo essere del bosco"},
+    {word:"RAGNO", group:"GN", mean:"🕷 Ha otto zampe"},
+    {word:"BAGNO", group:"GN", mean:"🛁 Dove ti lavi"},
+    {word:"SOGNO", group:"GN", mean:"💭 Lo fai dormendo"},
+    {word:"LEGNO", group:"GN", mean:"🪵 Materiale degli alberi"},
+    {word:"PUGNO", group:"GN", mean:"✊ Mano chiusa"},
+    {word:"VIGNA", group:"GN", mean:"🍇 Campo di viti"},
+    {word:"CIGNO", group:"GN", mean:"🦢 Uccello bianco elegante"},
+    {word:"GNOCCHI", group:"GN", mean:"🍝 Pasta di patate"},
+    {word:"CHIESA", group:"CHI", mean:"⛪ Luogo sacro"},
+    {word:"CHIAVE", group:"CHI", mean:"🔑 Apre la porta"},
+    {word:"CHIODO", group:"CHI", mean:"🔨 Si pianta col martello"},
+    {word:"CHITARRA", group:"CHI", mean:"🎸 Strumento a corde"},
+    {word:"CHIOCCIOLA", group:"CHI", mean:"🐌 Lumaca con la casa"},
+    {word:"OCCHI", group:"CHI", mean:"👀 Per vedere"},
+    {word:"GHIACCIO", group:"GHI", mean:"🧊 Acqua congelata"},
+    {word:"GHIRO", group:"GHI", mean:"🐭 Animale dormiglione"},
+    {word:"GHIANDA", group:"GHI", mean:"🌰 Frutto della quercia"},
+    {word:"LAGHI", group:"GHI", mean:"🏞 Più di un lago"},
+    {word:"UNGHIE", group:"GHI", mean:"💅 Alla fine delle dita"},
+    {word:"GHEPARDO", group:"GHE", mean:"🐆 Felino veloce"},
+    {word:"FORCHETTA", group:"CHE", mean:"🍴 Per mangiare"}
   ],
   2:[
-    {word:"FAMIGLIA",group:"GLI",positions:[4,5,6],mean:"👪 Mamma, papà e figli"},
-    {word:"CONIGLIO",group:"GLI",positions:[4,5,6],mean:"🐰 Orecchie lunghe"},
-    {word:"FOGLIA",group:"GLI",positions:[2,3,4],mean:"🍃 Sta sugli alberi"},
-    {word:"SCIARPA",group:"SCI",positions:[0,1,2],mean:"🧣 Al collo d'inverno"},
-    {word:"USCIRE",group:"SCI",positions:[1,2,3],mean:"🚪 Andare fuori"},
-    {word:"PESCI",group:"SCI",positions:[2,3,4],mean:"🐟 Vivono nell'acqua"},
-    {word:"ACQUA",group:"CQU",positions:[1,2,3],mean:"💧 Si beve"},
-    {word:"ACQUARIO",group:"CQU",positions:[1,2,3],mean:"🐠 Casa dei pesci"},
-    {word:"CHIODO",group:"CHI",positions:[0,1,2],mean:"🔨 Si pianta col martello"},
-    {word:"CHITARRA",group:"CHI",positions:[0,1,2],mean:"🎸 Strumento musicale"}
+    {word:"FAMIGLIA", group:"GLI", mean:"👪 Mamma, papà e figli"},
+    {word:"CONIGLIO", group:"GLI", mean:"🐰 Orecchie lunghe"},
+    {word:"FOGLIA", group:"GLI", mean:"🍃 Sta sugli alberi"},
+    {word:"PAGLIA", group:"GLI", mean:"🌾 Steli secchi"},
+    {word:"MOGLIE", group:"GLI", mean:"💑 La sposa"},
+    {word:"FIGLIO", group:"GLI", mean:"👦 Bambino della famiglia"},
+    {word:"TAGLIA", group:"GLI", mean:"✂️ Misura di vestiti"},
+    {word:"MAGLIA", group:"GLI", mean:"👕 Maglietta della squadra"},
+    {word:"SCIARPA", group:"SCI", mean:"🧣 Al collo d'inverno"},
+    {word:"SCIVOLO", group:"SCI", mean:"🛝 Si va giù al parco"},
+    {word:"USCIRE", group:"SCI", mean:"🚪 Andare fuori"},
+    {word:"PESCI", group:"SCI", mean:"🐟 Vivono nell'acqua"},
+    {word:"SCIMMIA", group:"SCI", mean:"🐒 Vive sugli alberi"},
+    {word:"SCINTILLA", group:"SCI", mean:"✨ Piccola luce"},
+    {word:"PROSCIUTTO", group:"SCI", mean:"🥓 Si mangia col pane"},
+    {word:"ACQUA", group:"CQU", mean:"💧 Si beve"},
+    {word:"ACQUARIO", group:"CQU", mean:"🐠 Casa dei pesci in casa"},
+    {word:"ACQUAZZONE", group:"CQU", mean:"🌧 Grande pioggia"},
+    {word:"ACQUEDOTTO", group:"CQU", mean:"🚰 Porta l'acqua"},
+    {word:"SCENA", group:"SCE", mean:"🎭 Al teatro o al cinema"},
+    {word:"PESCE", group:"SCE", mean:"🐟 Un pesce solo"},
+    {word:"SCENDERE", group:"SCE", mean:"⬇️ Andare giù"}
   ],
   3:[
-    {word:"STREGA",group:"STR",positions:[0,1,2],mean:"🧙‍♀️ Fa magie"},
-    {word:"STRANO",group:"STR",positions:[0,1,2],mean:"🤔 Non comune"},
-    {word:"SCRIVERE",group:"SCR",positions:[0,1,2],mean:"✏️ Con penna e quaderno"},
-    {word:"SCRIGNO",group:"SCR",positions:[0,1,2],mean:"💎 Baule del tesoro"},
-    {word:"SPLENDERE",group:"SPL",positions:[0,1,2],mean:"🌟 Brillare molto"},
-    {word:"SPRUZZO",group:"SPR",positions:[0,1,2],mean:"💦 Piccolo getto d'acqua"},
-    {word:"MAGNOLIA",group:"GN",positions:[2,3],mean:"🌼 Fiore bianco grande"},
-    {word:"CAMPAGNA",group:"GN",positions:[5,6],mean:"🌾 Fuori città"}
+    {word:"STREGA", group:"STR", mean:"🧙‍♀️ Fa magie"},
+    {word:"STRANO", group:"STR", mean:"🤔 Non comune"},
+    {word:"STRADA", group:"STR", mean:"🛣 Dove passano le auto"},
+    {word:"STRUMENTO", group:"STR", mean:"🎺 Serve per fare musica"},
+    {word:"STRUZZO", group:"STR", mean:"🦤 Grande uccello"},
+    {word:"SCRIVERE", group:"SCR", mean:"✏️ Con penna e quaderno"},
+    {word:"SCRIGNO", group:"SCR", mean:"💎 Baule del tesoro"},
+    {word:"SCRITTURA", group:"SCR", mean:"✍️ L'arte di scrivere"},
+    {word:"SPLENDERE", group:"SPL", mean:"🌟 Brillare molto"},
+    {word:"SPLENDIDO", group:"SPL", mean:"😍 Bellissimo"},
+    {word:"SPRUZZO", group:"SPR", mean:"💦 Piccolo getto d'acqua"},
+    {word:"SPREMERE", group:"SPR", mean:"🍊 Schiacciare un'arancia"},
+    {word:"MAGNOLIA", group:"GN", mean:"🌼 Fiore bianco grande"},
+    {word:"CAMPAGNA", group:"GN", mean:"🌾 Fuori città"},
+    {word:"MONTAGNA", group:"GN", mean:"⛰ Molto alta"}
   ]
 };
 const DISCRIM = {
@@ -776,73 +848,129 @@ const DISCRIM = {
     {sent:"La ∎ALLA rotola nel prato", options:["P","B"], correct:"P", word:"PALLA", pair:"p/b", mean:"🏐 Rotonda, si lancia"},
     {sent:"Il ∎ANE è caldo dal forno", options:["P","B"], correct:"P", word:"PANE", pair:"p/b", mean:"🥖 Si mangia"},
     {sent:"Sto ∎ENE grazie!", options:["B","P"], correct:"B", word:"BENE", pair:"p/b", mean:"🙂 Contrario di male"},
+    {sent:"Il ∎RACCIO si piega", options:["B","P"], correct:"B", word:"BRACCIO", pair:"p/b", mean:"💪 Parte del corpo"},
     {sent:"Il ∎ADO rotola sul tavolo", options:["D","B"], correct:"D", word:"DADO", pair:"d/b", mean:"🎲 Per giocare"},
     {sent:"∎EVO acqua fresca", options:["B","D"], correct:"B", word:"BEVO", pair:"d/b", mean:"💧 Con la bocca"},
+    {sent:"Il ∎OLORE fa male", options:["D","B"], correct:"D", word:"DOLORE", pair:"d/b", mean:"😣 Quando qualcosa punge"},
+    {sent:"La ∎AMBOLA è bellissima", options:["B","D"], correct:"B", word:"BAMBOLA", pair:"d/b", mean:"🪆 Giocattolo"},
     {sent:"Il ∎ETTO della casa è rosso", options:["T","D"], correct:"T", word:"TETTO", pair:"t/d", mean:"🏠 Sopra la casa"},
     {sent:"Il ∎ENTE mi fa male", options:["D","T"], correct:"D", word:"DENTE", pair:"t/d", mean:"🦷 Per masticare"},
+    {sent:"La ∎AVOLA è apparecchiata", options:["T","D"], correct:"T", word:"TAVOLA", pair:"t/d", mean:"🍽 Dove si mangia"},
+    {sent:"Il ∎OPPIO di due è quattro", options:["D","T"], correct:"D", word:"DOPPIO", pair:"t/d", mean:"✌️ Due volte"},
     {sent:"La ∎ELA è rossa e dolce", options:["M","N"], correct:"M", word:"MELA", pair:"m/n", mean:"🍎 Frutto"},
     {sent:"Il ∎ASO sente i profumi", options:["N","M"], correct:"N", word:"NASO", pair:"m/n", mean:"👃 Per annusare"},
+    {sent:"La ∎ANO ha cinque dita", options:["M","N"], correct:"M", word:"MANO", pair:"m/n", mean:"✋ Estremità del braccio"},
+    {sent:"La ∎AVE naviga nel mare", options:["N","M"], correct:"N", word:"NAVE", pair:"m/n", mean:"🚢 Barca grande"},
     {sent:"La ∎AME ti fa mangiare", options:["F","V"], correct:"F", word:"FAME", pair:"f/v", mean:"🍽 Vuoi cibo"},
-    {sent:"Il ∎INO è bevanda d'uva", options:["V","F"], correct:"V", word:"VINO", pair:"f/v", mean:"🍷"},
-    {sent:"La ∎ANA salta nello stagno", options:["R","L"], correct:"R", word:"RANA", pair:"l/r", mean:"🐸"},
-    {sent:"La ∎UNA brilla di notte", options:["L","R"], correct:"L", word:"LUNA", pair:"l/r", mean:"🌙"},
+    {sent:"Il ∎INO è bevanda d'uva", options:["V","F"], correct:"V", word:"VINO", pair:"f/v", mean:"🍷 Bevanda d'uva"},
+    {sent:"Il ∎IORE profuma in giardino", options:["F","V"], correct:"F", word:"FIORE", pair:"f/v", mean:"🌸 Fiorisce in primavera"},
+    {sent:"La ∎ELA al vento", options:["V","F"], correct:"V", word:"VELA", pair:"f/v", mean:"⛵ Sulla barca"},
+    {sent:"La ∎ANA salta nello stagno", options:["R","L"], correct:"R", word:"RANA", pair:"l/r", mean:"🐸 Fa cra cra"},
+    {sent:"La ∎UNA brilla di notte", options:["L","R"], correct:"L", word:"LUNA", pair:"l/r", mean:"🌙 Nel cielo"},
+    {sent:"Il ∎AMO verde dell'albero", options:["R","L"], correct:"R", word:"RAMO", pair:"l/r", mean:"🌿 Parte dell'albero"},
     {sent:"Il ∎ANE abbaia felice", options:["C","G"], correct:"C", word:"CANE", pair:"c/g", mean:"🐕 Bau bau"},
-    {sent:"Il ∎ATTO ha i baffi", options:["G","C"], correct:"G", word:"GATTO", pair:"c/g", mean:"🐈 Miao"}
+    {sent:"Il ∎ATTO ha i baffi", options:["G","C"], correct:"G", word:"GATTO", pair:"c/g", mean:"🐈 Miao"},
+    {sent:"Il ∎OLE è caldo d'estate", options:["S","Z"], correct:"S", word:"SOLE", pair:"s/z", mean:"☀️ Scalda tutto"}
   ],
   2:[
-    {sent:"La ∎OSA profuma di buono", options:["R","L"], correct:"R", word:"ROSA", pair:"l/r", mean:"🌹"},
-    {sent:"∎OMA è la capitale d'Italia", options:["R","L"], correct:"R", word:"ROMA", pair:"l/r", mean:"🏛"},
-    {sent:"La ∎OLPE è furba", options:["V","F"], correct:"V", word:"VOLPE", pair:"f/v", mean:"🦊"},
-    {sent:"Il ∎UOCO scalda d'inverno", options:["F","V"], correct:"F", word:"FUOCO", pair:"f/v", mean:"🔥"},
-    {sent:"Mangio una ∎IZZA stasera", options:["P","B"], correct:"P", word:"PIZZA", pair:"p/b", mean:"🍕"},
-    {sent:"Il ∎RAGO sputa fuoco", options:["D","B"], correct:"D", word:"DRAGO", pair:"d/b", mean:"🐉"},
-    {sent:"La ∎OTTE è scura", options:["N","M"], correct:"N", word:"NOTTE", pair:"m/n", mean:"🌃"},
-    {sent:"Il ∎ARE è grande e blu", options:["M","N"], correct:"M", word:"MARE", pair:"m/n", mean:"🌊"},
-    {sent:"La ∎INESTRA si apre al mattino", options:["F","V"], correct:"F", word:"FINESTRA", pair:"f/v", mean:"🪟"},
-    {sent:"La ∎EBRA ha le strisce", options:["Z","S"], correct:"Z", word:"ZEBRA", pair:"s/z", mean:"🦓"},
-    {sent:"Il ∎OLE è caldo d'estate", options:["S","Z"], correct:"S", word:"SOLE", pair:"s/z", mean:"☀️"}
+    {sent:"La ∎OSA profuma di buono", options:["R","L"], correct:"R", word:"ROSA", pair:"l/r", mean:"🌹 Fiore spinoso"},
+    {sent:"∎OMA è la capitale d'Italia", options:["R","L"], correct:"R", word:"ROMA", pair:"l/r", mean:"🏛 Città eterna"},
+    {sent:"La ∎OLPE è furba e rossa", options:["V","F"], correct:"V", word:"VOLPE", pair:"f/v", mean:"🦊 Animale rosso"},
+    {sent:"Il ∎UOCO scalda d'inverno", options:["F","V"], correct:"F", word:"FUOCO", pair:"f/v", mean:"🔥 Fa calore"},
+    {sent:"Mangio una ∎IZZA stasera", options:["P","B"], correct:"P", word:"PIZZA", pair:"p/b", mean:"🍕 Piatto italiano"},
+    {sent:"Il ∎RAGO sputa fuoco", options:["D","B"], correct:"D", word:"DRAGO", pair:"d/b", mean:"🐉 Animale mitologico"},
+    {sent:"La ∎OTTE è scura", options:["N","M"], correct:"N", word:"NOTTE", pair:"m/n", mean:"🌃 Quando è buio"},
+    {sent:"Il ∎ARE è grande e blu", options:["M","N"], correct:"M", word:"MARE", pair:"m/n", mean:"🌊 Dove nuotano i pesci"},
+    {sent:"La ∎INESTRA si apre al mattino", options:["F","V"], correct:"F", word:"FINESTRA", pair:"f/v", mean:"🪟 Per guardare fuori"},
+    {sent:"La ∎EBRA ha le strisce", options:["Z","S"], correct:"Z", word:"ZEBRA", pair:"s/z", mean:"🦓 Bianca e nera"},
+    {sent:"Il ∎OBOT è di metallo", options:["R","L"], correct:"R", word:"ROBOT", pair:"l/r", mean:"🤖 Macchina intelligente"},
+    {sent:"Il ∎OLCE del compleanno", options:["D","T"], correct:"D", word:"DOLCE", pair:"t/d", mean:"🎂 Si mangia alle feste"},
+    {sent:"La ∎ERENDA del pomeriggio", options:["M","N"], correct:"M", word:"MERENDA", pair:"m/n", mean:"🥐 Spuntino"},
+    {sent:"La ∎ERDURA fa bene", options:["V","F"], correct:"V", word:"VERDURA", pair:"f/v", mean:"🥬 Dall'orto"},
+    {sent:"Il ∎ALLINA fa le uova", options:["G","C"], correct:"G", word:"GALLINA", pair:"c/g", mean:"🐓 Fa coccodè"},
+    {sent:"La ∎AROTA è arancione", options:["C","G"], correct:"C", word:"CAROTA", pair:"c/g", mean:"🥕 Verdura arancione"},
+    {sent:"La ∎UCCA di Halloween", options:["Z","S"], correct:"Z", word:"ZUCCA", pair:"s/z", mean:"🎃 Arancione e grande"},
+    {sent:"Il ∎IBRO si legge", options:["L","R"], correct:"L", word:"LIBRO", pair:"l/r", mean:"📖 Contiene storie"},
+    {sent:"Il ∎RANDE elefante", options:["G","C"], correct:"G", word:"GRANDE", pair:"c/g", mean:"🐘 Enorme"},
+    {sent:"La ∎AMPADA illumina", options:["L","R"], correct:"L", word:"LAMPADA", pair:"l/r", mean:"💡 Fa luce"}
   ],
   3:[
-    {sent:"La ∎RINCIPESSA viveva nel castello", options:["P","B"], correct:"P", word:"PRINCIPESSA", pair:"p/b", mean:"👑"},
-    {sent:"∎EDO le stelle brillare", options:["V","F"], correct:"V", word:"VEDO", pair:"f/v", mean:"👁"},
-    {sent:"Il ∎RATELLO è figlio di mamma", options:["F","V"], correct:"F", word:"FRATELLO", pair:"f/v", mean:"👦"},
-    {sent:"La ∎ERAVIGLIA degli unicorni", options:["M","N"], correct:"M", word:"MERAVIGLIA", pair:"m/n", mean:"✨"},
-    {sent:"La ∎AGIA cambia tutto", options:["M","N"], correct:"M", word:"MAGIA", pair:"m/n", mean:"🪄"},
-    {sent:"Il ∎RUCIVERBA è divertente", options:["C","G"], correct:"C", word:"CRUCIVERBA", pair:"c/g", mean:"🧩"},
-    {sent:"La ∎UPA abita nella tana", options:["L","R"], correct:"L", word:"LUPA", pair:"l/r", mean:"🐺"}
+    {sent:"La ∎RINCIPESSA viveva nel castello", options:["P","B"], correct:"P", word:"PRINCIPESSA", pair:"p/b", mean:"👑 Figlia del re"},
+    {sent:"∎EDO le stelle brillare", options:["V","F"], correct:"V", word:"VEDO", pair:"f/v", mean:"👁 Con gli occhi"},
+    {sent:"Il ∎RATELLO è figlio di mamma", options:["F","V"], correct:"F", word:"FRATELLO", pair:"f/v", mean:"👦 Membro famiglia"},
+    {sent:"La ∎ERAVIGLIA degli unicorni", options:["M","N"], correct:"M", word:"MERAVIGLIA", pair:"m/n", mean:"✨ Qualcosa di bellissimo"},
+    {sent:"La ∎AGIA cambia tutto", options:["M","N"], correct:"M", word:"MAGIA", pair:"m/n", mean:"🪄 Qualcosa di incredibile"},
+    {sent:"Il ∎RUCIVERBA è divertente", options:["C","G"], correct:"C", word:"CRUCIVERBA", pair:"c/g", mean:"🧩 Gioco di parole"},
+    {sent:"La ∎UPA abita nella tana", options:["L","R"], correct:"L", word:"LUPA", pair:"l/r", mean:"🐺 Femmina del lupo"},
+    {sent:"La ∎ARMACIA vende medicine", options:["F","V"], correct:"F", word:"FARMACIA", pair:"f/v", mean:"💊 Negozio di medicine"},
+    {sent:"Il ∎RIMAVERA fiorisce", options:["P","B"], correct:"P", word:"PRIMAVERA", pair:"p/b", mean:"🌸 Stagione dei fiori"},
+    {sent:"∎EVO il latte al mattino", options:["B","D"], correct:"B", word:"BEVO", pair:"d/b", mean:"🥛 Con la bocca"},
+    {sent:"La ∎OMENICA si riposa", options:["D","T"], correct:"D", word:"DOMENICA", pair:"t/d", mean:"📅 Giorno della settimana"},
+    {sent:"∎ENTILE con gli amici", options:["G","C"], correct:"G", word:"GENTILE", pair:"c/g", mean:"😊 Educato e buono"},
+    {sent:"La ∎INIATURA è piccolina", options:["M","N"], correct:"M", word:"MINIATURA", pair:"m/n", mean:"🔍 Molto piccola"},
+    {sent:"Il ∎ULCANO erutta lava", options:["V","F"], correct:"V", word:"VULCANO", pair:"f/v", mean:"🌋 Montagna di fuoco"},
+    {sent:"La ∎AGIONE stagione passa", options:["S","Z"], correct:"S", word:"STAGIONE", pair:"s/z", mean:"🍂 Autunno, inverno..."}
   ]
 };
 
 const ERRORS = {
   1:[
-    {correct:"ACQUA",wrong:"AQUA",hint:"💧 Si scrive con la C prima della Q: AC-QUA"},
+    {correct:"ACQUA",wrong:"AQUA",hint:"💧 AC-QUA: C prima di Q"},
     {correct:"SCUOLA",wrong:"SKUOLA",hint:"🏫 In italiano non si usa la K"},
     {correct:"CASA",wrong:"KASA",hint:"🏠 In italiano non c'è la K"},
-    {correct:"GNOMO",wrong:"NOMO",hint:"🧙 Comincia con GN, non N"},
+    {correct:"GNOMO",wrong:"NOMO",hint:"🧙 Comincia con GN"},
     {correct:"FAMIGLIA",wrong:"FAMILIA",hint:"👪 Con GLI, non LI"},
     {correct:"PIOGGIA",wrong:"PIOGIA",hint:"🌧 Con GG doppia"},
     {correct:"SOGNO",wrong:"SONGO",hint:"💭 GN, non NG"},
     {correct:"UOVO",wrong:"OVO",hint:"🥚 Comincia con UO"},
     {correct:"BICICLETTA",wrong:"BICICLETA",hint:"🚲 Doppia TT"},
-    {correct:"GIOCO",wrong:"GOCO",hint:"🎮 GI, non G"}
-  ],
-  2:[
-    {correct:"RAGAZZO",wrong:"RAGAZO",hint:"🧒 Doppia ZZ"},
+    {correct:"GIOCO",wrong:"GOCO",hint:"🎮 GI con la I"},
     {correct:"CIAO",wrong:"CAO",hint:"👋 CI con la I"},
     {correct:"CHIESA",wrong:"CESA",hint:"⛪ CHI duro, con H"},
     {correct:"GIORNO",wrong:"GORNO",hint:"☀️ GIO con la I"},
+    {correct:"GNOCCHI",wrong:"NOCCHI",hint:"🍝 Comincia con GN"},
+    {correct:"CUORE",wrong:"CORE",hint:"❤️ CUO con la U"},
+    {correct:"NIENTE",wrong:"GNENTE",hint:"🚫 NI non GN"},
+    {correct:"LASAGNE",wrong:"LASANE",hint:"🍝 Con GN"},
+    {correct:"CHIAVE",wrong:"CIAVE",hint:"🔑 CHI con H"},
+    {correct:"FUOCO",wrong:"FOCO",hint:"🔥 FUO con la U"},
+    {correct:"QUANDO",wrong:"CUANDO",hint:"⏰ QU non CU"},
+    {correct:"UOMO",wrong:"OMO",hint:"🧑 Comincia con UO"},
+    {correct:"GIALLO",wrong:"GALO",hint:"💛 GI + doppia LL"}
+  ],
+  2:[
+    {correct:"RAGAZZO",wrong:"RAGAZO",hint:"🧒 Doppia ZZ"},
     {correct:"UNGHIA",wrong:"UNGIA",hint:"💅 GHI con H"},
     {correct:"GHIACCIO",wrong:"GIACCIO",hint:"🧊 GHI con H"},
-    {correct:"ACCANTO",wrong:"AKANTO",hint:"📍 Doppia CC, mai K"},
-    {correct:"QUADERNO",wrong:"CUADERNO",hint:"📓 QU, non CU"}
+    {correct:"ACCANTO",wrong:"AKANTO",hint:"📍 Doppia CC, niente K"},
+    {correct:"QUADERNO",wrong:"CUADERNO",hint:"📓 QU non CU"},
+    {correct:"MAGLIA",wrong:"MALIA",hint:"👕 GLI non LI"},
+    {correct:"FOGLIO",wrong:"FOLIO",hint:"📄 GLI non LI"},
+    {correct:"CHITARRA",wrong:"CITARRA",hint:"🎸 CHI con H"},
+    {correct:"GHIRO",wrong:"GIRO",hint:"🐭 GHI con H"},
+    {correct:"PASSEGGIO",wrong:"PASEGIO",hint:"🚶 Doppia SS + GG"},
+    {correct:"BUGIA",wrong:"BUGGIA",hint:"🤥 GI senza doppia G"},
+    {correct:"AUTUNNO",wrong:"AUTUNO",hint:"🍂 Doppia NN"},
+    {correct:"LAGO",wrong:"LAGHO",hint:"🏞 LAGO senza H"},
+    {correct:"CUCCHIAIO",wrong:"CUCIAIO",hint:"🥄 CCHI con H"},
+    {correct:"BISTECCA",wrong:"BISTEKA",hint:"🥩 CC non K"},
+    {correct:"MERAVIGLIA",wrong:"MERAVILIA",hint:"✨ GLI non LI"},
+    {correct:"PROSCIUTTO",wrong:"PROSUTTO",hint:"🥓 SCI + doppia TT"},
+    {correct:"GIARDINO",wrong:"GARDINO",hint:"🌸 GIA con la I"}
   ],
   3:[
-    {correct:"COSCIENZA",wrong:"COSENZA",hint:"💭 Con SC: CO-SCIEN-ZA"},
+    {correct:"COSCIENZA",wrong:"COSENZA",hint:"💭 SCI prima della E"},
     {correct:"SCIENZIATO",wrong:"SIENZIATO",hint:"🔬 SCI con la C"},
     {correct:"EFFICIENZA",wrong:"EFICIENZA",hint:"⚡ Doppia FF"},
     {correct:"ACCOGLIENTE",wrong:"ACOGLIENTE",hint:"🤗 Doppia CC"},
     {correct:"PAESAGGIO",wrong:"PAESAGIO",hint:"🏞 Doppia GG"},
-    {correct:"GHIRLANDA",wrong:"GIRLANDA",hint:"🎄 GHI con H"}
+    {correct:"GHIRLANDA",wrong:"GIRLANDA",hint:"🎄 GHI con H"},
+    {correct:"INGEGNERE",wrong:"INGENERE",hint:"🔧 GN in mezzo"},
+    {correct:"CONOSCIUTO",wrong:"CONOSUTO",hint:"🤝 Participio: SCI"},
+    {correct:"SPAGHETTI",wrong:"SPAGETTI",hint:"🍝 GH + doppia TT"},
+    {correct:"FRAGOLE",wrong:"FRAGGOLE",hint:"🍓 Senza doppia GG"},
+    {correct:"INTERESSANTE",wrong:"INTERESANTE",hint:"🤩 Doppia SS"},
+    {correct:"SPAZZOLINO",wrong:"SPAZOLINO",hint:"🪥 Doppia ZZ"}
   ]
 };
 
@@ -855,7 +983,19 @@ const BUILD = {
     {syl:["PA","NE"],mean:"🥖 Si mangia a pranzo"},
     {syl:["GAT","TO"],mean:"🐈 Fa miao"},
     {syl:["PE","SCE"],mean:"🐟 Nuota nell'acqua"},
-    {syl:["FO","GLIA"],mean:"🍃 Sta sull'albero"}
+    {syl:["FO","GLIA"],mean:"🍃 Sta sull'albero"},
+    {syl:["RO","SA"],mean:"🌹 Fiore spinoso"},
+    {syl:["VI","NO"],mean:"🍷 Bevanda d'uva"},
+    {syl:["ME","LA"],mean:"🍎 Frutto rosso"},
+    {syl:["LU","PO"],mean:"🐺 Animale ulula"},
+    {syl:["CA","NE"],mean:"🐕 Fa bau bau"},
+    {syl:["NA","VE"],mean:"🚢 Barca grande"},
+    {syl:["STEL","LA"],mean:"⭐ Brilla nel cielo"},
+    {syl:["PON","TE"],mean:"🌉 Si attraversa"},
+    {syl:["POR","TA"],mean:"🚪 Si apre e chiude"},
+    {syl:["LI","BRO"],mean:"📖 Pieno di storie"},
+    {syl:["FIO","RE"],mean:"🌸 Profuma"},
+    {syl:["MA","RE"],mean:"🌊 Grande e blu"}
   ],
   2:[
     {syl:["MA","TI","TA"],mean:"✏️ Per disegnare"},
@@ -865,7 +1005,17 @@ const BUILD = {
     {syl:["FAR","FAL","LA"],mean:"🦋 Insetto colorato"},
     {syl:["GIAR","DI","NO"],mean:"🌸 Pieno di piante"},
     {syl:["BI","SCOT","TO"],mean:"🍪 Si inzuppa"},
-    {syl:["GHIAC","CIO"],mean:"🧊 Acqua congelata"}
+    {syl:["GHIAC","CIO"],mean:"🧊 Acqua congelata"},
+    {syl:["LA","VA","GNA"],mean:"✍️ A scuola, si scrive sopra"},
+    {syl:["QUA","DER","NO"],mean:"📓 Ci si scrive"},
+    {syl:["MON","TA","GNA"],mean:"⛰ Molto alta"},
+    {syl:["CA","STEL","LO"],mean:"🏰 Vive la principessa"},
+    {syl:["BAM","BI","NA"],mean:"👧 Piccola persona"},
+    {syl:["GIAC","CA"],mean:"🧥 Si mette d'inverno"},
+    {syl:["PRA","TO","LI","NA"],mean:"🌼 Fiorellino di campo"},
+    {syl:["TAR","TA","RU","GA"],mean:"🐢 Lenta con la casa"},
+    {syl:["CAM","PA","NA"],mean:"🔔 Fa din don"},
+    {syl:["MER","LO"],mean:"🐦 Uccello nero"}
   ],
   3:[
     {syl:["STRA","OR","DI","NA","RIO"],mean:"💫 Molto speciale"},
@@ -875,7 +1025,13 @@ const BUILD = {
     {syl:["AC","QUA","RIO"],mean:"🐠 Casa dei pesci"},
     {syl:["AR","CO","BA","LE","NO"],mean:"🌈 Dopo la pioggia"},
     {syl:["U","NI","COR","NO"],mean:"🦄 Cavallo magico"},
-    {syl:["PRIN","CI","PES","SA"],mean:"👑 Figlia del re"}
+    {syl:["PRIN","CI","PES","SA"],mean:"👑 Figlia del re"},
+    {syl:["ME","RA","VI","GLIO","SO"],mean:"✨ Bellissimo"},
+    {syl:["COC","CO","DRIL","LO"],mean:"🐊 Rettile acquatico"},
+    {syl:["EL","E","FAN","TE"],mean:"🐘 Grande con la proboscide"},
+    {syl:["IN","CAN","TE","SI","MO"],mean:"🪄 Magia potente"},
+    {syl:["BI","BLI","O","TE","CA"],mean:"📚 Posto pieno di libri"},
+    {syl:["CA","LA","MI","TA"],mean:"🧲 Attira il ferro"}
   ]
 };
 
@@ -886,7 +1042,21 @@ const MAGIC = {
     {word:"STELLE",syl:["STEL","LE"],mean:"⭐ Brillano di notte"},
     {word:"FATA",syl:["FA","TA"],mean:"🧚 Essere magico"},
     {word:"MAGIA",syl:["MA","GI","A"],mean:"✨ Qualcosa di speciale"},
-    {word:"SOGNO",syl:["SO","GNO"],mean:"💭 Nel sonno"}
+    {word:"SOGNO",syl:["SO","GNO"],mean:"💭 Nel sonno"},
+    {word:"LUNA",syl:["LU","NA"],mean:"🌙 Illumina la notte"},
+    {word:"SOLE",syl:["SO","LE"],mean:"☀️ Illumina il giorno"},
+    {word:"NUVOLA",syl:["NU","VO","LA"],mean:"☁️ Nel cielo"},
+    {word:"CUORE",syl:["CUO","RE"],mean:"❤️ Batte nel petto"},
+    {word:"PERLA",syl:["PER","LA"],mean:"🦪 Nelle conchiglie"},
+    {word:"ROSA",syl:["RO","SA"],mean:"🌹 Fiore profumato"},
+    {word:"STELLA",syl:["STEL","LA"],mean:"⭐ Brilla lontano"},
+    {word:"MAMMA",syl:["MAM","MA"],mean:"💖 Ti vuole bene"},
+    {word:"SORRISO",syl:["SOR","RI","SO"],mean:"😊 Faccia felice"},
+    {word:"VENTO",syl:["VEN","TO"],mean:"💨 Soffia tra i capelli"},
+    {word:"MARE",syl:["MA","RE"],mean:"🌊 Grande e blu"},
+    {word:"FIORE",syl:["FIO","RE"],mean:"🌸 Profuma il giardino"},
+    {word:"NOTTE",syl:["NOT","TE"],mean:"🌃 Quando è buio"},
+    {word:"CIELO",syl:["CIE","LO"],mean:"☁️ Sopra di noi"}
   ],
   2:[
     {word:"ACQUARELLO",syl:["AC","QUA","REL","LO"],mean:"🎨 Pittura con l'acqua"},
@@ -894,15 +1064,35 @@ const MAGIC = {
     {word:"PRINCIPESSA",syl:["PRIN","CI","PES","SA"],mean:"👑 Figlia del re"},
     {word:"PIANOFORTE",syl:["PIA","NO","FOR","TE"],mean:"🎹 Strumento con tasti"},
     {word:"BIBLIOTECA",syl:["BI","BLI","O","TE","CA"],mean:"📚 Posto pieno di libri"},
-    {word:"CIOCCOLATO",syl:["CIOC","CO","LA","TO"],mean:"🍫 Dolce marrone"}
+    {word:"CIOCCOLATO",syl:["CIOC","CO","LA","TO"],mean:"🍫 Dolce marrone"},
+    {word:"GIRASOLE",syl:["GI","RA","SO","LE"],mean:"🌻 Fiore giallo grande"},
+    {word:"FARFALLA",syl:["FAR","FAL","LA"],mean:"🦋 Vola nei prati"},
+    {word:"VIOLINO",syl:["VI","O","LI","NO"],mean:"🎻 Strumento a corde"},
+    {word:"CAVALIERE",syl:["CA","VA","LIE","RE"],mean:"⚔️ Combatte col cavallo"},
+    {word:"GELATO",syl:["GE","LA","TO"],mean:"🍨 Freddo e dolce"},
+    {word:"PINGUINO",syl:["PIN","GUI","NO"],mean:"🐧 Vive al freddo"},
+    {word:"LUMACA",syl:["LU","MA","CA"],mean:"🐌 Con la casa sulle spalle"},
+    {word:"DELFINO",syl:["DEL","FI","NO"],mean:"🐬 Nuota e salta"},
+    {word:"ARCHITETTO",syl:["AR","CHI","TET","TO"],mean:"🏗 Disegna le case"},
+    {word:"BALLERINA",syl:["BAL","LE","RI","NA"],mean:"💃 Danza sul palco"},
+    {word:"MERAVIGLIA",syl:["ME","RA","VI","GLIA"],mean:"✨ Qualcosa di bellissimo"},
+    {word:"CORALLO",syl:["CO","RAL","LO"],mean:"🪸 Vive nel mare"}
   ],
   3:[
     {word:"STRAORDINARIO",syl:["STRA","OR","DI","NA","RIO"],mean:"💫 Molto speciale"},
     {word:"INCANTESIMO",syl:["IN","CAN","TE","SI","MO"],mean:"🪄 Magia potente"},
-    {word:"CARATTERISTICA",syl:["CA","RAT","TE","RI","STI","CA"],mean:"🔍 Che distingue"},
+    {word:"CARATTERISTICA",syl:["CA","RAT","TE","RI","STI","CA"],mean:"🔍 Qualcosa che distingue"},
     {word:"TRASFORMAZIONE",syl:["TRA","SFOR","MA","ZIO","NE"],mean:"🔄 Cambio magico"},
     {word:"MERAVIGLIOSO",syl:["ME","RA","VI","GLIO","SO"],mean:"✨ Bellissimo"},
-    {word:"FANTASTICHERIA",syl:["FAN","TA","STI","CHE","RI","A"],mean:"💭 Sogno ad occhi aperti"}
+    {word:"FANTASTICHERIA",syl:["FAN","TA","STI","CHE","RI","A"],mean:"💭 Sogno ad occhi aperti"},
+    {word:"COSTELLAZIONE",syl:["CO","STEL","LA","ZIO","NE"],mean:"🌠 Gruppo di stelle"},
+    {word:"IMMAGINAZIONE",syl:["IM","MA","GI","NA","ZIO","NE"],mean:"🎨 Ciò che pensi"},
+    {word:"RINGRAZIAMENTO",syl:["RIN","GRA","ZIA","MEN","TO"],mean:"🙏 Dire grazie"},
+    {word:"ARCHEOLOGIA",syl:["AR","CHE","O","LO","GI","A"],mean:"🏺 Studio delle cose antiche"},
+    {word:"SCIVOLOSO",syl:["SCI","VO","LO","SO"],mean:"⛸ Che fa scivolare"},
+    {word:"GENTILEZZA",syl:["GEN","TI","LEZ","ZA"],mean:"💝 Essere gentili"},
+    {word:"MELODIA",syl:["ME","LO","DI","A"],mean:"🎵 Musica dolce"},
+    {word:"SIMPATIA",syl:["SIM","PA","TI","A"],mean:"😊 Quando qualcuno ti piace"}
   ]
 };
 
@@ -916,7 +1106,22 @@ const STORIES = {
      opts:["D'oro","D'argento","Di cristallo","Blu"],correct:0},
     {text:"Scintilla è un unicorno piccolo piccolo. Ogni sera si nasconde tra i petali di una rosa per dormire.",
      q:"Dove dorme Scintilla?",
-     opts:["Tra i petali di una rosa","Su una nuvola","In una grotta","Sull'erba"],correct:0}
+     opts:["Tra i petali di una rosa","Su una nuvola","In una grotta","Sull'erba"],correct:0},
+    {text:"La fatina Perla ha piccole ali trasparenti. Vola di fiore in fiore raccogliendo polline per fare profumi magici.",
+     q:"Cosa raccoglie Perla?",
+     opts:["Il polline","Il miele","Il nettare","Gocce di rugiada"],correct:0},
+    {text:"Zucchero è un unicorno rosa che ama le caramelle. Ogni giorno visita la casa delle streghe golose nel bosco.",
+     q:"Cosa ama Zucchero?",
+     opts:["Le caramelle","Le mele","Le carote","I biscotti"],correct:0},
+    {text:"Il drago Draghetto non sputa fuoco, ma arcobaleni colorati. È il migliore amico degli unicorni.",
+     q:"Cosa sputa Draghetto?",
+     opts:["Arcobaleni","Fuoco","Acqua","Fumo"],correct:0},
+    {text:"La stellina cadente si chiama Brilla. Quando cade esprime un desiderio per i bambini sulla terra.",
+     q:"Chi esprime il desiderio?",
+     opts:["La stellina Brilla","Un unicorno","I bambini","Una fatina"],correct:0},
+    {text:"Nuvoletta è un unicorno che vive in cielo. Dorme su un soffice materasso di nuvole bianche.",
+     q:"Dove dorme Nuvoletta?",
+     opts:["Su un materasso di nuvole","In una grotta","In un letto di petali","Sulla luna"],correct:0}
   ],
   2:[
     {text:"Nella foresta incantata gli unicorni giocano con le fate. Oggi è il compleanno di Stellina e tutti preparano una grande festa con torte di fragole e succo di mirtilli.",
@@ -927,7 +1132,16 @@ const STORIES = {
      opts:["Sotto il suo cuscino","Nel bosco","Sulla collina","Nel ruscello"],correct:0},
     {text:"Le fate e gli unicorni si incontrano ogni venerdì nel giardino delle margherite. Giocano a nascondino tra le foglie e cantano canzoni dolcissime fino al tramonto.",
      q:"Quando si incontrano fate e unicorni?",
-     opts:["Ogni venerdì","Ogni lunedì","Tutti i giorni","Una volta all'anno"],correct:0}
+     opts:["Ogni venerdì","Ogni lunedì","Tutti i giorni","Una volta all'anno"],correct:0},
+    {text:"La principessa Lavanda vive nel castello viola. Ha un unicorno bianco chiamato Cristallo che la porta in volo sopra le montagne. Ogni mattina ammira l'alba dal punto più alto.",
+     q:"Come si chiama l'unicorno della principessa?",
+     opts:["Cristallo","Lavanda","Stellina","Diamante"],correct:0},
+    {text:"Il piccolo mago Rosmarino vuole diventare un grande incantatore. Per questo studia ogni giorno le pozioni con la sua maestra, la strega Menta. A fine lezione beve sempre una tisana calda.",
+     q:"Cosa studia Rosmarino?",
+     opts:["Le pozioni","Le stelle","I libri","I fiori"],correct:0},
+    {text:"Nel bosco incantato vive un gufo saggio che risponde a tutte le domande. Gli unicorni vanno spesso a trovarlo portando mele profumate in regalo.",
+     q:"Cosa portano gli unicorni al gufo?",
+     opts:["Mele profumate","Fiori","Caramelle","Latte"],correct:0}
   ],
   3:[
     {text:"Un giorno l'unicorno Nuvola scoprì una grotta nascosta dietro la cascata. Dentro brillava un cristallo rosa che aveva il potere di esaudire tre desideri. Nuvola decise di usare il primo per aiutare la foresta malata, il secondo per guarire un uccellino ferito e il terzo lo conservò per qualcuno che ne avesse più bisogno.",
@@ -935,7 +1149,13 @@ const STORIES = {
      opts:["Due","Uno","Tre","Nessuno"],correct:0},
     {text:"Le sette unicorne della costellazione volano ogni notte per illuminare il cielo. Quando una bambina della Terra guarda le stelle e sorride, loro ricevono un pezzettino di luce. Più la bambina è felice, più forte brillano.",
      q:"Che cosa dà luce alle unicorne della costellazione?",
-     opts:["Il sorriso di una bambina","Il sole","La luna","Le candele"],correct:0}
+     opts:["Il sorriso di una bambina","Il sole","La luna","Le candele"],correct:0},
+    {text:"Nella valle delle farfalle giganti vivevano gli unicorni volanti. Una mattina si accorsero che i fiori non profumavano più. Preoccupati chiesero aiuto alla saggia fata Verdechiaro, che spiegò loro che i fiori erano tristi perché nessuno li annaffiava più. Allora gli unicorni organizzarono una festa dell'acqua: ogni giorno uno di loro si trasformava in nuvola e portava la pioggia nella valle. Così i fiori tornarono a sorridere e a profumare come prima.",
+     q:"Perché i fiori non profumavano più?",
+     opts:["Nessuno li annaffiava","Erano malati","Faceva troppo freddo","Erano appassiti"],correct:0},
+    {text:"In un regno lontanissimo dove le case erano fatte di zucchero filato e le strade di cioccolato, viveva la principessa Caramella con il suo unicorno rosa Marshmallow. Un giorno un terribile gigante goloso arrivò nel regno e cominciò a mangiare tutto. La principessa non si perse d'animo: con l'aiuto di Marshmallow preparò una torta grande come una collina e la offrì al gigante. Il gigante fu così felice da promettere di non mangiare mai più il regno, ma solo la torta che Caramella gli avrebbe preparato ogni sabato.",
+     q:"Cosa promise il gigante?",
+     opts:["Di mangiare solo la torta del sabato","Di andare via per sempre","Di diventare piccolo","Di aiutare la principessa"],correct:0}
   ]
 };
 
@@ -974,6 +1194,15 @@ function itemId(item){
   if(item.syl) return "S:" + item.syl.join("-");
   if(item.q) return "Q:" + item.q;
   return JSON.stringify(item);
+}
+
+// Trova le posizioni di un gruppo di lettere all'interno di una parola
+function findGroup(word, group){
+  const i = word.indexOf(group);
+  if(i === -1) return [];
+  const arr = [];
+  for(let k = 0; k < group.length; k++) arr.push(i + k);
+  return arr;
 }
 
 // Seleziona N domande evitando ripetizioni rispetto alle precedenti sessioni
@@ -1210,7 +1439,8 @@ RUNNERS.digrammi = function(q, el){
     '<div style="text-align:center;margin-top:10px"><button class="primary" id="confirmGroup">✓ Confermo</button></div>';
   if(state.facilitations.hint){
     $("gameHint").classList.remove("hidden");
-    $("gameHint").innerHTML = "💡 Il gruppo <b>"+q.group+"</b> comincia alla lettera numero "+(q.positions[0]+1);
+    const hintPos = (q.positions && q.positions.length) ? q.positions : findGroup(q.word, q.group);
+    $("gameHint").innerHTML = "💡 Il gruppo <b>"+q.group+"</b> comincia alla lettera numero "+((hintPos[0]||0)+1);
   }
   const grid = qs("#lg", el);
   const selected = new Set();
@@ -1225,7 +1455,7 @@ RUNNERS.digrammi = function(q, el){
   });
   qs("#confirmGroup", el).onclick = ()=>{
     const picked = [...selected].sort((a,b)=>a-b);
-    const target = q.positions;
+    const target = (q.positions && q.positions.length) ? q.positions : findGroup(q.word, q.group);
     const ok = picked.length===target.length && picked.every((p,i)=>p===target[i]);
     [...grid.children].forEach((l,i)=>{
       l.onclick = null;
