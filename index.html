@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>濾 Leggo con gli Unicorni</title>
+<title>🦄 Leggo con gli Unicorni</title>
 <style>
 :root{
   --bg1:#fef0ff;--bg2:#e8f0ff;--bg3:#fff8e0;
@@ -247,16 +247,16 @@ footer{text-align:center;color:var(--soft);padding:20px;font-size:12px}
 <body>
 <div id="rainbox" class="rain"></div>
 <header>
-  <h1>濾✨ Leggo con gli Unicorni </h1>
+  <h1>🦄✨ Leggo con gli Unicorni 🌈</h1>
   <p id="headerSub">Allenati con gli unicorni e diventa una lettrice magica!</p>
 </header>
 
 <nav>
-  <button class="active" data-tab="home"> Casa</button>
-  <button data-tab="games"> Giochi</button>
+  <button class="active" data-tab="home">🏠 Casa</button>
+  <button data-tab="games">🎮 Giochi</button>
   <button data-tab="reading">⏱ Lettura</button>
   <button data-tab="errors">✏️ Errori</button>
-  <button data-tab="progress"> Progressi</button>
+  <button data-tab="progress">📊 Progressi</button>
   <button data-tab="settings">⚙️ Opzioni</button>
 </nav>
 
@@ -264,11 +264,11 @@ footer{text-align:center;color:var(--soft);padding:20px;font-size:12px}
 
 <section id="home">
   <div class="card">
-    <h2 id="homeGreeting">Ciao avventuriera! 濾</h2>
-    <p>Benvenuta nel regno degli unicorni! Ogni gioco ti aiuta a diventare più brava a leggere e scrivere. Ogni errore è un piccolo passo in avanti </p>
+    <h2 id="homeGreeting">Ciao avventuriera! 🦄</h2>
+    <p>Benvenuta nel regno degli unicorni! Ogni gioco ti aiuta a diventare più brava a leggere e scrivere. Ogni errore è un piccolo passo in avanti 💜</p>
     <div class="row">
-      <button class="primary" data-go="games"> Scegli un gioco</button>
-      <button class="ghost" data-go="progress"> Vedi i progressi</button>
+      <button class="primary" data-go="games">🎮 Scegli un gioco</button>
+      <button class="ghost" data-go="progress">📊 Vedi i progressi</button>
     </div>
   </div>
   <div class="grid">
@@ -278,19 +278,19 @@ footer{text-align:center;color:var(--soft);padding:20px;font-size:12px}
     <div class="stat"><strong id="hPoints">0</strong><span>⭐ Punti magici</span></div>
   </div>
   <div class="card">
-    <h2>濾 La tua collezione di unicorni</h2>
+    <h2>🦄 La tua collezione di unicorni</h2>
     <p class="small">Guadagna punti per sbloccare nuovi unicorni magici!</p>
     <div id="homeUnicorns" class="unicorn-collection"></div>
   </div>
   <div class="card">
-    <h2> Pensiero del giorno</h2>
+    <h2>🌟 Pensiero del giorno</h2>
     <p id="dailyMsg" style="font-size:16px">Pronta per una nuova avventura?</p>
   </div>
 </section>
 
 <section id="games" class="hidden">
   <div class="card">
-    <h2> Scegli il tuo gioco magico</h2>
+    <h2>🎮 Scegli il tuo gioco magico</h2>
     <p class="small">Ogni gioco si allena su un pezzetto diverso della lettura. Puoi provarli tutti!</p>
     <div id="gameMenu" class="grid"></div>
   </div>
@@ -311,9 +311,9 @@ footer{text-align:center;color:var(--soft);padding:20px;font-size:12px}
     </div>
 
     <div class="facilitations">
-      <span class="toggle" data-fac="syllables"> Sillabe colorate</span>
-      <span class="toggle" data-fac="tts"> Leggi</span>
-      <span class="toggle" data-fac="hint"> Suggerimento</span>
+      <span class="toggle" data-fac="syllables">🌈 Sillabe colorate</span>
+      <span class="toggle" data-fac="tts">🔊 Leggi</span>
+      <span class="toggle" data-fac="hint">💡 Suggerimento</span>
       <span class="toggle" data-fac="highlight">✨ Evidenzia difficoltà</span>
     </div>
 
@@ -326,13 +326,13 @@ footer{text-align:center;color:var(--soft);padding:20px;font-size:12px}
     <div class="feedback" id="gameFeedback"></div>
 
     <div class="row" style="justify-content:space-between;margin-top:12px">
-      <button class="ghost" id="speakBtn"> Ripeti</button>
+      <button class="ghost" id="speakBtn">🔊 Ripeti</button>
       <button class="primary hidden" id="nextBtn">Continua →</button>
     </div>
   </div>
 
   <div id="gameResult" class="card hidden">
-    <h2 id="resultTitle"> Hai finito!</h2>
+    <h2 id="resultTitle">🎉 Hai finito!</h2>
     <div class="grid">
       <div class="stat"><strong id="rScore">0</strong><span>Punti ⭐</span></div>
       <div class="stat"><strong id="rAccuracy">0%</strong><span>Accuratezza</span></div>
@@ -341,8 +341,8 @@ footer{text-align:center;color:var(--soft);padding:20px;font-size:12px}
     <p id="rMessage" style="text-align:center;font-size:17px"></p>
     <div id="newUnicorn" class="hint-box hidden"></div>
     <div class="row">
-      <button class="primary" id="playAgain"> Rigioca</button>
-      <button class="ghost" id="backToGames"> Altri giochi</button>
+      <button class="primary" id="playAgain">🔁 Rigioca</button>
+      <button class="ghost" id="backToGames">🎮 Altri giochi</button>
     </div>
   </div>
 </section>
@@ -361,15 +361,15 @@ footer{text-align:center;color:var(--soft);padding:20px;font-size:12px}
     <input type="number" id="readingErrors" min="0" value="10">
     <label>Tempo impiegato (secondi)</label>
     <input type="number" id="readingTime" min="1" value="120">
-    <button class="primary" id="saveReadingBtn"> Registra lettura</button>
+    <button class="primary" id="saveReadingBtn">📝 Registra lettura</button>
     <p class="small">La velocità (parole/minuto) è calcolata sulle parole corrette.</p>
   </div>
   <div class="card">
-    <h2> Ultima lettura</h2>
+    <h2>📈 Ultima lettura</h2>
     <div id="readingResult">Nessuna lettura registrata.</div>
   </div>
   <div class="card">
-    <h2> Brani da leggere (brevi storie di unicorni)</h2>
+    <h2>📚 Brani da leggere (brevi storie di unicorni)</h2>
     <div id="passages"></div>
   </div>
 </section>
@@ -393,7 +393,7 @@ footer{text-align:center;color:var(--soft);padding:20px;font-size:12px}
     </select>
     <label>Annotazioni</label>
     <textarea id="errorNote" rows="3" placeholder="Descrivi l'errore osservato..."></textarea>
-    <button class="primary" id="saveErrorBtn"> Registra errore</button>
+    <button class="primary" id="saveErrorBtn">📝 Registra errore</button>
   </div>
   <div class="card">
     <h2>Errori registrati</h2>
@@ -403,25 +403,25 @@ footer{text-align:center;color:var(--soft);padding:20px;font-size:12px}
 
 <section id="progress" class="hidden">
   <div class="card">
-    <h2> I tuoi progressi</h2>
+    <h2>📊 I tuoi progressi</h2>
     <div class="grid">
       <div class="stat"><strong id="pSessions">0</strong><span>Sessioni</span></div>
       <div class="stat"><strong id="pAccuracy">0%</strong><span>Accuratezza</span></div>
       <div class="stat"><strong id="pWpm">0</strong><span>Parole/min lettura</span></div>
-      <div class="stat"><strong id="pUnicorns">0</strong><span>Unicorni 濾</span></div>
+      <div class="stat"><strong id="pUnicorns">0</strong><span>Unicorni 🦄</span></div>
     </div>
   </div>
   <div class="card">
-    <h2> Come stai andando per gioco</h2>
+    <h2>🎯 Come stai andando per gioco</h2>
     <p class="small">Vedi dove sei più forte e dove serve ancora allenamento.</p>
     <div id="perGame"></div>
   </div>
   <div class="card">
-    <h2> Andamento delle ultime sessioni</h2>
+    <h2>📈 Andamento delle ultime sessioni</h2>
     <div id="chart"></div>
   </div>
   <div class="card">
-    <h2> Storico allenamenti</h2>
+    <h2>🕑 Storico allenamenti</h2>
     <div style="overflow-x:auto">
       <table>
         <thead><tr><th>Data</th><th>Gioco</th><th>Livello</th><th>Punti</th><th>Accuratezza</th><th>Tempo</th></tr></thead>
@@ -430,13 +430,13 @@ footer{text-align:center;color:var(--soft);padding:20px;font-size:12px}
     </div>
   </div>
   <div class="card">
-    <h2> I tuoi dati</h2>
+    <h2>💾 I tuoi dati</h2>
     <div class="row">
-      <button class="primary" id="exportCSV"> Scarica CSV</button>
-      <button class="ghost" id="exportJSON"> Backup JSON</button>
-      <button class="ghost" id="importJSON"> Ripristina</button>
+      <button class="primary" id="exportCSV">📊 Scarica CSV</button>
+      <button class="ghost" id="exportJSON">💾 Backup JSON</button>
+      <button class="ghost" id="importJSON">📂 Ripristina</button>
       <input id="jsonFile" type="file" accept=".json,application/json" class="hidden">
-      <button class="danger" id="clearData"> Cancella tutto</button>
+      <button class="danger" id="clearData">🗑 Cancella tutto</button>
     </div>
     <p class="small">I dati rimangono sul dispositivo. Fai periodicamente un backup.</p>
   </div>
@@ -467,26 +467,26 @@ footer{text-align:center;color:var(--soft);padding:20px;font-size:12px}
       <option value="high">Alta</option>
     </select>
 
-    <h3> Voce dell'unicorno</h3>
-    <span class="toggle" id="setTTS" style="display:inline-flex;align-items:center;gap:6px;padding:7px 13px;border-radius:20px;border:2px solid var(--border);background:#fff;cursor:pointer;font-size:13px;font-weight:600;color:var(--soft);user-select:none"> Attiva lettura ad alta voce automatica</span>
+    <h3>🔊 Voce dell'unicorno</h3>
+    <span class="toggle" id="setTTS" style="display:inline-flex;align-items:center;gap:6px;padding:7px 13px;border-radius:20px;border:2px solid var(--border);background:#fff;cursor:pointer;font-size:13px;font-weight:600;color:var(--soft);user-select:none">🔊 Attiva lettura ad alta voce automatica</span>
     <p class="small">Richiede un dispositivo con sintesi vocale (la trovi quasi ovunque).</p>
 
-    <h3>濾 Ciao, come ti chiami?</h3>
+    <h3>🦄 Ciao, come ti chiami?</h3>
     <input id="setName" placeholder="Il tuo nome (opzionale)">
 
     <div class="row" style="margin-top:14px">
       <button class="primary" id="saveSettings">✨ Salva impostazioni</button>
-      <button class="ghost" id="testVoice"> Prova la voce</button>
+      <button class="ghost" id="testVoice">🔊 Prova la voce</button>
     </div>
   </div>
 
   <div class="card">
-    <h2>粒 Azzera contatori e progressi</h2>
+    <h2>🧹 Azzera contatori e progressi</h2>
     <p class="small">Scegli cosa azzerare. Tutte le azioni chiedono una conferma. I dati non si possono recuperare — se vuoi, fai prima un <b>Backup JSON</b> dalla pagina Progressi!</p>
 
     <div style="display:flex; flex-direction:column; gap:14px; margin-top:12px">
       <div>
-        <button class="ghost" id="resetSessions" style="width:100%; text-align:left"> Azzera contatori e progressi</button>
+        <button class="ghost" id="resetSessions" style="width:100%; text-align:left">📊 Azzera contatori e progressi</button>
         <p class="small" style="margin:6px 4px 0">Cancella sessioni, punti, minuti, accuratezza, storico delle partite e letture.<br>Mantiene: diario errori, unicorni sbloccati, impostazioni.</p>
       </div>
       <div>
@@ -494,24 +494,24 @@ footer{text-align:center;color:var(--soft);padding:20px;font-size:12px}
         <p class="small" style="margin:6px 4px 0">Cancella solo le voci del diario degli errori. Tutto il resto resta.</p>
       </div>
       <div>
-        <button class="ghost" id="resetUnicorns" style="width:100%; text-align:left">濾 Azzera la collezione di unicorni</button>
-        <p class="small" style="margin:6px 4px 0">Lascia solo Stellina 濾. Gli altri si sbloccheranno di nuovo accumulando punti.</p>
+        <button class="ghost" id="resetUnicorns" style="width:100%; text-align:left">🦄 Azzera la collezione di unicorni</button>
+        <p class="small" style="margin:6px 4px 0">Lascia solo Stellina 🦄. Gli altri si sbloccheranno di nuovo accumulando punti.</p>
       </div>
       <div>
-        <button class="danger" id="resetAll" style="width:100%; text-align:left"> Azzera TUTTO (anche le impostazioni)</button>
+        <button class="danger" id="resetAll" style="width:100%; text-align:left">🗑 Azzera TUTTO (anche le impostazioni)</button>
         <p class="small" style="margin:6px 4px 0">Cancella tutti i dati e ripristina lo stato iniziale dell'app.</p>
       </div>
     </div>
   </div>
 
   <div class="card">
-    <h2>‍ Nota per l'adulto</h2>
+    <h2>👩‍🏫 Nota per l'adulto</h2>
     <p class="small">Questa app è pensata per una bambina con DSA F81.0 (Disturbo specifico della lettura). Lavora su: memorizzazione e rappresentazione di digrammi/trigrammi, percezione delle doppie, discriminazione di coppie di lettere che si confondono (p/b, d/b, m/n, f/v, t/d, l/r), ricerca dell'errore. Le facilitazioni (sillabe colorate, TTS, suggerimenti) si attivano per singola sessione senza pressione. La modalità calma toglie il senso di fretta. I 3 livelli e la collezione di unicorni mantengono alta la motivazione.</p>
   </div>
 </section>
 
 </main>
-<footer>濾 Leggo con gli Unicorni · Strumento di allenamento per la letto-scrittura (DSA F81.0) · Dati salvati solo sul dispositivo</footer>
+<footer>🦄 Leggo con gli Unicorni · Strumento di allenamento per la letto-scrittura (DSA F81.0) · Dati salvati solo sul dispositivo</footer>
 <script>
 // ============ STATO ============
 const KEY = "unicornReader_v2";
@@ -528,33 +528,33 @@ let state = {
 
 // ============ UNICORNI, LODI ============
 const UNICORNS = [
-  {id:1,name:"Stellina",icon:"濾",threshold:0},
+  {id:1,name:"Stellina",icon:"🦄",threshold:0},
   {id:2,name:"Scintilla",icon:"✨",threshold:50},
-  {id:3,name:"Arcobaleno",icon:"",threshold:150},
-  {id:4,name:"Cuoricino",icon:"",threshold:300},
-  {id:5,name:"Lunetta",icon:"",threshold:500},
-  {id:6,name:"Zucchero",icon:"",threshold:750},
-  {id:7,name:"Fiorella",icon:"",threshold:1000},
-  {id:8,name:"Magia",icon:"彩",threshold:1500},
+  {id:3,name:"Arcobaleno",icon:"🌈",threshold:150},
+  {id:4,name:"Cuoricino",icon:"💖",threshold:300},
+  {id:5,name:"Lunetta",icon:"🌙",threshold:500},
+  {id:6,name:"Zucchero",icon:"🍭",threshold:750},
+  {id:7,name:"Fiorella",icon:"🌸",threshold:1000},
+  {id:8,name:"Magia",icon:"🪄",threshold:1500},
   {id:9,name:"Nuvola",icon:"☁️",threshold:2000},
   {id:10,name:"Sole",icon:"☀️",threshold:2800},
-  {id:11,name:"Fatina",icon:"栗",threshold:3600},
-  {id:12,name:"Regina",icon:"",threshold:5000}
+  {id:11,name:"Fatina",icon:"🧚",threshold:3600},
+  {id:12,name:"Regina",icon:"👑",threshold:5000}
 ];
 
-const PRAISE = ["濾 Fantastico!"," Bravissima!","✨ Super!"," Perfetto!"," Che forza!"," Sei magica!"," Benissimo!","曆 Che occhio!","⭐ Precisissimo!","栗 Sei una star!","彩 Magia pura!"];
-const ENCOURAGE = [" Non importa, riproviamo!"," Ogni errore è un passo avanti!","濾 Dai che la prossima la prendi!","✨ Guarda bene, sei vicinissima!"," Respira e riprova!"," Non arrenderti, ce la fai!"];
-const DAILY = ["Oggi leggere sarà una magia 濾","Un unicorno ti aspetta ","Ogni parola è una conquista ✨","Anche le streghe sbagliano. Tu no, sei un'unicorna! 栗","Sillaba dopo sillaba, voli! 諾","Il tuo cervello oggi è un fuoco d'artificio ","Leggi con calma, nessuna fretta ","Sei coraggiosa come un drago, ma più carina "];
+const PRAISE = ["🦄 Fantastico!","🌈 Bravissima!","✨ Super!","🌟 Perfetto!","💖 Che forza!","🎉 Sei magica!","🌸 Benissimo!","🦋 Che occhio!","⭐ Precisissimo!","🧚 Sei una star!","🪄 Magia pura!"];
+const ENCOURAGE = ["💜 Non importa, riproviamo!","🌈 Ogni errore è un passo avanti!","🦄 Dai che la prossima la prendi!","✨ Guarda bene, sei vicinissima!","🌟 Respira e riprova!","💛 Non arrenderti, ce la fai!"];
+const DAILY = ["Oggi leggere sarà una magia 🦄","Un unicorno ti aspetta 🌈","Ogni parola è una conquista ✨","Anche le streghe sbagliano. Tu no, sei un'unicorna! 🧚","Sillaba dopo sillaba, voli! 🪽","Il tuo cervello oggi è un fuoco d'artificio 🎆","Leggi con calma, nessuna fretta 🌸","Sei coraggiosa come un drago, ma più carina 🐉"];
 
 // ============ META DEI GIOCHI ============
 const GAMES_META = {
-  doppie:  {icon:"",name:"Trova la Doppia",desc:"Scegli la scrittura corretta: con la doppia o senza?"},
-  digrammi:{icon:"",name:"Caccia al Digramma",desc:"Clicca le lettere del gruppo magico (GN, GL, SC, CH, GH...)"},
-  discrim: {icon:"",name:"Occhio alla Lettera",desc:"Scegli la lettera giusta: p/b, d/b, m/n, f/v, t/d, l/r"},
-  errors:  {icon:"️",name:"Caccia all'Errore",desc:"Quale delle due parole è scritta bene?"},
-  build:   {icon:"里",name:"Costruisci la Parola",desc:"Rimetti in ordine le sillabe mescolate"},
-  magic:   {icon:"",name:"Parole Magiche",desc:"Leggi parole speciali con le sillabe colorate"},
-  stories: {icon:"易",name:"Storie di Unicorni",desc:"Leggi una storia e rispondi"}
+  doppie:  {icon:"🎯",name:"Trova la Doppia",desc:"Scegli la scrittura corretta: con la doppia o senza?"},
+  digrammi:{icon:"🔍",name:"Caccia al Digramma",desc:"Clicca le lettere del gruppo magico (GN, GL, SC, CH, GH...)"},
+  discrim: {icon:"👀",name:"Occhio alla Lettera",desc:"Scegli la lettera giusta: p/b, d/b, m/n, f/v, t/d, l/r"},
+  errors:  {icon:"🕵️",name:"Caccia all'Errore",desc:"Quale delle due parole è scritta bene?"},
+  build:   {icon:"🧩",name:"Costruisci la Parola",desc:"Rimetti in ordine le sillabe mescolate"},
+  magic:   {icon:"📚",name:"Parole Magiche",desc:"Leggi parole speciali con le sillabe colorate"},
+  stories: {icon:"🧠",name:"Storie di Unicorni",desc:"Leggi una storia e rispondi"}
 };
 
 // ============ HELPERS ============
@@ -582,7 +582,7 @@ function autoSpeak(t){ if(state.facilitations.tts) speak(t); }
 
 function rainUnicorns(count){
   const box = $("rainbox"); if(!box) return;
-  const icons = ["濾","","✨","","","彩","","⭐","","栗",""];
+  const icons = ["🦄","🌈","✨","🌟","💖","🪄","🌸","⭐","🎀","🧚","💫"];
   for(let i=0;i<(count||10);i++){
     const d = document.createElement("div");
     d.className = "drop";
@@ -666,215 +666,215 @@ function checkUnicornUnlocks(){
 
 const DOPPIE = {
   1:[
-    ["PALLA","PALA"," Rotola nei prati"],
-    ["NONNA","NONA"," La mamma della mamma"],
-    ["GATTO","GATO"," Fa le fusa"],
+    ["PALLA","PALA","🏐 Rotola nei prati"],
+    ["NONNA","NONA","👵 La mamma della mamma"],
+    ["GATTO","GATO","🐈 Fa le fusa"],
     ["PENNA","PENA","✒️ Serve per scrivere"],
-    ["CANNA","CANA"," Si usa per pescare"],
-    ["MAMMA","MAMA"," Ci vuole tanto bene"],
+    ["CANNA","CANA","🎣 Si usa per pescare"],
+    ["MAMMA","MAMA","💖 Ci vuole tanto bene"],
     ["TAZZA","TAZA","☕ Ci bevi il latte"],
-    ["LETTO","LETO"," Ci dormi la notte"],
-    ["TORRE","TORE"," Alta e sottile"],
-    ["TORTA","TORRTA"," Si mangia alle feste"],
-    ["MELA","MELLA"," Frutto rosso"],
+    ["LETTO","LETO","🛏 Ci dormi la notte"],
+    ["TORRE","TORE","🏰 Alta e sottile"],
+    ["TORTA","TORRTA","🍰 Si mangia alle feste"],
+    ["MELA","MELLA","🍎 Frutto rosso"],
     ["SOLE","SOLLE","☀️ Scalda di giorno"]
   ],
   2:[
-    ["FARFALLA","FARFALA","曆 Insetto colorato"],
-    ["BISCOTTO","BISCOTO"," Si inzuppa nel latte"],
-    ["CAPPELLO","CAPELLO"," Si mette in testa"],
-    ["CAVALLO","CAVALO"," Corre nel prato"],
-    ["COLLINA","COLINA"," Piccola montagna"],
-    ["PETTINE","PETINE"," Per i capelli"],
-    ["MARTELLO","MARTELO"," Per piantare i chiodi"],
-    ["PIATTO","PIATO"," Ci mangi dentro"],
-    ["QUADERNO","QUADDERNO"," Per scrivere a scuola"],
+    ["FARFALLA","FARFALA","🦋 Insetto colorato"],
+    ["BISCOTTO","BISCOTO","🍪 Si inzuppa nel latte"],
+    ["CAPPELLO","CAPELLO","🎩 Si mette in testa"],
+    ["CAVALLO","CAVALO","🐎 Corre nel prato"],
+    ["COLLINA","COLINA","🏞 Piccola montagna"],
+    ["PETTINE","PETINE","💈 Per i capelli"],
+    ["MARTELLO","MARTELO","🔨 Per piantare i chiodi"],
+    ["PIATTO","PIATO","🍽 Ci mangi dentro"],
+    ["QUADERNO","QUADDERNO","📓 Per scrivere a scuola"],
     ["MATITA","MATTITA","✏️ Per disegnare"],
     ["STELLA","STELA","⭐ Brilla nel cielo"],
-    ["CAROTA","CARROTA","凌 Verdura arancione"]
+    ["CAROTA","CARROTA","🥕 Verdura arancione"]
   ],
   3:[
-    ["PASSEGGIATA","PASEGIATA"," Si fa a piedi"],
+    ["PASSEGGIATA","PASEGIATA","🚶 Si fa a piedi"],
     ["OMBRELLO","OMBRELO","☂ Ripara dalla pioggia"],
-    ["COCCODRILLO","COCODRILO"," Rettile con denti aguzzi"],
-    ["INTELLIGENTE","INTELIGENTE","易 Che pensa in fretta"],
-    ["ALLEGREZZA","ALEGREZA"," Grande felicità"],
+    ["COCCODRILLO","COCODRILO","🐊 Rettile con denti aguzzi"],
+    ["INTELLIGENTE","INTELIGENTE","🧠 Che pensa in fretta"],
+    ["ALLEGREZZA","ALEGREZA","😄 Grande felicità"],
     ["OROLOGIO","OROLOGGIO","⌚ Segna le ore (attenzione!)"],
-    ["PRINCIPESSA","PRINCIPESA"," Figlia del re"],
-    ["RAGAZZO","RAGAZO","戮 Giovanotto"],
-    ["BICICLETTA","BICICLETA"," Si pedala"],
+    ["PRINCIPESSA","PRINCIPESA","👑 Figlia del re"],
+    ["RAGAZZO","RAGAZO","🧒 Giovanotto"],
+    ["BICICLETTA","BICICLETA","🚲 Si pedala"],
     ["SCRITTURA","SCRITURA","✍️ L'arte di scrivere"]
   ]
 };
 
 const DIGRAMMI = {
   1:[
-    {word:"GNOMO",group:"GN",positions:[0,1],mean:"慄 Piccolo essere del bosco"},
-    {word:"RAGNO",group:"GN",positions:[2,3],mean:" Ha otto zampe"},
-    {word:"BAGNO",group:"GN",positions:[2,3],mean:" Dove ti lavi"},
-    {word:"SOGNO",group:"GN",positions:[2,3],mean:" Lo fai dormendo"},
+    {word:"GNOMO",group:"GN",positions:[0,1],mean:"🧙 Piccolo essere del bosco"},
+    {word:"RAGNO",group:"GN",positions:[2,3],mean:"🕷 Ha otto zampe"},
+    {word:"BAGNO",group:"GN",positions:[2,3],mean:"🛁 Dove ti lavi"},
+    {word:"SOGNO",group:"GN",positions:[2,3],mean:"💭 Lo fai dormendo"},
     {word:"CHIESA",group:"CHI",positions:[0,1,2],mean:"⛪ Luogo sacro"},
-    {word:"OCCHI",group:"CHI",positions:[2,3,4],mean:" Per vedere"},
-    {word:"LAGHI",group:"GHI",positions:[2,3,4],mean:" Più di un lago"},
-    {word:"GHIACCIO",group:"GHI",positions:[0,1,2],mean:"流 Acqua congelata"},
-    {word:"GHEPARDO",group:"GHE",positions:[0,1,2],mean:" Felino veloce"},
-    {word:"BOSCHETTO",group:"CHE",positions:[3,4,5],mean:" Un piccolo bosco"}
+    {word:"OCCHI",group:"CHI",positions:[2,3,4],mean:"👀 Per vedere"},
+    {word:"LAGHI",group:"GHI",positions:[2,3,4],mean:"🏞 Più di un lago"},
+    {word:"GHIACCIO",group:"GHI",positions:[0,1,2],mean:"🧊 Acqua congelata"},
+    {word:"GHEPARDO",group:"GHE",positions:[0,1,2],mean:"🐆 Felino veloce"},
+    {word:"BOSCHETTO",group:"CHE",positions:[3,4,5],mean:"🌲 Un piccolo bosco"}
   ],
   2:[
-    {word:"FAMIGLIA",group:"GLI",positions:[4,5,6],mean:" Mamma, papà e figli"},
-    {word:"CONIGLIO",group:"GLI",positions:[4,5,6],mean:" Orecchie lunghe"},
-    {word:"FOGLIA",group:"GLI",positions:[2,3,4],mean:" Sta sugli alberi"},
-    {word:"SCIARPA",group:"SCI",positions:[0,1,2],mean:"泥 Al collo d'inverno"},
-    {word:"USCIRE",group:"SCI",positions:[1,2,3],mean:" Andare fuori"},
-    {word:"PESCI",group:"SCI",positions:[2,3,4],mean:" Vivono nell'acqua"},
-    {word:"ACQUA",group:"CQU",positions:[1,2,3],mean:" Si beve"},
-    {word:"ACQUARIO",group:"CQU",positions:[1,2,3],mean:" Casa dei pesci"},
-    {word:"CHIODO",group:"CHI",positions:[0,1,2],mean:" Si pianta col martello"},
-    {word:"CHITARRA",group:"CHI",positions:[0,1,2],mean:" Strumento musicale"}
+    {word:"FAMIGLIA",group:"GLI",positions:[4,5,6],mean:"👪 Mamma, papà e figli"},
+    {word:"CONIGLIO",group:"GLI",positions:[4,5,6],mean:"🐰 Orecchie lunghe"},
+    {word:"FOGLIA",group:"GLI",positions:[2,3,4],mean:"🍃 Sta sugli alberi"},
+    {word:"SCIARPA",group:"SCI",positions:[0,1,2],mean:"🧣 Al collo d'inverno"},
+    {word:"USCIRE",group:"SCI",positions:[1,2,3],mean:"🚪 Andare fuori"},
+    {word:"PESCI",group:"SCI",positions:[2,3,4],mean:"🐟 Vivono nell'acqua"},
+    {word:"ACQUA",group:"CQU",positions:[1,2,3],mean:"💧 Si beve"},
+    {word:"ACQUARIO",group:"CQU",positions:[1,2,3],mean:"🐠 Casa dei pesci"},
+    {word:"CHIODO",group:"CHI",positions:[0,1,2],mean:"🔨 Si pianta col martello"},
+    {word:"CHITARRA",group:"CHI",positions:[0,1,2],mean:"🎸 Strumento musicale"}
   ],
   3:[
-    {word:"STREGA",group:"STR",positions:[0,1,2],mean:"慄‍♀️ Fa magie"},
-    {word:"STRANO",group:"STR",positions:[0,1,2],mean:"樂 Non comune"},
+    {word:"STREGA",group:"STR",positions:[0,1,2],mean:"🧙‍♀️ Fa magie"},
+    {word:"STRANO",group:"STR",positions:[0,1,2],mean:"🤔 Non comune"},
     {word:"SCRIVERE",group:"SCR",positions:[0,1,2],mean:"✏️ Con penna e quaderno"},
-    {word:"SCRIGNO",group:"SCR",positions:[0,1,2],mean:" Baule del tesoro"},
-    {word:"SPLENDERE",group:"SPL",positions:[0,1,2],mean:" Brillare molto"},
-    {word:"SPRUZZO",group:"SPR",positions:[0,1,2],mean:" Piccolo getto d'acqua"},
-    {word:"MAGNOLIA",group:"GN",positions:[2,3],mean:" Fiore bianco grande"},
-    {word:"CAMPAGNA",group:"GN",positions:[5,6],mean:" Fuori città"}
+    {word:"SCRIGNO",group:"SCR",positions:[0,1,2],mean:"💎 Baule del tesoro"},
+    {word:"SPLENDERE",group:"SPL",positions:[0,1,2],mean:"🌟 Brillare molto"},
+    {word:"SPRUZZO",group:"SPR",positions:[0,1,2],mean:"💦 Piccolo getto d'acqua"},
+    {word:"MAGNOLIA",group:"GN",positions:[2,3],mean:"🌼 Fiore bianco grande"},
+    {word:"CAMPAGNA",group:"GN",positions:[5,6],mean:"🌾 Fuori città"}
   ]
 };
 const DISCRIM = {
   1:[
-    {sent:"La ∎ALLA rotola nel prato", options:["P","B"], correct:"P", word:"PALLA", pair:"p/b", mean:" Rotonda, si lancia"},
-    {sent:"Il ∎ANE è caldo dal forno", options:["P","B"], correct:"P", word:"PANE", pair:"p/b", mean:"稜 Si mangia"},
-    {sent:"Sto ∎ENE grazie!", options:["B","P"], correct:"B", word:"BENE", pair:"p/b", mean:" Contrario di male"},
-    {sent:"Il ∎ADO rotola sul tavolo", options:["D","B"], correct:"D", word:"DADO", pair:"d/b", mean:" Per giocare"},
-    {sent:"∎EVO acqua fresca", options:["B","D"], correct:"B", word:"BEVO", pair:"d/b", mean:" Con la bocca"},
-    {sent:"Il ∎ETTO della casa è rosso", options:["T","D"], correct:"T", word:"TETTO", pair:"t/d", mean:" Sopra la casa"},
-    {sent:"Il ∎ENTE mi fa male", options:["D","T"], correct:"D", word:"DENTE", pair:"t/d", mean:"醴 Per masticare"},
-    {sent:"La ∎ELA è rossa e dolce", options:["M","N"], correct:"M", word:"MELA", pair:"m/n", mean:" Frutto"},
-    {sent:"Il ∎ASO sente i profumi", options:["N","M"], correct:"N", word:"NASO", pair:"m/n", mean:" Per annusare"},
-    {sent:"La ∎AME ti fa mangiare", options:["F","V"], correct:"F", word:"FAME", pair:"f/v", mean:" Vuoi cibo"},
-    {sent:"Il ∎INO è bevanda d'uva", options:["V","F"], correct:"V", word:"VINO", pair:"f/v", mean:""},
-    {sent:"La ∎ANA salta nello stagno", options:["R","L"], correct:"R", word:"RANA", pair:"l/r", mean:""},
-    {sent:"La ∎UNA brilla di notte", options:["L","R"], correct:"L", word:"LUNA", pair:"l/r", mean:""},
-    {sent:"Il ∎ANE abbaia felice", options:["C","G"], correct:"C", word:"CANE", pair:"c/g", mean:" Bau bau"},
-    {sent:"Il ∎ATTO ha i baffi", options:["G","C"], correct:"G", word:"GATTO", pair:"c/g", mean:" Miao"}
+    {sent:"La ∎ALLA rotola nel prato", options:["P","B"], correct:"P", word:"PALLA", pair:"p/b", mean:"🏐 Rotonda, si lancia"},
+    {sent:"Il ∎ANE è caldo dal forno", options:["P","B"], correct:"P", word:"PANE", pair:"p/b", mean:"🥖 Si mangia"},
+    {sent:"Sto ∎ENE grazie!", options:["B","P"], correct:"B", word:"BENE", pair:"p/b", mean:"🙂 Contrario di male"},
+    {sent:"Il ∎ADO rotola sul tavolo", options:["D","B"], correct:"D", word:"DADO", pair:"d/b", mean:"🎲 Per giocare"},
+    {sent:"∎EVO acqua fresca", options:["B","D"], correct:"B", word:"BEVO", pair:"d/b", mean:"💧 Con la bocca"},
+    {sent:"Il ∎ETTO della casa è rosso", options:["T","D"], correct:"T", word:"TETTO", pair:"t/d", mean:"🏠 Sopra la casa"},
+    {sent:"Il ∎ENTE mi fa male", options:["D","T"], correct:"D", word:"DENTE", pair:"t/d", mean:"🦷 Per masticare"},
+    {sent:"La ∎ELA è rossa e dolce", options:["M","N"], correct:"M", word:"MELA", pair:"m/n", mean:"🍎 Frutto"},
+    {sent:"Il ∎ASO sente i profumi", options:["N","M"], correct:"N", word:"NASO", pair:"m/n", mean:"👃 Per annusare"},
+    {sent:"La ∎AME ti fa mangiare", options:["F","V"], correct:"F", word:"FAME", pair:"f/v", mean:"🍽 Vuoi cibo"},
+    {sent:"Il ∎INO è bevanda d'uva", options:["V","F"], correct:"V", word:"VINO", pair:"f/v", mean:"🍷"},
+    {sent:"La ∎ANA salta nello stagno", options:["R","L"], correct:"R", word:"RANA", pair:"l/r", mean:"🐸"},
+    {sent:"La ∎UNA brilla di notte", options:["L","R"], correct:"L", word:"LUNA", pair:"l/r", mean:"🌙"},
+    {sent:"Il ∎ANE abbaia felice", options:["C","G"], correct:"C", word:"CANE", pair:"c/g", mean:"🐕 Bau bau"},
+    {sent:"Il ∎ATTO ha i baffi", options:["G","C"], correct:"G", word:"GATTO", pair:"c/g", mean:"🐈 Miao"}
   ],
   2:[
-    {sent:"La ∎OSA profuma di buono", options:["R","L"], correct:"R", word:"ROSA", pair:"l/r", mean:""},
-    {sent:"∎OMA è la capitale d'Italia", options:["R","L"], correct:"R", word:"ROMA", pair:"l/r", mean:""},
-    {sent:"La ∎OLPE è furba", options:["V","F"], correct:"V", word:"VOLPE", pair:"f/v", mean:"力"},
-    {sent:"Il ∎UOCO scalda d'inverno", options:["F","V"], correct:"F", word:"FUOCO", pair:"f/v", mean:""},
-    {sent:"Mangio una ∎IZZA stasera", options:["P","B"], correct:"P", word:"PIZZA", pair:"p/b", mean:""},
-    {sent:"Il ∎RAGO sputa fuoco", options:["D","B"], correct:"D", word:"DRAGO", pair:"d/b", mean:""},
-    {sent:"La ∎OTTE è scura", options:["N","M"], correct:"N", word:"NOTTE", pair:"m/n", mean:""},
-    {sent:"Il ∎ARE è grande e blu", options:["M","N"], correct:"M", word:"MARE", pair:"m/n", mean:""},
-    {sent:"La ∎INESTRA si apre al mattino", options:["F","V"], correct:"F", word:"FINESTRA", pair:"f/v", mean:"犯"},
-    {sent:"La ∎EBRA ha le strisce", options:["Z","S"], correct:"Z", word:"ZEBRA", pair:"s/z", mean:"煉"},
+    {sent:"La ∎OSA profuma di buono", options:["R","L"], correct:"R", word:"ROSA", pair:"l/r", mean:"🌹"},
+    {sent:"∎OMA è la capitale d'Italia", options:["R","L"], correct:"R", word:"ROMA", pair:"l/r", mean:"🏛"},
+    {sent:"La ∎OLPE è furba", options:["V","F"], correct:"V", word:"VOLPE", pair:"f/v", mean:"🦊"},
+    {sent:"Il ∎UOCO scalda d'inverno", options:["F","V"], correct:"F", word:"FUOCO", pair:"f/v", mean:"🔥"},
+    {sent:"Mangio una ∎IZZA stasera", options:["P","B"], correct:"P", word:"PIZZA", pair:"p/b", mean:"🍕"},
+    {sent:"Il ∎RAGO sputa fuoco", options:["D","B"], correct:"D", word:"DRAGO", pair:"d/b", mean:"🐉"},
+    {sent:"La ∎OTTE è scura", options:["N","M"], correct:"N", word:"NOTTE", pair:"m/n", mean:"🌃"},
+    {sent:"Il ∎ARE è grande e blu", options:["M","N"], correct:"M", word:"MARE", pair:"m/n", mean:"🌊"},
+    {sent:"La ∎INESTRA si apre al mattino", options:["F","V"], correct:"F", word:"FINESTRA", pair:"f/v", mean:"🪟"},
+    {sent:"La ∎EBRA ha le strisce", options:["Z","S"], correct:"Z", word:"ZEBRA", pair:"s/z", mean:"🦓"},
     {sent:"Il ∎OLE è caldo d'estate", options:["S","Z"], correct:"S", word:"SOLE", pair:"s/z", mean:"☀️"}
   ],
   3:[
-    {sent:"La ∎RINCIPESSA viveva nel castello", options:["P","B"], correct:"P", word:"PRINCIPESSA", pair:"p/b", mean:""},
-    {sent:"∎EDO le stelle brillare", options:["V","F"], correct:"V", word:"VEDO", pair:"f/v", mean:""},
-    {sent:"Il ∎RATELLO è figlio di mamma", options:["F","V"], correct:"F", word:"FRATELLO", pair:"f/v", mean:""},
+    {sent:"La ∎RINCIPESSA viveva nel castello", options:["P","B"], correct:"P", word:"PRINCIPESSA", pair:"p/b", mean:"👑"},
+    {sent:"∎EDO le stelle brillare", options:["V","F"], correct:"V", word:"VEDO", pair:"f/v", mean:"👁"},
+    {sent:"Il ∎RATELLO è figlio di mamma", options:["F","V"], correct:"F", word:"FRATELLO", pair:"f/v", mean:"👦"},
     {sent:"La ∎ERAVIGLIA degli unicorni", options:["M","N"], correct:"M", word:"MERAVIGLIA", pair:"m/n", mean:"✨"},
-    {sent:"La ∎AGIA cambia tutto", options:["M","N"], correct:"M", word:"MAGIA", pair:"m/n", mean:"彩"},
-    {sent:"Il ∎RUCIVERBA è divertente", options:["C","G"], correct:"C", word:"CRUCIVERBA", pair:"c/g", mean:"里"},
-    {sent:"La ∎UPA abita nella tana", options:["L","R"], correct:"L", word:"LUPA", pair:"l/r", mean:""}
+    {sent:"La ∎AGIA cambia tutto", options:["M","N"], correct:"M", word:"MAGIA", pair:"m/n", mean:"🪄"},
+    {sent:"Il ∎RUCIVERBA è divertente", options:["C","G"], correct:"C", word:"CRUCIVERBA", pair:"c/g", mean:"🧩"},
+    {sent:"La ∎UPA abita nella tana", options:["L","R"], correct:"L", word:"LUPA", pair:"l/r", mean:"🐺"}
   ]
 };
 
 const ERRORS = {
   1:[
-    {correct:"ACQUA",wrong:"AQUA",hint:" Si scrive con la C prima della Q: AC-QUA"},
-    {correct:"SCUOLA",wrong:"SKUOLA",hint:" In italiano non si usa la K"},
-    {correct:"CASA",wrong:"KASA",hint:" In italiano non c'è la K"},
-    {correct:"GNOMO",wrong:"NOMO",hint:"慄 Comincia con GN, non N"},
-    {correct:"FAMIGLIA",wrong:"FAMILIA",hint:" Con GLI, non LI"},
-    {correct:"PIOGGIA",wrong:"PIOGIA",hint:" Con GG doppia"},
-    {correct:"SOGNO",wrong:"SONGO",hint:" GN, non NG"},
-    {correct:"UOVO",wrong:"OVO",hint:"讀 Comincia con UO"},
-    {correct:"BICICLETTA",wrong:"BICICLETA",hint:" Doppia TT"},
-    {correct:"GIOCO",wrong:"GOCO",hint:" GI, non G"}
+    {correct:"ACQUA",wrong:"AQUA",hint:"💧 Si scrive con la C prima della Q: AC-QUA"},
+    {correct:"SCUOLA",wrong:"SKUOLA",hint:"🏫 In italiano non si usa la K"},
+    {correct:"CASA",wrong:"KASA",hint:"🏠 In italiano non c'è la K"},
+    {correct:"GNOMO",wrong:"NOMO",hint:"🧙 Comincia con GN, non N"},
+    {correct:"FAMIGLIA",wrong:"FAMILIA",hint:"👪 Con GLI, non LI"},
+    {correct:"PIOGGIA",wrong:"PIOGIA",hint:"🌧 Con GG doppia"},
+    {correct:"SOGNO",wrong:"SONGO",hint:"💭 GN, non NG"},
+    {correct:"UOVO",wrong:"OVO",hint:"🥚 Comincia con UO"},
+    {correct:"BICICLETTA",wrong:"BICICLETA",hint:"🚲 Doppia TT"},
+    {correct:"GIOCO",wrong:"GOCO",hint:"🎮 GI, non G"}
   ],
   2:[
-    {correct:"RAGAZZO",wrong:"RAGAZO",hint:"戮 Doppia ZZ"},
-    {correct:"CIAO",wrong:"CAO",hint:" CI con la I"},
+    {correct:"RAGAZZO",wrong:"RAGAZO",hint:"🧒 Doppia ZZ"},
+    {correct:"CIAO",wrong:"CAO",hint:"👋 CI con la I"},
     {correct:"CHIESA",wrong:"CESA",hint:"⛪ CHI duro, con H"},
     {correct:"GIORNO",wrong:"GORNO",hint:"☀️ GIO con la I"},
-    {correct:"UNGHIA",wrong:"UNGIA",hint:" GHI con H"},
-    {correct:"GHIACCIO",wrong:"GIACCIO",hint:"流 GHI con H"},
-    {correct:"ACCANTO",wrong:"AKANTO",hint:" Doppia CC, mai K"},
-    {correct:"QUADERNO",wrong:"CUADERNO",hint:" QU, non CU"}
+    {correct:"UNGHIA",wrong:"UNGIA",hint:"💅 GHI con H"},
+    {correct:"GHIACCIO",wrong:"GIACCIO",hint:"🧊 GHI con H"},
+    {correct:"ACCANTO",wrong:"AKANTO",hint:"📍 Doppia CC, mai K"},
+    {correct:"QUADERNO",wrong:"CUADERNO",hint:"📓 QU, non CU"}
   ],
   3:[
-    {correct:"COSCIENZA",wrong:"COSENZA",hint:" Con SC: CO-SCIEN-ZA"},
-    {correct:"SCIENZIATO",wrong:"SIENZIATO",hint:" SCI con la C"},
+    {correct:"COSCIENZA",wrong:"COSENZA",hint:"💭 Con SC: CO-SCIEN-ZA"},
+    {correct:"SCIENZIATO",wrong:"SIENZIATO",hint:"🔬 SCI con la C"},
     {correct:"EFFICIENZA",wrong:"EFICIENZA",hint:"⚡ Doppia FF"},
-    {correct:"ACCOGLIENTE",wrong:"ACOGLIENTE",hint:"珞 Doppia CC"},
-    {correct:"PAESAGGIO",wrong:"PAESAGIO",hint:" Doppia GG"},
-    {correct:"GHIRLANDA",wrong:"GIRLANDA",hint:" GHI con H"}
+    {correct:"ACCOGLIENTE",wrong:"ACOGLIENTE",hint:"🤗 Doppia CC"},
+    {correct:"PAESAGGIO",wrong:"PAESAGIO",hint:"🏞 Doppia GG"},
+    {correct:"GHIRLANDA",wrong:"GIRLANDA",hint:"🎄 GHI con H"}
   ]
 };
 
 const BUILD = {
   1:[
-    {syl:["CA","SA"],mean:" Dove abiti"},
-    {syl:["LU","NA"],mean:" Brilla di notte"},
+    {syl:["CA","SA"],mean:"🏠 Dove abiti"},
+    {syl:["LU","NA"],mean:"🌙 Brilla di notte"},
     {syl:["SO","LE"],mean:"☀️ Scalda il giorno"},
     {syl:["MA","NO"],mean:"✋ Ha cinque dita"},
-    {syl:["PA","NE"],mean:"稜 Si mangia a pranzo"},
-    {syl:["GAT","TO"],mean:" Fa miao"},
-    {syl:["PE","SCE"],mean:" Nuota nell'acqua"},
-    {syl:["FO","GLIA"],mean:" Sta sull'albero"}
+    {syl:["PA","NE"],mean:"🥖 Si mangia a pranzo"},
+    {syl:["GAT","TO"],mean:"🐈 Fa miao"},
+    {syl:["PE","SCE"],mean:"🐟 Nuota nell'acqua"},
+    {syl:["FO","GLIA"],mean:"🍃 Sta sull'albero"}
   ],
   2:[
     {syl:["MA","TI","TA"],mean:"✏️ Per disegnare"},
-    {syl:["FA","RI","NA"],mean:" Per fare il pane"},
-    {syl:["FI","NE","STRA"],mean:"犯 Si apre al mattino"},
-    {syl:["CA","VAL","LO"],mean:" Corre nei prati"},
-    {syl:["FAR","FAL","LA"],mean:"曆 Insetto colorato"},
-    {syl:["GIAR","DI","NO"],mean:" Pieno di piante"},
-    {syl:["BI","SCOT","TO"],mean:" Si inzuppa"},
-    {syl:["GHIAC","CIO"],mean:"流 Acqua congelata"}
+    {syl:["FA","RI","NA"],mean:"🌾 Per fare il pane"},
+    {syl:["FI","NE","STRA"],mean:"🪟 Si apre al mattino"},
+    {syl:["CA","VAL","LO"],mean:"🐎 Corre nei prati"},
+    {syl:["FAR","FAL","LA"],mean:"🦋 Insetto colorato"},
+    {syl:["GIAR","DI","NO"],mean:"🌸 Pieno di piante"},
+    {syl:["BI","SCOT","TO"],mean:"🍪 Si inzuppa"},
+    {syl:["GHIAC","CIO"],mean:"🧊 Acqua congelata"}
   ],
   3:[
-    {syl:["STRA","OR","DI","NA","RIO"],mean:" Molto speciale"},
-    {syl:["IM","POS","SI","BI","LE"],mean:" Che non si può fare"},
-    {syl:["FA","MI","GLIA"],mean:" Mamma, papà e figli"},
-    {syl:["GIO","CAT","TO","LO"],mean:"笠 Si usa per giocare"},
-    {syl:["AC","QUA","RIO"],mean:" Casa dei pesci"},
-    {syl:["AR","CO","BA","LE","NO"],mean:" Dopo la pioggia"},
-    {syl:["U","NI","COR","NO"],mean:"濾 Cavallo magico"},
-    {syl:["PRIN","CI","PES","SA"],mean:" Figlia del re"}
+    {syl:["STRA","OR","DI","NA","RIO"],mean:"💫 Molto speciale"},
+    {syl:["IM","POS","SI","BI","LE"],mean:"🚫 Che non si può fare"},
+    {syl:["FA","MI","GLIA"],mean:"👪 Mamma, papà e figli"},
+    {syl:["GIO","CAT","TO","LO"],mean:"🧸 Si usa per giocare"},
+    {syl:["AC","QUA","RIO"],mean:"🐠 Casa dei pesci"},
+    {syl:["AR","CO","BA","LE","NO"],mean:"🌈 Dopo la pioggia"},
+    {syl:["U","NI","COR","NO"],mean:"🦄 Cavallo magico"},
+    {syl:["PRIN","CI","PES","SA"],mean:"👑 Figlia del re"}
   ]
 };
 
 const MAGIC = {
   1:[
-    {word:"UNICORNO",syl:["U","NI","COR","NO"],mean:"濾 Cavallo magico"},
-    {word:"ARCOBALENO",syl:["AR","CO","BA","LE","NO"],mean:" Dopo la pioggia"},
+    {word:"UNICORNO",syl:["U","NI","COR","NO"],mean:"🦄 Cavallo magico"},
+    {word:"ARCOBALENO",syl:["AR","CO","BA","LE","NO"],mean:"🌈 Dopo la pioggia"},
     {word:"STELLE",syl:["STEL","LE"],mean:"⭐ Brillano di notte"},
-    {word:"FATA",syl:["FA","TA"],mean:"栗 Essere magico"},
+    {word:"FATA",syl:["FA","TA"],mean:"🧚 Essere magico"},
     {word:"MAGIA",syl:["MA","GI","A"],mean:"✨ Qualcosa di speciale"},
-    {word:"SOGNO",syl:["SO","GNO"],mean:" Nel sonno"}
+    {word:"SOGNO",syl:["SO","GNO"],mean:"💭 Nel sonno"}
   ],
   2:[
-    {word:"ACQUARELLO",syl:["AC","QUA","REL","LO"],mean:" Pittura con l'acqua"},
-    {word:"LIBELLULA",syl:["LI","BEL","LU","LA"],mean:"練 Insetto con ali trasparenti"},
-    {word:"PRINCIPESSA",syl:["PRIN","CI","PES","SA"],mean:" Figlia del re"},
-    {word:"PIANOFORTE",syl:["PIA","NO","FOR","TE"],mean:" Strumento con tasti"},
-    {word:"BIBLIOTECA",syl:["BI","BLI","O","TE","CA"],mean:" Posto pieno di libri"},
-    {word:"CIOCCOLATO",syl:["CIOC","CO","LA","TO"],mean:" Dolce marrone"}
+    {word:"ACQUARELLO",syl:["AC","QUA","REL","LO"],mean:"🎨 Pittura con l'acqua"},
+    {word:"LIBELLULA",syl:["LI","BEL","LU","LA"],mean:"🪰 Insetto con ali trasparenti"},
+    {word:"PRINCIPESSA",syl:["PRIN","CI","PES","SA"],mean:"👑 Figlia del re"},
+    {word:"PIANOFORTE",syl:["PIA","NO","FOR","TE"],mean:"🎹 Strumento con tasti"},
+    {word:"BIBLIOTECA",syl:["BI","BLI","O","TE","CA"],mean:"📚 Posto pieno di libri"},
+    {word:"CIOCCOLATO",syl:["CIOC","CO","LA","TO"],mean:"🍫 Dolce marrone"}
   ],
   3:[
-    {word:"STRAORDINARIO",syl:["STRA","OR","DI","NA","RIO"],mean:" Molto speciale"},
-    {word:"INCANTESIMO",syl:["IN","CAN","TE","SI","MO"],mean:"彩 Magia potente"},
-    {word:"CARATTERISTICA",syl:["CA","RAT","TE","RI","STI","CA"],mean:" Che distingue"},
-    {word:"TRASFORMAZIONE",syl:["TRA","SFOR","MA","ZIO","NE"],mean:" Cambio magico"},
+    {word:"STRAORDINARIO",syl:["STRA","OR","DI","NA","RIO"],mean:"💫 Molto speciale"},
+    {word:"INCANTESIMO",syl:["IN","CAN","TE","SI","MO"],mean:"🪄 Magia potente"},
+    {word:"CARATTERISTICA",syl:["CA","RAT","TE","RI","STI","CA"],mean:"🔍 Che distingue"},
+    {word:"TRASFORMAZIONE",syl:["TRA","SFOR","MA","ZIO","NE"],mean:"🔄 Cambio magico"},
     {word:"MERAVIGLIOSO",syl:["ME","RA","VI","GLIO","SO"],mean:"✨ Bellissimo"},
-    {word:"FANTASTICHERIA",syl:["FAN","TA","STI","CHE","RI","A"],mean:" Sogno ad occhi aperti"}
+    {word:"FANTASTICHERIA",syl:["FAN","TA","STI","CHE","RI","A"],mean:"💭 Sogno ad occhi aperti"}
   ]
 };
 
@@ -1002,12 +1002,12 @@ function finishGame(){
   $("rScore").textContent = points;
   $("rAccuracy").textContent = accuracy + "%";
   $("rErrors").textContent = state.errors;
-  $("resultTitle").textContent = accuracy===100 ? " PERFETTO! Tutte giuste! 濾" : (accuracy>=70 ? " Bravissima!" : " Hai finito, continua così!");
+  $("resultTitle").textContent = accuracy===100 ? "🌟 PERFETTO! Tutte giuste! 🦄" : (accuracy>=70 ? "🎉 Bravissima!" : "💜 Hai finito, continua così!");
   $("rMessage").textContent = "Hai dato " + state.correct + " risposte giuste su " + total + ", in " + seconds + " secondi.";
   if(newly.length){
     const nb = $("newUnicorn");
     nb.classList.remove("hidden");
-    nb.innerHTML = "<strong> Nuovi unicorni sbloccati!</strong><br>" +
+    nb.innerHTML = "<strong>🎉 Nuovi unicorni sbloccati!</strong><br>" +
       newly.map(u=>u.icon + " <b>" + u.name + "</b>").join(" · ");
     rainUnicorns(30);
   } else {
@@ -1033,7 +1033,7 @@ RUNNERS.doppie = function(q, el){
     '<div class="choices" id="chx"></div>';
   if(state.facilitations.hint){
     $("gameHint").classList.remove("hidden");
-    $("gameHint").innerHTML = " Ascolta: la parola giusta ha una lettera doppia. Sentile tutte e due!";
+    $("gameHint").innerHTML = "💡 Ascolta: la parola giusta ha una lettera doppia. Sentile tutte e due!";
   }
   const box = qs("#chx", el);
   opts.forEach(o=>{
@@ -1063,7 +1063,7 @@ RUNNERS.digrammi = function(q, el){
     '<div style="text-align:center;margin-top:10px"><button class="primary" id="confirmGroup">✓ Confermo</button></div>';
   if(state.facilitations.hint){
     $("gameHint").classList.remove("hidden");
-    $("gameHint").innerHTML = " Il gruppo <b>"+q.group+"</b> comincia alla lettera numero "+(q.positions[0]+1);
+    $("gameHint").innerHTML = "💡 Il gruppo <b>"+q.group+"</b> comincia alla lettera numero "+(q.positions[0]+1);
   }
   const grid = qs("#lg", el);
   const selected = new Set();
@@ -1100,7 +1100,7 @@ RUNNERS.discrim = function(q, el){
     '<div class="choices" id="chx"></div>';
   if(state.facilitations.hint){
     $("gameHint").classList.remove("hidden");
-    $("gameHint").innerHTML = " Suona come il primo suono di <b>"+q.word+"</b>";
+    $("gameHint").innerHTML = "💡 Suona come il primo suono di <b>"+q.word+"</b>";
   }
   const box = qs("#chx", el);
   const opts = shuffle(q.options.slice());
@@ -1134,7 +1134,7 @@ RUNNERS.errors = function(q, el){
     '<div class="choices" id="chx"></div>';
   if(state.facilitations.hint){
     $("gameHint").classList.remove("hidden");
-    $("gameHint").innerHTML = " " + q.hint;
+    $("gameHint").innerHTML = "💡 " + q.hint;
   }
   const box = qs("#chx", el);
   opts.forEach(o=>{
@@ -1171,7 +1171,7 @@ RUNNERS.build = function(q, el){
     '<button class="primary" id="confirmBuild">✓ Confermo</button></div>';
   if(state.facilitations.hint){
     $("gameHint").classList.remove("hidden");
-    $("gameHint").innerHTML = " La prima sillaba è <b>"+q.syl[0]+"</b>";
+    $("gameHint").innerHTML = "💡 La prima sillaba è <b>"+q.syl[0]+"</b>";
   }
   const slots = qs("#slots", el);
   const pool = qs("#pool", el);
@@ -1231,7 +1231,7 @@ RUNNERS.magic = function(q, el){
   el.innerHTML = '<div class="word-display" id="magicWord"></div>' +
     '<p style="text-align:center;font-size:16px">'+q.mean+'</p>' +
     '<div style="text-align:center;margin-top:10px">' +
-    '<button class="ghost" id="magicSpeak"> Ascolta</button> ' +
+    '<button class="ghost" id="magicSpeak">🔊 Ascolta</button> ' +
     '<button class="primary" id="magicRead">✓ L\'ho letta!</button></div>';
   renderSyllabled(qs("#magicWord", el), q.syl);
   qs("#magicSpeak", el).onclick = ()=>speak(q.word);
@@ -1249,7 +1249,7 @@ RUNNERS.stories = function(q, el){
     '<div class="choices" id="chx"></div>';
   if(state.facilitations.hint){
     $("gameHint").classList.remove("hidden");
-    $("gameHint").innerHTML = " Rileggi la storia con calma: la risposta è lì dentro!";
+    $("gameHint").innerHTML = "💡 Rileggi la storia con calma: la risposta è lì dentro!";
   }
   const box = qs("#chx", el);
   const correctText = q.opts[q.correct];
@@ -1283,7 +1283,7 @@ function updateDashboard(){
   $("hMinutes").textContent = mins;
   $("hPoints").textContent = pts;
   const name = (data.settings.name||"").trim();
-  $("homeGreeting").textContent = name ? ("Ciao " + name + "! 濾") : "Ciao avventuriera! 濾";
+  $("homeGreeting").textContent = name ? ("Ciao " + name + "! 🦄") : "Ciao avventuriera! 🦄";
   $("headerSub").textContent = name ? ("Buon allenamento, " + name + "!") : "Allenati con gli unicorni e diventa una lettrice magica!";
   $("dailyMsg").textContent = pickDaily();
   renderHomeUnicorns();
@@ -1296,7 +1296,7 @@ function renderHomeUnicorns(){
     const d = document.createElement("div");
     const owned = data.unicorns.includes(u.id);
     d.className = "uni" + (owned ? " owned" : "");
-    d.innerHTML = '<div>' + (owned ? u.icon : "") + '</div>' +
+    d.innerHTML = '<div>' + (owned ? u.icon : "🔒") + '</div>' +
       '<small>' + (owned ? u.name : (u.threshold + " pt")) + '</small>';
     box.appendChild(d);
   });
@@ -1332,7 +1332,7 @@ function renderProgress(){
   history.innerHTML = "";
   [...s].reverse().slice(0,50).forEach(x=>{
     const tr = document.createElement("tr");
-    const meta = GAMES_META[x.game] || {icon:"", name:(x.game||"Gioco")};
+    const meta = GAMES_META[x.game] || {icon:"🎮", name:(x.game||"Gioco")};
     [new Date(x.date).toLocaleDateString("it-IT"),
      meta.icon + " " + meta.name,
      "Lv " + (x.level||1),
@@ -1355,7 +1355,7 @@ function renderProgress(){
     const idx = Math.max(1, total - Math.min(15, total) + i + 1);
     const row = document.createElement("div");
     row.className = "barrow";
-    const meta = GAMES_META[x.game] || {icon:""};
+    const meta = GAMES_META[x.game] || {icon:"🎮"};
     row.innerHTML = '<div class="barlabel">' +
       '<span>'+meta.icon+' #'+idx+'</span>' +
       '<span>'+x.accuracy+'%</span></div>' +
@@ -1395,7 +1395,7 @@ function renderPassages(){
     d.style.cssText = "border:1px solid var(--border);border-radius:14px;padding:14px;margin-bottom:10px;background:#faf5ff";
     d.innerHTML = '<h3>'+p.title+'</h3>' +
       '<div style="font-size:calc(var(--fs) * 1.05);line-height:1.8;letter-spacing:.04em">'+p.text+'</div>' +
-      '<button class="ghost" style="margin-top:8px"> Ascolta</button>';
+      '<button class="ghost" style="margin-top:8px">🔊 Ascolta</button>';
     d.querySelector("button").onclick = ()=>speak(p.text);
     box.appendChild(d);
   });
@@ -1536,7 +1536,7 @@ function clearAllData(){
 
 function resetSessions(){
   if(!data.sessions.length && !data.readings.length){
-    alert("Non ci sono ancora contatori da azzerare 濾"); return;
+    alert("Non ci sono ancora contatori da azzerare 🦄"); return;
   }
   if(!confirm("Azzerare tutti i contatori e i progressi?\n\n• Si cancellano: sessioni, punti, minuti, accuratezza, storico, letture.\n• Si mantengono: diario errori, unicorni sbloccati, impostazioni.\n\nI dati non si possono recuperare!")) return;
   data.sessions = [];
@@ -1546,7 +1546,7 @@ function resetSessions(){
 }
 
 function resetErrorsLog(){
-  if(!data.errors.length){ alert("Il diario errori è già vuoto 濾"); return; }
+  if(!data.errors.length){ alert("Il diario errori è già vuoto 🦄"); return; }
   if(!confirm("Azzerare SOLO il diario degli errori ("+data.errors.length+" voci)?\nQuesta azione non si può annullare.")) return;
   data.errors = [];
   save(); renderErrorList();
@@ -1555,7 +1555,7 @@ function resetErrorsLog(){
 
 function resetUnicornsCollection(){
   const owned = data.unicorns.length;
-  if(owned <= 1){ alert("Hai già solo Stellina 濾"); return; }
+  if(owned <= 1){ alert("Hai già solo Stellina 🦄"); return; }
   if(!confirm("Azzerare la collezione di unicorni ("+owned+" unicorni)?\nRimarrà solo Stellina. Gli altri si sbloccheranno di nuovo accumulando punti.")) return;
   data.unicorns = [1];
   save(); updateDashboard(); renderProgress();
