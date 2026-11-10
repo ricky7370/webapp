@@ -497,6 +497,9 @@ footer{text-align:center;color:var(--soft);padding:20px;font-size:12px}
     <h3>🔊 Voce dell'unicorno</h3>
     <span class="toggle" id="setTTS" style="display:inline-flex;align-items:center;gap:6px;padding:7px 13px;border-radius:20px;border:2px solid var(--border);background:#fff;cursor:pointer;font-size:13px;font-weight:600;color:var(--soft);user-select:none">🔊 Attiva lettura ad alta voce automatica</span>
     <p class="small">Richiede un dispositivo con sintesi vocale (la trovi quasi ovunque).</p>
+    <label style="margin-top:10px">Voce (scegli una voce italiana)</label>
+    <select id="voiceSelect"></select>
+    <p class="small" id="voiceHint">Caricamento voci…</p>
 
     <h3>🦄 Ciao, come ti chiami?</h3>
     <input id="setName" placeholder="Il tuo nome (opzionale)">
@@ -542,7 +545,7 @@ footer{text-align:center;color:var(--soft);padding:20px;font-size:12px}
 <script>
 // ============ STATO ============
 const KEY = "unicornReader_v2";
-const DEF = {sessions:[],errors:[],readings:[],settings:{tts:true,name:"",fontSize:"normal",letterSpacing:"normal",lineHeight:"normal"},unicorns:[1],played:{},playedVersion:2};
+const DEF = {sessions:[],errors:[],readings:[],settings:{tts:true,name:"",voiceName:"",fontSize:"normal",letterSpacing:"normal",lineHeight:"normal"},unicorns:[1],played:{},playedVersion:2};
 let data = Object.assign({}, DEF, JSON.parse(localStorage.getItem(KEY) || "{}"));
 ["sessions","errors","readings","unicorns"].forEach(k=>{ if(!Array.isArray(data[k])) data[k]=DEF[k].slice(); });
 data.settings = Object.assign({}, DEF.settings, data.settings||{});
@@ -604,11 +607,99 @@ function pickDaily(){
   return DAILY[(d.getFullYear()*372+d.getMonth()*31+d.getDate()) % DAILY.length];
 }
 
+// ============ TTS: selezione esplicita della voce italiana ============
+// Il solo impostare u.lang="it-IT" non basta: molti browser (specie
+// Firefox/Safari/Linux) usano comunque la voce di sistema di default
+// (spesso inglese) se non si specifica esplicitamente u.voice.
+let _voicesCache = [];
+let _italianVoice = null;
+
+function loadVoices(){
+  if(!('speechSynthesis' in window)) return;
+  _voicesCache = window.speechSynthesis.getVoices() || [];
+  _italianVoice = pickItalianVoice(_voicesCache);
+  const sel = document.getElementById("voiceSelect");
+  if(sel) populateVoiceSelect(sel);
+}
+
+function pickItalianVoice(voices){
+  if(!voices || !voices.length) return null;
+  // Se l'utente ha salvato una scelta, provala
+  const chosen = data.settings && data.settings.voiceName;
+  if(chosen){
+    const u = voices.find(v => v.name === chosen);
+    if(u) return u;
+  }
+  // Priorità: it-IT esatto -> qualunque lingua "it-*" -> null
+  const itExact = voices.find(v => (v.lang||"").toLowerCase() === "it-it");
+  if(itExact) return itExact;
+  const anyIt = voices.find(v => (v.lang||"").toLowerCase().startsWith("it"));
+  return anyIt || null;
+}
+
+function populateVoiceSelect(sel){
+  sel.innerHTML = "";
+  if(!_voicesCache.length){
+    const o = document.createElement("option");
+    o.value = ""; o.textContent = "Nessuna voce disponibile";
+    sel.appendChild(o);
+    sel.disabled = true;
+    return;
+  }
+  sel.disabled = false;
+  // Ordinamento: italiane prima
+  const sorted = _voicesCache.slice().sort((a,b)=>{
+    const aIt = (a.lang||"").toLowerCase().startsWith("it") ? 0 : 1;
+    const bIt = (b.lang||"").toLowerCase().startsWith("it") ? 0 : 1;
+    if(aIt !== bIt) return aIt - bIt;
+    return a.name.localeCompare(b.name);
+  });
+  const italians = sorted.filter(v => (v.lang||"").toLowerCase().startsWith("it"));
+  if(italians.length){
+    const grp = document.createElement("optgroup");
+    grp.label = "🇮🇹 Italiano";
+    italians.forEach(v=>{
+      const o = document.createElement("option");
+      o.value = v.name;
+      o.textContent = v.name + " (" + v.lang + ")" + (v.default ? " ★" : "");
+      grp.appendChild(o);
+    });
+    sel.appendChild(grp);
+  } else {
+    const warn = document.createElement("option");
+    warn.value = "";
+    warn.textContent = "⚠️ Nessuna voce italiana trovata!";
+    sel.appendChild(warn);
+  }
+  const others = sorted.filter(v => !(v.lang||"").toLowerCase().startsWith("it"));
+  if(others.length){
+    const grp = document.createElement("optgroup");
+    grp.label = "🌐 Altre lingue";
+    others.forEach(v=>{
+      const o = document.createElement("option");
+      o.value = v.name;
+      o.textContent = v.name + " (" + v.lang + ")";
+      grp.appendChild(o);
+    });
+    sel.appendChild(grp);
+  }
+  // Seleziona la voce corrente
+  if(_italianVoice) sel.value = _italianVoice.name;
+}
+
 function speak(text){
   if(!data.settings.tts || !('speechSynthesis' in window)) return;
   window.speechSynthesis.cancel();
+  if(!_voicesCache.length){ _voicesCache = window.speechSynthesis.getVoices() || []; }
+  if(!_italianVoice) _italianVoice = pickItalianVoice(_voicesCache);
   const u = new SpeechSynthesisUtterance(text);
-  u.lang = "it-IT"; u.rate = 0.82; u.pitch = 1.08;
+  u.lang = "it-IT";
+  u.rate = 0.82;
+  u.pitch = 1.08;
+  if(_italianVoice){
+    u.voice = _italianVoice;
+    u.lang = _italianVoice.lang || "it-IT";
+  }
   window.speechSynthesis.speak(u);
 }
 function autoSpeak(t){ if(state.facilitations.tts) speak(t); }
@@ -1917,6 +2008,12 @@ function applySettings(){
   $("setTTS").style.background = s.tts ? "#e3f7ec" : "#fff";
   $("setTTS").style.borderColor = s.tts ? "var(--green)" : "var(--border)";
   $("setTTS").style.color = s.tts ? "var(--green)" : "var(--soft)";
+  // Voice dropdown — ri-popola per riflettere la scelta salvata
+  const sel = document.getElementById("voiceSelect");
+  if(sel && _voicesCache.length){
+    populateVoiceSelect(sel);
+    if(s.voiceName){ sel.value = s.voiceName; }
+  }
 }
 
 function saveSettings(){
@@ -2083,6 +2180,38 @@ $("testVoice").onclick = ()=>{
   speak("Ciao " + n + "! Benvenuta nel regno degli unicorni.");
 };
 
+$("voiceSelect").onchange = (e)=>{
+  data.settings.voiceName = e.target.value || "";
+  _italianVoice = pickItalianVoice(_voicesCache);
+  save();
+  updateVoiceHint();
+  // Anteprima immediata
+  if(data.settings.tts) speak("Ciao! Sono la tua nuova voce.");
+};
+
+function updateVoiceHint(){
+  const hint = document.getElementById("voiceHint");
+  if(!hint) return;
+  if(!('speechSynthesis' in window)){
+    hint.innerHTML = "⚠️ Il tuo dispositivo non supporta la sintesi vocale.";
+    hint.style.color = "var(--red)";
+    return;
+  }
+  if(!_voicesCache.length){
+    hint.textContent = "Caricamento voci…";
+    hint.style.color = "var(--soft)";
+    return;
+  }
+  const italians = _voicesCache.filter(v => (v.lang||"").toLowerCase().startsWith("it"));
+  if(italians.length){
+    hint.innerHTML = `✓ ${italians.length} ${italians.length===1?"voce italiana trovata":"voci italiane trovate"} sul tuo dispositivo.`;
+    hint.style.color = "var(--green)";
+  } else {
+    hint.innerHTML = "⚠️ <b>Nessuna voce italiana trovata!</b> Il tuo sistema operativo o browser non ha voci italiane installate. Su Chrome/Edge spesso l'italiano viene scaricato automaticamente. Su Windows puoi aggiungerlo da Impostazioni → Ora e lingua → Lingua. Su macOS da Impostazioni di Sistema → Accessibilità → Contenuti letti ad alta voce.";
+    hint.style.color = "var(--red)";
+  }
+}
+
 $("resetSessions").onclick = resetSessions;
 $("resetErrors").onclick = resetErrorsLog;
 $("resetUnicorns").onclick = resetUnicornsCollection;
@@ -2094,6 +2223,20 @@ updateDashboard();
 renderGameMenu();
 renderPassages();
 renderErrorList();
+
+// ============ TTS INIT ============
+if('speechSynthesis' in window){
+  // Alcuni browser (Chrome) emettono voiceschanged quando le voci sono pronte
+  window.speechSynthesis.onvoiceschanged = ()=>{ loadVoices(); updateVoiceHint(); };
+  // Prova anche subito (Firefox le ha disponibili immediatamente)
+  loadVoices();
+  updateVoiceHint();
+  // Retry a scalare per browser con caricamento lento
+  setTimeout(()=>{ loadVoices(); updateVoiceHint(); }, 200);
+  setTimeout(()=>{ loadVoices(); updateVoiceHint(); }, 1000);
+} else {
+  updateVoiceHint();
+}
 </script>
 </body>
 </html>
